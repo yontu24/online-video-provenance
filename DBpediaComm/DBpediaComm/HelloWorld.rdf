@@ -1,0 +1,422 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE rdf:RDF [
+	<!ENTITY rdf 'http://www.w3.org/1999/02/22-rdf-syntax-ns#'>
+	<!ENTITY rdfs 'http://www.w3.org/2000/01/rdf-schema#'>
+	<!ENTITY xsd 'http://www.w3.org/2001/XMLSchema#'>
+	<!ENTITY owl 'http://www.w3.org/2002/07/owl#'>
+]>
+<rdf:RDF xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#" xmlns:xsd="http://www.w3.org/2001/XMLSchema#" xmlns:owl="http://www.w3.org/2002/07/owl#" xmlns:ns0="http://dbpedia.org/ontology/" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
+  <ns0:Film rdf:about="http://dbpedia.org/resource/A_Month_in_the_Country_(play)">
+    <ns0:genre rdf:resource="http://dbpedia.org/resource/Comedy_(drama)" />
+  </ns0:Film>
+  <ns0:genre rdf:about="http://dbpedia.org/resource/Action_fiction">
+    <rdf:type rdf:resource="http://dbpedia.org/ontology/genre" />
+  </ns0:genre>
+  <ns0:genre rdf:about="http://dbpedia.org/resource/Action_film">
+    <rdf:type rdf:resource="http://dbpedia.org/ontology/genre" />
+  </ns0:genre>
+  <ns0:genre rdf:about="http://dbpedia.org/resource/Adventure">
+    <rdf:type rdf:resource="http://dbpedia.org/ontology/genre" />
+  </ns0:genre>
+  <ns0:genre rdf:about="http://dbpedia.org/resource/Adventure_film">
+    <rdf:type rdf:resource="http://dbpedia.org/ontology/genre" />
+  </ns0:genre>
+  <ns0:Film rdf:about="http://dbpedia.org/resource/Albedo_One">
+    <ns0:genre rdf:resource="http://dbpedia.org/resource/Fantasy_fiction_magazine" />
+    <ns0:genre rdf:resource="http://dbpedia.org/resource/Horror_fiction_magazine" />
+  </ns0:Film>
+  <ns0:Film rdf:about="http://dbpedia.org/resource/Algo_habr%C3%A1n_hecho_por_la_historia_argentina">
+    <ns0:genre rdf:resource="http://dbpedia.org/resource/Documentary_film" />
+  </ns0:Film>
+  <ns0:Film rdf:about="http://dbpedia.org/resource/Algo_habr%C3%A1n_hecho_por_la_historia_de_Chile">
+    <ns0:genre rdf:resource="http://dbpedia.org/resource/Documentary_film" />
+  </ns0:Film>
+  <ns0:Film rdf:about="http://dbpedia.org/resource/Alice_in_Wonderland_(1985_film)">
+    <ns0:genre rdf:resource="http://dbpedia.org/resource/Adventure_film" />
+    <ns0:genre rdf:resource="http://dbpedia.org/resource/Children's_film" />
+    <ns0:genre rdf:resource="http://dbpedia.org/resource/Fantasy_film" />
+    <ns0:genre rdf:resource="http://dbpedia.org/resource/Musical_film" />
+  </ns0:Film>
+  <ns0:Film rdf:about="http://dbpedia.org/resource/All_About_Eve_(Philippine_TV_series)">
+    <ns0:genre rdf:resource="http://dbpedia.org/resource/Drama_(film_and_television)" />
+  </ns0:Film>
+  <ns0:Film rdf:about="http://dbpedia.org/resource/All_My_Life_(TV_series)">
+    <ns0:genre rdf:resource="http://dbpedia.org/resource/Drama_(film_and_television)" />
+    <ns0:genre rdf:resource="http://dbpedia.org/resource/Romance_film" />
+  </ns0:Film>
+  <ns0:Film rdf:about="http://dbpedia.org/resource/Allegiance_(TV_series)">
+    <ns0:genre rdf:resource="http://dbpedia.org/resource/Drama_(film_and_television)" />
+  </ns0:Film>
+  <ns0:Film rdf:about="http://dbpedia.org/resource/Always_on_My_Mind">
+    <ns0:genre rdf:resource="http://dbpedia.org/resource/Country_music" />
+    <ns0:genre rdf:resource="http://dbpedia.org/resource/Gospel_music" />
+    <ns0:genre rdf:resource="http://dbpedia.org/resource/Soft_rock" />
+    <ns0:genre rdf:resource="http://dbpedia.org/resource/Synth-pop" />
+  </ns0:Film>
+  <ns0:Film rdf:about="http://dbpedia.org/resource/Amaya_(TV_series)">
+    <ns0:genre rdf:resource="http://dbpedia.org/resource/Drama_(film_and_television)" />
+    <ns0:genre rdf:resource="http://dbpedia.org/resource/Historical_drama" />
+  </ns0:Film>
+  <ns0:Film rdf:about="http://dbpedia.org/resource/American_Crime_(TV_series)">
+    <ns0:genre rdf:resource="http://dbpedia.org/resource/Crime_film" />
+  </ns0:Film>
+  <ns0:Film rdf:about="http://dbpedia.org/resource/American_Dreamer_(TV_series)">
+    <ns0:genre rdf:resource="http://dbpedia.org/resource/Sitcom" />
+  </ns0:Film>
+  <ns0:Film rdf:about="http://dbpedia.org/resource/An_Age_of_Kings">
+    <ns0:genre rdf:resource="http://dbpedia.org/resource/BBC_television_drama" />
+    <ns0:genre rdf:resource="http://dbpedia.org/resource/Shakespearean_history" />
+    <ns0:genre rdf:resource="http://dbpedia.org/resource/Shakespearean_tragedy" />
+  </ns0:Film>
+  <ns0:Film rdf:about="http://dbpedia.org/resource/An_American_Family">
+    <ns0:genre rdf:resource="http://dbpedia.org/resource/Reality_television" />
+    <ns0:genre rdf:resource="http://dbpedia.org/resource/Television_documentary" />
+  </ns0:Film>
+  <ns0:Film rdf:about="http://dbpedia.org/resource/An_Inspector_Calls_(2015_TV_film)">
+    <ns0:genre rdf:resource="http://dbpedia.org/resource/Drama_(film_and_television)" />
+    <ns0:genre rdf:resource="http://dbpedia.org/resource/Thriller_(genre)" />
+  </ns0:Film>
+  <ns0:genre rdf:about="http://dbpedia.org/resource/BBC_television_drama">
+    <rdf:type rdf:resource="http://dbpedia.org/ontology/genre" />
+  </ns0:genre>
+  <ns0:genre rdf:about="http://dbpedia.org/resource/Child">
+    <rdf:type rdf:resource="http://dbpedia.org/ontology/genre" />
+  </ns0:genre>
+  <ns0:genre rdf:about="http://dbpedia.org/resource/Children's_film">
+    <rdf:type rdf:resource="http://dbpedia.org/ontology/genre" />
+  </ns0:genre>
+  <ns0:genre rdf:about="http://dbpedia.org/resource/Children's_television_series">
+    <rdf:type rdf:resource="http://dbpedia.org/ontology/genre" />
+  </ns0:genre>
+  <ns0:genre rdf:about="http://dbpedia.org/resource/Comedy">
+    <rdf:type rdf:resource="http://dbpedia.org/ontology/genre" />
+  </ns0:genre>
+  <ns0:genre rdf:about="http://dbpedia.org/resource/Comedy_(drama)">
+    <rdf:type rdf:resource="http://dbpedia.org/ontology/genre" />
+  </ns0:genre>
+  <ns0:genre rdf:about="http://dbpedia.org/resource/Country_music">
+    <rdf:type rdf:resource="http://dbpedia.org/ontology/genre" />
+  </ns0:genre>
+  <ns0:genre rdf:about="http://dbpedia.org/resource/Crime_film">
+    <rdf:type rdf:resource="http://dbpedia.org/ontology/genre" />
+  </ns0:genre>
+  <ns0:genre rdf:about="http://dbpedia.org/resource/Cyberpunk">
+    <rdf:type rdf:resource="http://dbpedia.org/ontology/genre" />
+  </ns0:genre>
+  <ns0:genre rdf:about="http://dbpedia.org/resource/Docudrama">
+    <rdf:type rdf:resource="http://dbpedia.org/ontology/genre" />
+  </ns0:genre>
+  <ns0:genre rdf:about="http://dbpedia.org/resource/Documentary_film">
+    <rdf:type rdf:resource="http://dbpedia.org/ontology/genre" />
+  </ns0:genre>
+  <ns0:Film rdf:about="http://dbpedia.org/resource/Downton_Abbey">
+    <ns0:genre rdf:resource="http://dbpedia.org/resource/Historical_drama" />
+  </ns0:Film>
+  <ns0:genre rdf:about="http://dbpedia.org/resource/Drama">
+    <rdf:type rdf:resource="http://dbpedia.org/ontology/genre" />
+  </ns0:genre>
+  <ns0:genre rdf:about="http://dbpedia.org/resource/Drama_(film_and_television)">
+    <rdf:type rdf:resource="http://dbpedia.org/ontology/genre" />
+  </ns0:genre>
+  <ns0:Film rdf:about="http://dbpedia.org/resource/Dynasty:_The_Reunion">
+    <ns0:genre rdf:resource="http://dbpedia.org/resource/Soap_opera" />
+  </ns0:Film>
+  <ns0:Film rdf:about="http://dbpedia.org/resource/Educating_Rita">
+    <ns0:genre rdf:resource="http://dbpedia.org/resource/Comedy" />
+  </ns0:Film>
+  <ns0:genre rdf:about="http://dbpedia.org/resource/Entertainment">
+    <rdf:type rdf:resource="http://dbpedia.org/ontology/genre" />
+  </ns0:genre>
+  <ns0:genre rdf:about="http://dbpedia.org/resource/Fantasy">
+    <rdf:type rdf:resource="http://dbpedia.org/ontology/genre" />
+  </ns0:genre>
+  <ns0:genre rdf:about="http://dbpedia.org/resource/Fantasy_fiction_magazine">
+    <rdf:type rdf:resource="http://dbpedia.org/ontology/genre" />
+  </ns0:genre>
+  <ns0:genre rdf:about="http://dbpedia.org/resource/Fantasy_film">
+    <rdf:type rdf:resource="http://dbpedia.org/ontology/genre" />
+  </ns0:genre>
+  <ns0:genre rdf:about="http://dbpedia.org/resource/Gospel_music">
+    <rdf:type rdf:resource="http://dbpedia.org/ontology/genre" />
+  </ns0:genre>
+  <ns0:genre rdf:about="http://dbpedia.org/resource/Historical_drama">
+    <rdf:type rdf:resource="http://dbpedia.org/ontology/genre" />
+  </ns0:genre>
+  <ns0:genre rdf:about="http://dbpedia.org/resource/Historical_fiction">
+    <rdf:type rdf:resource="http://dbpedia.org/ontology/genre" />
+  </ns0:genre>
+  <ns0:genre rdf:about="http://dbpedia.org/resource/Horror_fiction">
+    <rdf:type rdf:resource="http://dbpedia.org/ontology/genre" />
+  </ns0:genre>
+  <ns0:genre rdf:about="http://dbpedia.org/resource/Horror_fiction_magazine">
+    <rdf:type rdf:resource="http://dbpedia.org/ontology/genre" />
+  </ns0:genre>
+  <ns0:genre rdf:about="http://dbpedia.org/resource/Horror_film">
+    <rdf:type rdf:resource="http://dbpedia.org/ontology/genre" />
+  </ns0:genre>
+  <ns0:Film rdf:about="http://dbpedia.org/resource/In_Pursuit_of_Honor">
+    <ns0:genre rdf:resource="http://dbpedia.org/resource/Western_(genre)" />
+  </ns0:Film>
+  <ns0:genre rdf:about="http://dbpedia.org/resource/Isekai">
+    <rdf:type rdf:resource="http://dbpedia.org/ontology/genre" />
+  </ns0:genre>
+  <ns0:Film rdf:about="http://dbpedia.org/resource/Jinxed_(2013_film)">
+    <ns0:genre rdf:resource="http://dbpedia.org/resource/Comedy" />
+    <ns0:genre rdf:resource="http://dbpedia.org/resource/Fantasy" />
+  </ns0:Film>
+  <ns0:Film rdf:about="http://dbpedia.org/resource/Judgment_Day:_Intelligent_Design_on_Trial">
+    <ns0:genre rdf:resource="http://dbpedia.org/resource/Documentary_film" />
+    <ns0:genre rdf:resource="http://dbpedia.org/resource/Science" />
+  </ns0:Film>
+  <ns0:Film rdf:about="http://dbpedia.org/resource/Judgment_Day:_The_John_List_Story">
+    <ns0:genre rdf:resource="http://dbpedia.org/resource/Crime_film" />
+  </ns0:Film>
+  <ns0:Film rdf:about="http://dbpedia.org/resource/Just_a_Gigolo_(song)">
+    <ns0:genre rdf:resource="http://dbpedia.org/resource/Tango_music" />
+  </ns0:Film>
+  <ns0:genre rdf:about="http://dbpedia.org/resource/Kaiju">
+    <rdf:type rdf:resource="http://dbpedia.org/ontology/genre" />
+  </ns0:genre>
+  <ns0:Film rdf:about="http://dbpedia.org/resource/Kamen_Rider_Agito">
+    <ns0:genre rdf:resource="http://dbpedia.org/resource/Action_fiction" />
+    <ns0:genre rdf:resource="http://dbpedia.org/resource/Horror_fiction" />
+    <ns0:genre rdf:resource="http://dbpedia.org/resource/Science_fiction" />
+    <ns0:genre rdf:resource="http://dbpedia.org/resource/Superhero_fiction" />
+    <ns0:genre rdf:resource="http://dbpedia.org/resource/Supernatural_fiction" />
+    <ns0:genre rdf:resource="http://dbpedia.org/resource/Tokusatsu" />
+  </ns0:Film>
+  <ns0:Film rdf:about="http://dbpedia.org/resource/Kate_&amp;_Allie">
+    <ns0:genre rdf:resource="http://dbpedia.org/resource/Sitcom" />
+  </ns0:Film>
+  <ns0:Film rdf:about="http://dbpedia.org/resource/Knight_Rider_2000">
+    <ns0:genre rdf:resource="http://dbpedia.org/resource/Science_fiction_film" />
+  </ns0:Film>
+  <ns0:genre rdf:about="http://dbpedia.org/resource/Kyodai_Hero">
+    <rdf:type rdf:resource="http://dbpedia.org/ontology/genre" />
+  </ns0:genre>
+  <ns0:Film rdf:about="http://dbpedia.org/resource/Laag_(TV_series)">
+    <ns0:genre rdf:resource="http://dbpedia.org/resource/Action_film" />
+    <ns0:genre rdf:resource="http://dbpedia.org/resource/Crime_film" />
+    <ns0:genre rdf:resource="http://dbpedia.org/resource/Drama" />
+  </ns0:Film>
+  <ns0:Film rdf:about="http://dbpedia.org/resource/Lassie_(1954_TV_series)">
+    <ns0:genre rdf:resource="http://dbpedia.org/resource/Adventure" />
+    <ns0:genre rdf:resource="http://dbpedia.org/resource/Drama" />
+  </ns0:Film>
+  <ns0:Film rdf:about="http://dbpedia.org/resource/Law_&amp;_Order">
+    <ns0:genre rdf:resource="http://dbpedia.org/resource/Legal_drama" />
+    <ns0:genre rdf:resource="http://dbpedia.org/resource/Mystery_fiction" />
+    <ns0:genre rdf:resource="http://dbpedia.org/resource/Police_procedural" />
+  </ns0:Film>
+  <ns0:Film rdf:about="http://dbpedia.org/resource/Leap_of_Faith_(TV_series)">
+    <ns0:genre rdf:resource="http://dbpedia.org/resource/Sitcom" />
+  </ns0:Film>
+  <ns0:Film rdf:about="http://dbpedia.org/resource/Leave_It_to_Beaver">
+    <ns0:genre rdf:resource="http://dbpedia.org/resource/Children's_television_series" />
+    <ns0:genre rdf:resource="http://dbpedia.org/resource/Sitcom" />
+  </ns0:Film>
+  <ns0:genre rdf:about="http://dbpedia.org/resource/Legal_drama">
+    <rdf:type rdf:resource="http://dbpedia.org/ontology/genre" />
+  </ns0:genre>
+  <ns0:Film rdf:about="http://dbpedia.org/resource/Let's_Go_(Philippine_TV_series)">
+    <ns0:genre rdf:resource="http://dbpedia.org/resource/Sitcom" />
+  </ns0:Film>
+  <ns0:Film rdf:about="http://dbpedia.org/resource/Let_It_Shine_(film)">
+    <ns0:genre rdf:resource="http://dbpedia.org/resource/Musical_film" />
+    <ns0:genre rdf:resource="http://dbpedia.org/resource/Teen_film" />
+  </ns0:Film>
+  <ns0:Film rdf:about="http://dbpedia.org/resource/Life_Beyond_the_Box:_Margo_Leadbetter">
+    <ns0:genre rdf:resource="http://dbpedia.org/resource/Docudrama" />
+  </ns0:Film>
+  <ns0:genre rdf:about="http://dbpedia.org/resource/Martial_arts_film">
+    <rdf:type rdf:resource="http://dbpedia.org/ontology/genre" />
+  </ns0:genre>
+  <ns0:genre rdf:about="http://dbpedia.org/resource/Medical_drama">
+    <rdf:type rdf:resource="http://dbpedia.org/ontology/genre" />
+  </ns0:genre>
+  <ns0:genre rdf:about="http://dbpedia.org/resource/Melodrama">
+    <rdf:type rdf:resource="http://dbpedia.org/ontology/genre" />
+  </ns0:genre>
+  <ns0:genre rdf:about="http://dbpedia.org/resource/Musical_film">
+    <rdf:type rdf:resource="http://dbpedia.org/ontology/genre" />
+  </ns0:genre>
+  <ns0:genre rdf:about="http://dbpedia.org/resource/Musical_theatre">
+    <rdf:type rdf:resource="http://dbpedia.org/ontology/genre" />
+  </ns0:genre>
+  <ns0:Film rdf:about="http://dbpedia.org/resource/My_Family_&amp;_Other_Turkeys_with_Nigel_Marven">
+    <ns0:genre rdf:resource="http://dbpedia.org/resource/Nature_documentary" />
+  </ns0:Film>
+  <ns0:Film rdf:about="http://dbpedia.org/resource/My_Super_Psycho_Sweet_16">
+    <ns0:genre rdf:resource="http://dbpedia.org/resource/Horror_film" />
+    <ns0:genre rdf:resource="http://dbpedia.org/resource/Slasher_film" />
+  </ns0:Film>
+  <ns0:genre rdf:about="http://dbpedia.org/resource/Mystery_fiction">
+    <rdf:type rdf:resource="http://dbpedia.org/ontology/genre" />
+  </ns0:genre>
+  <ns0:Film rdf:about="http://dbpedia.org/resource/NBA_on_TNT">
+    <ns0:genre rdf:resource="http://dbpedia.org/resource/National_Basketball_Association" />
+  </ns0:Film>
+  <ns0:genre rdf:about="http://dbpedia.org/resource/National_Basketball_Association">
+    <rdf:type rdf:resource="http://dbpedia.org/ontology/genre" />
+  </ns0:genre>
+  <ns0:genre rdf:about="http://dbpedia.org/resource/Nature_documentary">
+    <rdf:type rdf:resource="http://dbpedia.org/ontology/genre" />
+  </ns0:genre>
+  <ns0:Film rdf:about="http://dbpedia.org/resource/No._73">
+    <ns0:genre rdf:resource="http://dbpedia.org/resource/Child" />
+    <ns0:genre rdf:resource="http://dbpedia.org/resource/Entertainment" />
+  </ns0:Film>
+  <ns0:genre rdf:about="http://dbpedia.org/resource/Police_procedural">
+    <rdf:type rdf:resource="http://dbpedia.org/ontology/genre" />
+  </ns0:genre>
+  <ns0:Film rdf:about="http://dbpedia.org/resource/Power_Rangers_RPM">
+    <ns0:genre rdf:resource="http://dbpedia.org/resource/Science_fiction" />
+    <ns0:genre rdf:resource="http://dbpedia.org/resource/Utopian_and_dystopian_fiction" />
+  </ns0:Film>
+  <ns0:genre rdf:about="http://dbpedia.org/resource/Reality_television">
+    <rdf:type rdf:resource="http://dbpedia.org/ontology/genre" />
+  </ns0:genre>
+  <ns0:genre rdf:about="http://dbpedia.org/resource/Revenge">
+    <rdf:type rdf:resource="http://dbpedia.org/ontology/genre" />
+  </ns0:genre>
+  <ns0:genre rdf:about="http://dbpedia.org/resource/Romance_film">
+    <rdf:type rdf:resource="http://dbpedia.org/ontology/genre" />
+  </ns0:genre>
+  <ns0:Film rdf:about="http://dbpedia.org/resource/Ryan_Ryan_Musikahan">
+    <ns0:genre rdf:resource="http://dbpedia.org/resource/Musical_theatre" />
+  </ns0:Film>
+  <ns0:Film rdf:about="http://dbpedia.org/resource/Sannata">
+    <ns0:genre rdf:resource="http://dbpedia.org/resource/Drama" />
+    <ns0:genre rdf:resource="http://dbpedia.org/resource/Thriller_(genre)" />
+  </ns0:Film>
+  <ns0:genre rdf:about="http://dbpedia.org/resource/Science">
+    <rdf:type rdf:resource="http://dbpedia.org/ontology/genre" />
+  </ns0:genre>
+  <ns0:genre rdf:about="http://dbpedia.org/resource/Science_fiction">
+    <rdf:type rdf:resource="http://dbpedia.org/ontology/genre" />
+  </ns0:genre>
+  <ns0:genre rdf:about="http://dbpedia.org/resource/Science_fiction_film">
+    <rdf:type rdf:resource="http://dbpedia.org/ontology/genre" />
+  </ns0:genre>
+  <ns0:genre rdf:about="http://dbpedia.org/resource/Science_fiction_on_television">
+    <rdf:type rdf:resource="http://dbpedia.org/ontology/genre" />
+  </ns0:genre>
+  <ns0:genre rdf:about="http://dbpedia.org/resource/Shakespearean_history">
+    <rdf:type rdf:resource="http://dbpedia.org/ontology/genre" />
+  </ns0:genre>
+  <ns0:genre rdf:about="http://dbpedia.org/resource/Shakespearean_tragedy">
+    <rdf:type rdf:resource="http://dbpedia.org/ontology/genre" />
+  </ns0:genre>
+  <ns0:genre rdf:about="http://dbpedia.org/resource/Sitcom">
+    <rdf:type rdf:resource="http://dbpedia.org/ontology/genre" />
+  </ns0:genre>
+  <ns0:genre rdf:about="http://dbpedia.org/resource/Sketch_comedy">
+    <rdf:type rdf:resource="http://dbpedia.org/ontology/genre" />
+  </ns0:genre>
+  <ns0:genre rdf:about="http://dbpedia.org/resource/Slasher_film">
+    <rdf:type rdf:resource="http://dbpedia.org/ontology/genre" />
+  </ns0:genre>
+  <ns0:genre rdf:about="http://dbpedia.org/resource/Soap_opera">
+    <rdf:type rdf:resource="http://dbpedia.org/ontology/genre" />
+  </ns0:genre>
+  <ns0:genre rdf:about="http://dbpedia.org/resource/Soft_rock">
+    <rdf:type rdf:resource="http://dbpedia.org/ontology/genre" />
+  </ns0:genre>
+  <ns0:Film rdf:about="http://dbpedia.org/resource/Space:_1999">
+    <ns0:genre rdf:resource="http://dbpedia.org/resource/Science_fiction_on_television" />
+  </ns0:Film>
+  <ns0:genre rdf:about="http://dbpedia.org/resource/Sport">
+    <rdf:type rdf:resource="http://dbpedia.org/ontology/genre" />
+  </ns0:genre>
+  <ns0:genre rdf:about="http://dbpedia.org/resource/Superhero_fiction">
+    <rdf:type rdf:resource="http://dbpedia.org/ontology/genre" />
+  </ns0:genre>
+  <ns0:genre rdf:about="http://dbpedia.org/resource/Supernatural_fiction">
+    <rdf:type rdf:resource="http://dbpedia.org/ontology/genre" />
+  </ns0:genre>
+  <ns0:genre rdf:about="http://dbpedia.org/resource/Synth-pop">
+    <rdf:type rdf:resource="http://dbpedia.org/ontology/genre" />
+  </ns0:genre>
+  <ns0:genre rdf:about="http://dbpedia.org/resource/Tango_music">
+    <rdf:type rdf:resource="http://dbpedia.org/ontology/genre" />
+  </ns0:genre>
+  <ns0:genre rdf:about="http://dbpedia.org/resource/Teen_film">
+    <rdf:type rdf:resource="http://dbpedia.org/ontology/genre" />
+  </ns0:genre>
+  <ns0:genre rdf:about="http://dbpedia.org/resource/Telenovela">
+    <rdf:type rdf:resource="http://dbpedia.org/ontology/genre" />
+  </ns0:genre>
+  <ns0:genre rdf:about="http://dbpedia.org/resource/Television_documentary">
+    <rdf:type rdf:resource="http://dbpedia.org/ontology/genre" />
+  </ns0:genre>
+  <ns0:Film rdf:about="http://dbpedia.org/resource/The_Adventures_of_Aggie">
+    <ns0:genre rdf:resource="http://dbpedia.org/resource/Sitcom" />
+  </ns0:Film>
+  <ns0:Film rdf:about="http://dbpedia.org/resource/The_Alaskans">
+    <ns0:genre rdf:resource="http://dbpedia.org/resource/Adventure_film" />
+    <ns0:genre rdf:resource="http://dbpedia.org/resource/Western_(genre)" />
+  </ns0:Film>
+  <ns0:Film rdf:about="http://dbpedia.org/resource/The_Knick">
+    <ns0:genre rdf:resource="http://dbpedia.org/resource/Historical_drama" />
+    <ns0:genre rdf:resource="http://dbpedia.org/resource/Medical_drama" />
+  </ns0:Film>
+  <ns0:Film rdf:about="http://dbpedia.org/resource/The_Kung_Fu_Master_(TV_series)">
+    <ns0:genre rdf:resource="http://dbpedia.org/resource/Action_film" />
+    <ns0:genre rdf:resource="http://dbpedia.org/resource/Historical_fiction" />
+    <ns0:genre rdf:resource="http://dbpedia.org/resource/Martial_arts_film" />
+  </ns0:Film>
+  <ns0:genre rdf:about="http://dbpedia.org/resource/Thriller_(genre)">
+    <rdf:type rdf:resource="http://dbpedia.org/ontology/genre" />
+  </ns0:genre>
+  <ns0:genre rdf:about="http://dbpedia.org/resource/Tokusatsu">
+    <rdf:type rdf:resource="http://dbpedia.org/ontology/genre" />
+  </ns0:genre>
+  <ns0:Film rdf:about="http://dbpedia.org/resource/Two_Women's_Room">
+    <ns0:genre rdf:resource="http://dbpedia.org/resource/Children's_film" />
+    <ns0:genre rdf:resource="http://dbpedia.org/resource/Melodrama" />
+    <ns0:genre rdf:resource="http://dbpedia.org/resource/Revenge" />
+  </ns0:Film>
+  <ns0:Film rdf:about="http://dbpedia.org/resource/USA_Thursday_Game_of_the_Week">
+    <ns0:genre rdf:resource="http://dbpedia.org/resource/Sport" />
+  </ns0:Film>
+  <ns0:Film rdf:about="http://dbpedia.org/resource/Ultraseven_X">
+    <ns0:genre rdf:resource="http://dbpedia.org/resource/Cyberpunk" />
+    <ns0:genre rdf:resource="http://dbpedia.org/resource/Isekai" />
+    <ns0:genre rdf:resource="http://dbpedia.org/resource/Kaiju" />
+    <ns0:genre rdf:resource="http://dbpedia.org/resource/Kyodai_Hero" />
+    <ns0:genre rdf:resource="http://dbpedia.org/resource/Science_fiction" />
+    <ns0:genre rdf:resource="http://dbpedia.org/resource/Superhero_fiction" />
+    <ns0:genre rdf:resource="http://dbpedia.org/resource/Tokusatsu" />
+  </ns0:Film>
+  <ns0:Film rdf:about="http://dbpedia.org/resource/Un_hijo_cay%C3%B3_del_cielo">
+    <ns0:genre rdf:resource="http://dbpedia.org/resource/Telenovela" />
+  </ns0:Film>
+  <ns0:Film rdf:about="http://dbpedia.org/resource/Un_paso_al_abismo">
+    <ns0:genre rdf:resource="http://dbpedia.org/resource/Telenovela" />
+  </ns0:Film>
+  <ns0:Film rdf:about="http://dbpedia.org/resource/Un_solo_coraz%C3%B3n">
+    <ns0:genre rdf:resource="http://dbpedia.org/resource/Telenovela" />
+  </ns0:Film>
+  <ns0:Film rdf:about="http://dbpedia.org/resource/Unforgotten">
+    <ns0:genre rdf:resource="http://dbpedia.org/resource/Crime_film" />
+  </ns0:Film>
+  <ns0:Film rdf:about="http://dbpedia.org/resource/Unlikely_Angel">
+    <ns0:genre rdf:resource="http://dbpedia.org/resource/Fantasy_film" />
+  </ns0:Film>
+  <ns0:Film rdf:about="http://dbpedia.org/resource/Up_Late_NW">
+    <ns0:genre rdf:resource="http://dbpedia.org/resource/Sketch_comedy" />
+    <ns0:genre rdf:resource="http://dbpedia.org/resource/Variety_show" />
+  </ns0:Film>
+  <ns0:Film rdf:about="http://dbpedia.org/resource/Ups_and_Downs_in_the_Sea_of_Love">
+    <ns0:genre rdf:resource="http://dbpedia.org/resource/Drama_(film_and_television)" />
+  </ns0:Film>
+  <ns0:genre rdf:about="http://dbpedia.org/resource/Utopian_and_dystopian_fiction">
+    <rdf:type rdf:resource="http://dbpedia.org/ontology/genre" />
+  </ns0:genre>
+  <ns0:genre rdf:about="http://dbpedia.org/resource/Variety_show">
+    <rdf:type rdf:resource="http://dbpedia.org/ontology/genre" />
+  </ns0:genre>
+  <ns0:genre rdf:about="http://dbpedia.org/resource/Western_(genre)">
+    <rdf:type rdf:resource="http://dbpedia.org/ontology/genre" />
+  </ns0:genre>
+</rdf:RDF>

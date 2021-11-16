@@ -1,0 +1,16 @@
+
+*.config
+*.testlog
+*.manifest
+*.dll
+*.exe
+*.pdb
+*.props
+*.cache
+*.editorconfig
+*.suo
+*.user
+_ReSharper.*
+bin
+obj
+packages
