@@ -13,34 +13,57 @@ namespace DBpediaComm.Helpers
 {
     public class TryoutCreateFile
     {
-        public static void CreateFile(Dictionary<string, List<string>> movieGenres)
+        public static void CreateFile(Dictionary<string, Dictionary<string, List<string>>> movieGenres)
         {
-            /*Graph g = new Graph();
-
-            IUriNode film = g.CreateUriNode(UriFactory.Create()
-            IUriNode hasGenre = g.CreateUriNode(UriFactory.Create("http://example.org/hasGenre"));
-            foreach (string title in movieGenres.Keys)
-            {
-                IUriNode myRdf = g.CreateUriNode(UriFactory.Create(title));
-                foreach (string genre in movieGenres[title])
-                {
-                    ILiteralNode genreNode = g.CreateLiteralNode(genre);
-                    g.Assert(new Triple(myRdf, hasGenre, genreNode));
-                }
-            }*/
-
             OntologyGraph g = new OntologyGraph();
-            var filmClass = g.CreateOntologyClass(UriFactory.Create("http://dbpedia.org/ontology/Film"));
-            var genreClass = g.CreateOntologyClass(UriFactory.Create("http://dbpedia.org/ontology/genre"));
-            var a = g.CreateUriNode("rdf:type");
-            var prop = g.CreateUriNode("rdf:Property");
+            var filmClass = g.CreateOntologyClass(UriFactory.Create("http://WADe-ovi.org/ontology/Film"));
             
-            foreach (string title in movieGenres.Keys)
+            Dictionary<string, OntologyClass> oClasses = new Dictionary<string, OntologyClass>();
+            foreach(string filmProp in movieGenres[movieGenres.Keys.First()].Keys)
             {
-                var film = g.CreateOntologyClass(UriFactory.Create(title));
+                oClasses[filmProp] = g.CreateOntologyClass(UriFactory.Create($"http://WADe-ovi.org/resource/{filmProp}"));
+            }
+
+            // var genreClass = g.CreateOntologyClass(UriFactory.Create("http://WADe-ovi.org/ontology/Genre"));
+            var a = g.CreateUriNode("rdf:type");
+            // var prop = g.CreateUriNode("rdf:Property");
+
+            foreach (string titleUri in movieGenres.Keys)
+            {
+                string title = titleUri.Split('/').Last();
+                var film = g.CreateOntologyClass(UriFactory.Create($"http://WADe-ovi.org/page/{title}"));
                 film.AddType(filmClass);
-                // g.Assert(new Triple(film, a, filmClass));
-                foreach (string genreStr in movieGenres[title])
+
+                foreach(string propUri in movieGenres[titleUri].Keys)
+                {
+                    string filmProp = propUri.Split('/').Last();
+
+                    if(filmProp == "budget")
+                    {
+                        continue;
+                    }
+
+                    foreach (string valUri in movieGenres[titleUri][propUri])
+                    {
+                        string val = valUri.Split('/').Last();
+                        string graphUri = $"http://WADe-ovi.org/resource/{val}";
+                        
+                        var valClass = g.Nodes.Where(x => 
+                        x.ToString() == graphUri
+                        ).FirstOrDefault();// g.GetUriNode(graphUri);
+
+                        if (valClass == null)
+                        {
+                            valClass = g.CreateUriNode(UriFactory.Create(graphUri));
+                            g.Assert(new Triple(valClass, a, oClasses[propUri].Resource));
+                        }
+
+                        if (!g.ContainsTriple(new Triple(film.Resource, oClasses[propUri].Resource, valClass)))
+                            g.Assert(new Triple(film.Resource, oClasses[propUri].Resource, valClass));
+                    }
+                }
+
+                /*foreach (string genreStr in movieGenres[title])
                 {
                     var genre = g.CreateOntologyClass(UriFactory.Create(genreStr));
                     genre.AddType(genreClass);
@@ -50,7 +73,7 @@ namespace DBpediaComm.Helpers
                     // film.AddLiteralProperty(UriFactory.Create(genreStr), g.CreateLiteralNode(genreStr), false);
                     // film.AddResourceProperty(genreStr, g.CreateUriNode(genreStr), true);
                     // genreClass.AddLiteralProperty(UriFactory.Create(genreStr), g.CreateLiteralNode(genreStr), true);
-                }
+                }*/
             }
 
             RdfXmlWriter rdfxmlwriter = new RdfXmlWriter();
@@ -60,22 +83,6 @@ namespace DBpediaComm.Helpers
         public static void QueryFile()
         {
             IGraph g = new Graph();
-            // RdfXmlParser parser = new RdfXmlParser();
-            // parser.Load(g, "HelloWorld.rdf");
-
-            /*            //Load using a Filename
-                        FileLoader.Load(g, "HelloWorld.rdf");
-                        // dbopedia.org/resource
-                        //  ?movie <http://dbpedia.org/ontology/genre> ?genre .
-                        SparqlQueryParser qParser = new SparqlQueryParser();
-                        SparqlQuery query = qParser.ParseFromString(@"
-
-                            SELECT * WHERE {
-                                    ?movie a <http://dbpedia.org/resource/Albedo_One> .
-
-                                } LIMIT 100");
-
-                        var results = g.ExecuteQuery(query);*/
 
             g.LoadFromFile("HelloWorld.rdf");
             ISparqlDataset ds = new InMemoryDataset(g);

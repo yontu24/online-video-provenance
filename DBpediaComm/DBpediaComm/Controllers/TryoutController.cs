@@ -14,38 +14,78 @@ namespace DBpediaComm.Controllers
     [ApiController]
     public class TryoutController
     {
+        /*
+         * Should only be used to reset the dataset
+         */
         [HttpGet]
-        public async Task<ActionResult<List<string>>> GetResults()
+        public async Task<ActionResult<List<string>>> PopulateDataset()
         {
             SparqlRemoteEndpoint endpoint = new SparqlRemoteEndpoint(new Uri("http://dbpedia.org/sparql"));
             endpoint.ResultsAcceptHeader = "application/sparql-results+json";
+            endpoint.Timeout = 300000; // 5 mins
+           
+            List<string> infoToPull = new List<string>() { "genre", "abstract" , "budget", "cinematography", 
+                "director", "language", "producer", "starring", "runtime", "writer"};
 
-            SparqlResultSet results = endpoint.QueryWithResultSet(@"    
-                    PREFIX omc: <omc.ttl>
-                    PREFIX cw: <cw.ttl>
-                
-                    SELECT * WHERE {
+            /*
+             *
+             *  also, maximum query paramsm aside from dbo:film and schema:CreativeWork seems to be 10
+             *  , "distributor"
+                "gross" - not working
+                ?movie dbp:{infoToPull[11]} ?{infoToPull[11]} 
+             * 
+             */
+
+            string selectVariables = "?movie " + String.Join(" ", infoToPull.Select(x => $"Group_Concat(distinct ?{x}, ', ') as ?{x}"));
+
+            string queryString = $@"                  
+                    SELECT {selectVariables} WHERE {{
                         ?movie a dbo:Film .
-                        ?movie a schema:CreativeWork .
-                        ?movie dbo:genre ?genre . 
-                    } LIMIT 100");
+                        ?movie a schema:CreativeWork ;
+                            dbo:{infoToPull[0]} ?{infoToPull[0]} ; 
+                            dbo:{infoToPull[1]} ?{infoToPull[1]} ;
+                            dbp:{infoToPull[2]} ?{infoToPull[2]} ;
+                            dbp:{infoToPull[3]} ?{infoToPull[3]} ;
+                            dbp:{infoToPull[4]} ?{infoToPull[4]} ;
+                            dbp:{infoToPull[5]} ?{infoToPull[5]} ;
+                            dbp:{infoToPull[6]} ?{infoToPull[6]} ; 
+                            dbp:{infoToPull[7]} ?{infoToPull[7]} ;
+                            dbp:{infoToPull[8]} ?{infoToPull[8]} ;
+                            dbp:{infoToPull[9]} ?{infoToPull[9]} 
 
-            Dictionary<string, List<string>> movieGenres = new Dictionary<string, List<string>>();
+                    }} LIMIT 100";
+
+            SparqlResultSet results = endpoint.QueryWithResultSet(queryString);
+
+            Dictionary<string, Dictionary<string, List<string>>> movieInfo = new Dictionary<string, Dictionary<string, List<string>>>();
 
             foreach(var result in results)
             {
                 var title = result.Value("movie").ToString();
-                var genre = result.Value("genre").ToString();
-                if (!movieGenres.ContainsKey(title))
-                    movieGenres[title] = new List<string>();
+                List<string> infoReturned = new List<string>();
 
-                movieGenres[title].Add(genre);
+                for(int i = 0; i < infoToPull.Count; ++i)
+                {
+                    infoReturned.Add(result.Value(infoToPull[i]).ToString());
+                }
+
+                if (!movieInfo.ContainsKey(title))
+                    movieInfo[title] = new Dictionary<string, List<string>>();
+
+                for (int i = 0; i < infoToPull.Count; ++i)
+                {
+                    if (!movieInfo[title].ContainsKey(infoToPull[i]))
+                        movieInfo[title][infoToPull[i]] = new List<string>();
+
+                    movieInfo[title][infoToPull[i]].Add(infoReturned[i]);
+                }
             }
 
             List<string> output = results.ToList().Select(x => x.ToString()).ToList();
 
-            TryoutCreateFile.CreateFile(movieGenres);
-            TryoutCreateFile.QueryFile();
+            TryoutCreateFile.CreateFile(movieInfo);
+            // gotta modify this too
+            //TryoutCreateFile.QueryFile();
 
             return output;
         }
