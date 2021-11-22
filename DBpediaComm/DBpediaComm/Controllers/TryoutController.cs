@@ -56,7 +56,7 @@ namespace DBpediaComm.Controllers
                     }} LIMIT 100";
 
             SparqlResultSet results = endpoint.QueryWithResultSet(queryString);
-
+            
             Dictionary<string, Dictionary<string, List<string>>> movieInfo = new Dictionary<string, Dictionary<string, List<string>>>();
 
             foreach(var result in results)
@@ -83,7 +83,7 @@ namespace DBpediaComm.Controllers
 
             List<string> output = results.ToList().Select(x => x.ToString()).ToList();
 
-            TryoutCreateFile.CreateFile(movieInfo);
+            // TryoutCreateFile.CreateFile(movieInfo);
             // gotta modify this too
             //TryoutCreateFile.QueryFile();
 
