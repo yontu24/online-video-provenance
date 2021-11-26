@@ -16,6 +16,13 @@ namespace DBpediaComm.Controllers
     {
         /*
          * Should only be used to reset the dataset
+         * 
+         * dbpediaQB.BuildSelectQuery(input)
+         * dbpediaConn.ExecuteQuery()
+         * odatasetQB.BuildCreateQuery(res)
+         * odatasetConn.ExecuteQuery()
+         * odatasetQB.BuildSelectQuery()
+         * 
          */
         [HttpGet]
         public async Task<ActionResult<List<string>>> PopulateDataset()
@@ -71,7 +78,7 @@ namespace DBpediaComm.Controllers
 
                 if (!movieInfo.ContainsKey(title))
                     movieInfo[title] = new Dictionary<string, List<string>>();
-
+                
                 for (int i = 0; i < infoToPull.Count; ++i)
                 {
                     if (!movieInfo[title].ContainsKey(infoToPull[i]))

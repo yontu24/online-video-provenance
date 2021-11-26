@@ -36,7 +36,53 @@
   <section typeof="sa:Abstract" id="abstract" role="doc-abstract">
     <h2>Abstract</h2>
     <p>
-      OVI should represent a system able to model and manage the knowledge about the provenance of each video resource available online. This document describes the preliminary considerations we took when thinking up our application, what we wish to implement, what we think of using and so on.
+      OVI should represent a system able to model and manage the knowledge about the provenance of each video resource available online. This technical report describes the preliminary considerations we took when thinking up our application, what we wish to implement, what we think of using and a few other aspects.
+    </p>
+  </section>
+  <section role="doc-introduction">
+    <h2>Introduction</h2>
+    The reason why we chose this project was the promising idea of learning how big data is handled in a context that regards information that most of the people are familiar with, movies and tv series. 
+  </section>
+  <section id="dotnetrdf">
+    <h2>dotNetRDF</h2>
+    <p>
+      Taken from <a href="https://dotnetrdf.org/">their website</a>, dotNetRDF is a free and Open Source library for parsing, managing, querying and writing RDF. It also provides a common .NET API for working with RDF triple stores such as AllegroGraph, Jena, Stardog and Virtuoso. After looking at our options, dotNetRDF proved to be the one that offers the most functionalities and also the one that is most frequently used. 
+    </p>
+    <p>
+      The first thing we tried to do using dotNetRDF was to try to connect to the <a href="http://dbpedia.org/sparql">DBPedia SPARQL endpoint</a>. This is done in order to pull information from DBPedia, with which we will build our own dataset. To achieve this, we used an already existent class, <b>SparqlRemoteEndpoint</b>, which connects to an endpoint and then allows executing queries on it.
+    </p>
+    <p>
+      The information that we manage to pull from DBPedia is then parsed through and, using our own ontology, added to an <b>OntologyGraph</b>. This API provides certain abstractions over graphs, which make it easier to perform certain operations such as adding a type or property. For more specific operations, we can still work directly with triples and also use queries.
+    </p>
+    <p>
+      After we finish adding triples in our graph, we save it into an rdf file, thus creating our dataset.
+    </p>
+  </section>
+  <section id="ourDataset">
+    <h2>Our dataset</h2>
+    <p>
+      As was briefly mentioned in the previous section, our dataset is built mainly on information taken from DBPedia, information which we take, parse through and then put into our own dataset.
+    </p>
+    <p>
+      In order to do this, each row from the result set must be parsed separatly. What we mean by parsing is that we strip the DBPedia uri and we only take the data that concerns us, meaning concepts, such as film, genre, action and so on and also the actual values for these. Using these values, we are then able to create the URIs that we will use for our graph's nodes.
+    </p>
+  </section>
+  <section id="architecture">
+    <h2>Architecture</h2>
+    <p>
+
+    </p>
+  </section>
+  <section id="linkedData">
+    <h2>Linked data principles</h2>
+    <p>
+      The unique identificators for the subject and object nodes in the dataset graph are set to URIs which, when accessed, point to a HTML page served by the client that contains useful information about the corresponding resource. Each of these pages also provides additional content regarding other resources that are somehow related to the element that is currently viewed, along with their corresponding URIs. For example, when accessing the URI http://localhost:3000/resource/Inception the rendered page would contain columns such as rdf:Type -> http://localhost:3000/resource/Movie, rdf:Has -> http://localhost:3000/resource/Actor, and some brief description.
+    </p>
+  </section>
+  <section id="imdbApi">
+    <h2>IMDB API</h2>
+    <p>
+      
     </p>
   </section>
 </body>

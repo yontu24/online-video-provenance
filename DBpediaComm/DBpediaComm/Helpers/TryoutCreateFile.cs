@@ -27,7 +27,7 @@ namespace DBpediaComm.Helpers
             // var genreClass = g.CreateOntologyClass(UriFactory.Create("http://WADe-ovi.org/ontology/Genre"));
             var a = g.CreateUriNode("rdf:type");
             // var prop = g.CreateUriNode("rdf:Property");
-
+            
             foreach (string titleUri in movieGenres.Keys)
             {
                 string title = titleUri.Split('/').Last();
