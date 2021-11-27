@@ -27,6 +27,9 @@ namespace DBpediaComm.Controllers
         [HttpGet]
         public async Task<ActionResult<List<string>>> PopulateDataset()
         {
+
+            TryoutCreateFile.QueryFile();
+
             SparqlRemoteEndpoint endpoint = new SparqlRemoteEndpoint(new Uri("http://dbpedia.org/sparql"));
             endpoint.ResultsAcceptHeader = "application/sparql-results+json";
             endpoint.Timeout = 300000; // 5 mins

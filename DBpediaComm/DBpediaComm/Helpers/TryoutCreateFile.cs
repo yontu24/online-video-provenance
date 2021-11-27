@@ -91,8 +91,8 @@ namespace DBpediaComm.Helpers
             SparqlQueryParser qParser = new SparqlQueryParser();
             SparqlQuery query = qParser.ParseFromString(@"
                 SELECT * WHERE {
-                        ?movie a <http://dbpedia.org/ontology/Film> .
-                        ?movie <http://dbpedia.org/ontology/genre> ?genre      
+                        ?movie a <http://wade-ovi.org/ontology/Film> .
+                            <http://wade-ovi.org/ontology/genre> ?genre      
                     } LIMIT 100");
 
             var results = processor.ProcessQuery(query);

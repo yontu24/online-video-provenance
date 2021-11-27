@@ -155,7 +155,7 @@
         Similarly to the other service, a query will be built in order to retrieve a resource with the same value as the input and all relevant information related to it. This query will be then run against one or more sparql endpoints, such as the one from DBPedia. The results are then parsed through, formatted. A new query will be created, that will be run against our own endpoint, which will add the new information into our dataset.
       </p>
       <p>
-        Upon a successful retrieval of information, the client is notified and another call will be made to the other service, to return the information from there.
+        Upon a successful retrieval of information, the client will receive the information about the resource that was just added to the dataset.
       </p>
     </section>
     <section id="client">
