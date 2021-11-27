@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -7,6 +8,7 @@
   <link rel="stylesheet" href="style.css">
   <title>OVI - Technical Report</title>
 </head>
+
 <body>
   <header>
     <h1>OVI - Technical Report</h1>
@@ -122,46 +124,70 @@
   <section typeof="sa:Abstract" id="abstract" role="doc-abstract">
     <h2>Abstract</h2>
     <p>
-      OVI should represent a system able to model and manage the knowledge about the provenance of each video resource available online. This technical report describes the preliminary considerations we took when thinking up our application, what we wish to implement, what we think of using and a few other aspects.
+      OVI should represent a system able to model and manage the knowledge about the provenance of each video resource
+      available online. This technical report describes the preliminary considerations we took when thinking up our
+      application, what we wish to implement, what we think of using and a few other aspects.
     </p>
   </section>
   <section role="doc-introduction">
     <h2>Introduction</h2>
-    The reason why we chose this project was the promising idea of learning how big data is handled in a context that regards information that most of the people are familiar with, movies and tv series. 
+    The reason why we chose this project was the promising idea of learning how big data is handled in a context that
+    regards information that most of the people are familiar with, movies and tv series.
   </section>
   <section id="architecture">
     <h2>Architecture</h2>
     <p>
-      Our application will implement a microservices architecure style. The ideea is to have two services, one which will pull information and another which will update the existing information or add new information. By doing this, we want to separate the read and write operations that are performed over our dataset and have them well defind as such.
+      Our application will implement a microservices architecure style. The ideea is to have two services, one which
+      will pull information and another which will update the existing information or add new information. By doing
+      this, we want to separate the read and write operations that are performed over our dataset and have them well
+      defind as such.
     </p>
     <section id="firstService">
       <h3>First service</h3>
       <p>
-        The first service we shall talk about is the one that reads from our dataset. This service will be called whenever an user interacts with our client, either by using our search bar or by typing directly into the browser's address bar the URI of the resource he wants to access.
+        The first service we shall talk about is the one that reads from our dataset. This service will be called
+        whenever an user interacts with our client, either by using our search bar or by typing directly into the
+        browser's address bar the URI of the resource he wants to access.
       </p>
       <p>
-        What the service will receive from the client is the actual name / value of the resource, whose date is to be retrieved. We may also take into consideration the addition of the type of the resource, for example if it is a movie, an actor or something else. This would help us in creating the more specific queries regarding what we want to retrieve. Another note on this topic is that, unless additional operations are perforemd, this will require the user to write, even in the search bar, the exact name of the resource, as we saved it, otherwise the calls to the service will not return anything.
+        What the service will receive from the client is the actual name / value of the resource, whose date is to be
+        retrieved. We may also take into consideration the addition of the type of the resource, for example if it is a
+        movie, an actor or something else. This would help us in creating the more specific queries regarding what we
+        want to retrieve. Another note on this topic is that, unless additional operations are perforemd, this will
+        require the user to write, even in the search bar, the exact name of the resource, as we saved it, otherwise the
+        calls to the service will not return anything.
       </p>
       <p>
-        After we receive our input from the client, regardless of what it actually is, we build a query that returns all the triples in which our input takes part of. To go even further into detail, we can break the query into two, one which retreives the triples in which the resource is the subject, meaning the actual information retlated to the movie and one query which retrieves the triples in which the resource is the predicate. The results from the second query may be used for recomandations and other related links.
+        After we receive our input from the client, regardless of what it actually is, we build a query that returns all
+        the triples in which our input takes part of. To go even further into detail, we can break the query into two,
+        one which retreives the triples in which the resource is the subject, meaning the actual information retlated to
+        the movie and one query which retrieves the triples in which the resource is the predicate. The results from the
+        second query may be used for recomandations and other related links.
       </p>
     </section>
     <section id="dataManipulationService">
       <h3>Data manipulation service</h3>
       <p>
-        As stated earlier, this service will write into our dataset. The actual intent for this is that whenever an user searches for something that is not found in our dataset, meaning that the other service will return nothing, we will try to add it, so that it will be there for future queries.
+        As stated earlier, this service will write into our dataset. The actual intent for this is that whenever an user
+        searches for something that is not found in our dataset, meaning that the other service will return nothing, we
+        will try to add it, so that it will be there for future queries.
       </p>
       <p>
-        Similarly to the other service, a query will be built in order to retrieve a resource with the same value as the input and all relevant information related to it. This query will be then run against one or more sparql endpoints, such as the one from DBPedia. The results are then parsed through, formatted. A new query will be created, that will be run against our own endpoint, which will add the new information into our dataset.
+        Similarly to the other service, a query will be built in order to retrieve a resource with the same value as the
+        input and all relevant information related to it. This query will be then run against one or more sparql
+        endpoints, such as the one from DBPedia. The results are then parsed through, formatted. A new query will be
+        created, that will be run against our own endpoint, which will add the new information into our dataset.
       </p>
       <p>
-        Upon a successful retrieval of information, the client will receive the information about the resource that was just added to the dataset.
+        Upon a successful retrieval of information, the client will receive the information about the resource that was
+        just added to the dataset.
       </p>
     </section>
     <section id="client">
       <h3>Client</h3>
       <p>
-        The component that the user will interact with when using our application will be implemented in <a href="https://reactjs.org/">React</a>. It could be split into two main parts:
+        The component that the user will interact with when using our application will be implemented in <a
+          href="https://reactjs.org/">React</a>. It could be split into two main parts:
       </p>
       <ul>
         <li>
@@ -177,28 +203,46 @@
       <section id="homepage">
         <h4>Homepage</h4>
         <p>
-          This is the main page that an user will land on when using our application. This page will be mainly made up of two section, the content section and the search bar section.
+          This is the main page that an user will land on when using our application. This page will be mainly made up
+          of two section, the content section and the search bar section.
         </p>
         <p>
-          The content section will mainly consist of a few movie titles, which will be chosen either randomly or based on a rating. For example, we may display the highest rated titles from some genres, such as action or comedy. This has not been the focus of our discussions so this section will be furtherly defined in the following versions.
+          The content section will mainly consist of a few movie titles, which will be chosen either randomly or based
+          on a rating. For example, we may display the highest rated titles from some genres, such as action or comedy.
+          This has not been the focus of our discussions so this section will be furtherly defined in the following
+          versions.
         </p>
         <p>
-          The other section, the searchbar, could be regarded as the most important section of the page. As was briefly mentioned when talking about the first service, the user will be able to enter a string and a GET request will be made to the service. At the same time, the user will be redirected to the page template.
+          The other section, the searchbar, could be regarded as the most important section of the page. As was briefly
+          mentioned when talking about the first service, the user will be able to enter a string and a GET request will
+          be made to the service. At the same time, the user will be redirected to the page template.
         </p>
         <p>
-          Similar to how the search bar works, an user may also be able to navigate to the page of a certain resource by writing directly in the address bar. Of course, this requires that the user has knowledge beforehand of the address of the resource that he is trying to access and that no mistakes are made while writing the URI. When the user hits the enter key, as is the case for the search bar, he will be rediracted to the page template.
+          Similar to how the search bar works, an user may also be able to navigate to the page of a certain resource by
+          writing directly in the address bar. Of course, this requires that the user has knowledge beforehand of the
+          address of the resource that he is trying to access and that no mistakes are made while writing the URI. When
+          the user hits the enter key, as is the case for the search bar, he will be rediracted to the page template.
         </p>
       </section>
       <section id="pageTemplate">
         <h4>Page template</h4>
         <p>
-          Here is where the user will be redirected to whenever he tries to access a resource on our website, be it by using the search bar or by using the address bar.
+          Here is where the user will be redirected to whenever he tries to access a resource on our website, be it by
+          using the search bar or by using the address bar.
         </p>
         <p>
-          In its default state, the page will be blank. Instead, when receiving a response from the request previously made, content will be rendered. In the event of a successful request to the first service, meaning that data was pulled from our dataset, the result will be passed through and content will be rendered accordingly, based on the information available. In this regard, we may have multiple templates, such as one for movies and one for actors, each having some pre-defined containers that will be always be present.
+          In its default state, the page will be blank. Instead, when receiving a response from the request previously
+          made, content will be rendered. In the event of a successful request to the first service, meaning that data
+          was pulled from our dataset, the result will be passed through and content will be rendered accordingly, based
+          on the information available. In this regard, we may have multiple templates, such as one for movies and one
+          for actors, each having some pre-defined containers that will be always be present.
         </p>
         <p>
-          In the case of a <b>Not Found</b> response to the request previously made, the user will instead be prompted to make a choice and will be asked if he is willing to wait while we try to find information about the thing he searched for in other sources. If so, a request to the data manipulaiton service will be made, which will try to pull new information from DBPedia. In the case that it succeeds, it will be folowed by another request to the other service, to pull the newly added data and then render it on the page.
+          In the case of a <b>Not Found</b> response to the request previously made, the user will instead be prompted
+          to make a choice and will be asked if he is willing to wait while we try to find information about the thing
+          he searched for in other sources. If so, a request to the data manipulaiton service will be made, which will
+          try to pull new information from DBPedia. In the case that it succeeds, it will be folowed by another request
+          to the other service, to pull the newly added data and then render it on the page.
         </p>
       </section>
     </section>
@@ -206,13 +250,22 @@
   <section id="dotnetrdf">
     <h2>dotNetRDF</h2>
     <p>
-      Taken from <a href="https://dotnetrdf.org/">their website</a>, dotNetRDF is a free and Open Source library for parsing, managing, querying and writing rdf. It also provides a common .NET API for working with RDF triple stores such as AllegroGraph, Jena, Stardog and Virtuoso. After looking at our options, dotNetRDF proved to be the one that offers the most functionalities and also the one that is most frequently used. 
+      Taken from <a href="https://dotnetrdf.org/">their website</a>, dotNetRDF is a free and Open Source library for
+      parsing, managing, querying and writing rdf. It also provides a common .NET API for working with RDF triple stores
+      such as AllegroGraph, Jena, Stardog and Virtuoso. After looking at our options, dotNetRDF proved to be the one
+      that offers the most functionalities and also the one that is most frequently used.
     </p>
     <p>
-      The first thing we tried to do using dotNetRDF was to try to connect to the <a href="http://dbpedia.org/sparql">DBPedia SPARQL endpoint</a>. This is done in order to pull information from DBPedia, with which we will build our own dataset. To achieve this, we used an already existent class, <b>SparqlRemoteEndpoint</b>, which connects to an endpoint and then allows executing queries on it.
+      The first thing we tried to do using dotNetRDF was to try to connect to the <a
+        href="http://dbpedia.org/sparql">DBPedia SPARQL endpoint</a>. This is done in order to pull information from
+      DBPedia, with which we will build our own dataset. To achieve this, we used an already existent class,
+      <b>SparqlRemoteEndpoint</b>, which connects to an endpoint and then allows executing queries on it.
     </p>
     <p>
-      The information that we manage to pull from DBPedia is then parsed through and, using our own ontology, added to an <b>OntologyGraph</b>. This API provides certain abstractions over graphs, which make it easier to perform certain operations such as adding a type or property. For more specific operations, we can still work directly with triples and also use queries.
+      The information that we manage to pull from DBPedia is then parsed through and, using our own ontology, added to
+      an <b>OntologyGraph</b>. This API provides certain abstractions over graphs, which make it easier to perform
+      certain operations such as adding a type or property. For more specific operations, we can still work directly
+      with triples and also use queries.
     </p>
     <p>
       After we finish adding triples in our graph, we save it into an rdf file, thus creating our dataset.
@@ -221,50 +274,80 @@
   <section id="ourDataset">
     <h2>Our dataset</h2>
     <p>
-      As was briefly mentioned in the previous sections, our dataset is built mainly on information taken from DBPedia, information which we take, parse through and then put into our own dataset.
+      As was briefly mentioned in the previous sections, our dataset is built mainly on information taken from DBPedia,
+      information which we take, parse through and then put into our own dataset.
     </p>
     <p>
-      In order to do this, each row from the result set must be parsed separatly. What we mean by parsing is that we strip the DBPedia URI and we only take the data that concerns us, meaning concepts, such as film, genre, action and so on, along with the actual values for these. Using these values, we are then able to create the URIs that we will use for our graph's nodes.
+      In order to do this, each row from the result set must be parsed separatly. What we mean by parsing is that we
+      strip the DBPedia URI and we only take the data that concerns us, meaning concepts, such as film, genre, action
+      and so on, along with the actual values for these. Using these values, we are then able to create the URIs that we
+      will use for our graph's nodes.
     </p>
     <section id="ontology">
       <h3>Ontology used</h3>
       <p>
-        <a href="https://movielabs.com/">MovieLabs</a> provides what is maybe the most extensive ontology when it comes to the subject of movies and TV series. The Ontology for Media Creation was created to aid in the process of sharing information for all that is related to a movie, from details of its filming, to its profit and so on.
+        <a href="https://movielabs.com/">MovieLabs</a> provides what is maybe the most extensive ontology when it comes
+        to the subject of movies and TV series. The Ontology for Media Creation was created to aid in the process of
+        sharing information for all that is related to a movie, from details of its filming, to its profit and so on.
       </p>
       <p>
-        Each piece of data that is inserted into our dataset should be formatted as per the information described in the ontology, with respect to the category it pertains to. We used should here because, even if we use multiple datasets, it proves to be very difficult to gather all the information that is described by the ontology's concepts related to a movie. As such, some liberties may be taken in certain cases, when building our dataset.
+        Each piece of data that is inserted into our dataset should be formatted as per the information described in the
+        ontology, with respect to the category it pertains to. We used should here because, even if we use multiple
+        datasets, it proves to be very difficult to gather all the information that is described by the ontology's
+        concepts related to a movie. As such, some liberties may be taken in certain cases, when building our dataset.
       </p>
     </section>
   </section>
   <section id="linkedDataPrinciples">
     <h2>Linked data principles</h2>
     <p>
-      The unique identificators for the subject and object nodes in the dataset graph are set to URIs which, when accessed, point to a HTML page served by the client that contains useful information about the corresponding resource. Each of these pages also provides additional content regarding other resources that are somehow related to the element that is currently viewed, along with their corresponding URIs. For example, when accessing the URI http://localhost:3000/resource/Inception the rendered page would contain columns such as rdf:Type -> http://localhost:3000/resource/Movie, rdf:Has -> http://localhost:3000/resource/Actor, and some brief description.
+      In order to generalize the format of the elements in the dataset, we decided to use URIs as unique identificators for each element. This technique would also be 
+      helpful when providing a way of visualizing the data, as each resource identificator would point to a HTML page served by the client that contains useful information
+      about the structure of the corresponding resource, as well as other details or recomandations that we might implement later on.
     </p>
+    <p>
+      Each of these pages also provides additional content regarding other resources that are somehow related
+      to the element that is currently viewed, along with their corresponding URIs. Each movie will contain links to the description of the genre it belongs to, 
+      links to the job description of the staff that was needed to create it, and so on.
+    </p>
+    <p>
+      As a concrete example of data linkage, when accessing the URI
+      http://localhost:3000/resource/Inception the rendered page would contain columns such as rdf:Type ->
+      http://localhost:3000/resource/Movie and rdf:Has -> http://localhost:3000/resource/Actor, http://localhost:3000/resource/Budget.
+    </p>
+
   </section>
   <section id="others">
     <h2>Other data sources and APIs</h2>
     <p>
-      The purpose of this section is to list some of the other data sources and APIs that we use, but do not entail an entire section of their own. Some of them we may also consider using along in the implementation of our project, but we do not have a clearly defined purpose for them.
+      The purpose of this section is to list some of the other data sources and APIs that we use, but do not entail an
+      entire section of their own. Some of them we may also consider using along in the implementation of our project,
+      but we do not have a clearly defined purpose for them.
     </p>
     <section id="dbpedia">
       <h3>DBPedia</h3>
       <p>
-        <a href="https://www.dbpedia.org/">DBPedia</a> extracts information from <a href="https://en.wikipedia.org/wiki/Main_Page">Wikipedia</a> and makes it avaialble on the World Wide Web in a structured form.
+        <a href="https://www.dbpedia.org/">DBPedia</a> extracts information from <a
+          href="https://en.wikipedia.org/wiki/Main_Page">Wikipedia</a> and makes it avaialble on the World Wide Web in a
+        structured form.
       </p>
       <p>
-        As can be gathered from previous mentions of it, we make use of their sparql endpoint to gather information in order to expand our dataset.
+        As can be gathered from previous mentions of it, we make use of their sparql endpoint to gather information in
+        order to expand our dataset.
       </p>
     </section>
     <section id="imdbApi">
       <h3>IMDb API</h3>
       <p>
-        The <a href="https://imdb-api.com/">IMDb API</a> is a web service for receiving movie, serial and cast information. 
+        The <a href="https://imdb-api.com/">IMDb API</a> is a web service for receiving movie, serial and cast
+        information.
       </p>
       <p>
-        This API may be used in order to pull links to posters, trailers and other resources used on IMDb, but unavailable through the files that they provide.
+        This API may be used in order to pull links to posters, trailers and other resources used on IMDb, but
+        unavailable through the files that they provide.
       </p>
     </section>
   </section>
 </body>
+
 </html>
