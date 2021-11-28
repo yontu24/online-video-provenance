@@ -143,7 +143,7 @@
       defind as such.
     </p>
     <section id="firstService">
-      <h3>First service</h3>
+      <h3>Data querying service</h3>
       <p>
         The first service we shall talk about is the one that reads from our dataset. This service will be called
         whenever an user interacts with our client, either by using our search bar or by typing directly into the
@@ -282,6 +282,11 @@
       strip the DBPedia URI and we only take the data that concerns us, meaning concepts, such as film, genre, action
       and so on, along with the actual values for these. Using these values, we are then able to create the URIs that we
       will use for our graph's nodes.
+    </p>
+    <p>
+      In terms of persistent storage, the solution we decided to go with is GraphDB, as it can store large amounts of RDF statements and perform query and reasoning
+      operations using file-based indexes with a high processing speed. As mentioned before, some of our services will only have read access to the database, while others
+      will also have write access.
     </p>
     <section id="ontology">
       <h3>Ontology used</h3>

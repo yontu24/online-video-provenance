@@ -16,10 +16,6 @@
     },
     {
       "url": "http://localhost:3002",
-      "description": "Sparql service"
-    },
-    {
-      "url": "http://localhost:3003",
       "description": "Dataset manipulation service"
     }
   ],
@@ -89,15 +85,15 @@
         }
       }
     },
-    "/query": {
+    "/sparql": {
       "servers": [
         {
-          "url": "http://localhost:3002",
-          "description": "Sparql service"
+          "url": "http://localhost:3001",
+          "description": "Data querying service"
         }
       ],
       "get": {
-        "description": "Get rdf representation of information about the movie identified by the title from the dataset.",
+        "description": "Run a sparql query against the current dataset and receive the results in rdf format.",
         "parameters": [
           {
             "name": "queryText",
@@ -157,7 +153,7 @@
     "/{title}": {
       "servers": [
         {
-          "url": "http://localhost:3003",
+          "url": "http://localhost:3002",
           "description": "Data manipulation service"
         }
       ],
@@ -222,7 +218,7 @@
     "/populateDataset/{numberOfEntries}": {
       "servers": [
         {
-          "url": "http://localhost:3003",
+          "url": "http://localhost:3002",
           "description": "Data manipulation service"
         }
       ],
