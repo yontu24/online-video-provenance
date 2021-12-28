@@ -6,13 +6,14 @@ using System.Linq;
 using System.Net;
 using System.Threading.Tasks;
 using VDS.RDF;
+using VDS.RDF.Parsing;
 using VDS.RDF.Query;
 
 namespace DBpediaComm.Controllers
 {
     [Route("api/v1/[controller]")]
     [ApiController]
-    public class TryoutController
+    public class TryoutController : ControllerBase
     {
         /*
          * Should only be used to reset the dataset
@@ -27,9 +28,6 @@ namespace DBpediaComm.Controllers
         [HttpGet]
         public async Task<ActionResult<List<string>>> PopulateDataset()
         {
-
-            TryoutCreateFile.QueryFile();
-
             SparqlRemoteEndpoint endpoint = new SparqlRemoteEndpoint(new Uri("http://dbpedia.org/sparql"));
             endpoint.ResultsAcceptHeader = "application/sparql-results+json";
             endpoint.Timeout = 300000; // 5 mins
@@ -93,11 +91,28 @@ namespace DBpediaComm.Controllers
 
             List<string> output = results.ToList().Select(x => x.ToString()).ToList();
 
-            // TryoutCreateFile.CreateFile(movieInfo);
-            // gotta modify this too
-            //TryoutCreateFile.QueryFile();
+            TryoutCreateFile.CreateFile(movieInfo);
 
             return output;
+        }
+
+        [HttpGet("stuff")]
+        public IActionResult DoStuff()
+        {
+            SparqlRemoteEndpoint endpoint = new(new Uri("http://localhost:8080/rdf4j-server/repositories/blazeIt"));
+
+            string query = @"SELECT * where {?movie a <http://wade-ovi.org/ontology/Film>}";
+
+            SparqlResultSet results = endpoint.QueryWithResultSet(query);
+
+            List<string> resValues = new List<string>();
+
+            foreach(var result in results)
+            {
+                resValues.Add(result.Value("movie").ToString());
+            }
+
+            return Ok(resValues);
         }
     }
 }

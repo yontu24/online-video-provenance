@@ -7,6 +7,7 @@ using VDS.RDF.Ontology;
 using VDS.RDF.Parsing;
 using VDS.RDF.Query;
 using VDS.RDF.Query.Datasets;
+using VDS.RDF.Storage;
 using VDS.RDF.Writing;
 
 namespace DBpediaComm.Helpers
@@ -78,25 +79,9 @@ namespace DBpediaComm.Helpers
 
             RdfXmlWriter rdfxmlwriter = new RdfXmlWriter();
             rdfxmlwriter.Save(g, "HelloWorld.rdf");
+
+            SesameHttpProtocolConnector connector = new SesameHttpProtocolConnector("http://localhost:8080/rdf4j-server", "blazeIt") { Timeout = int.MaxValue };
+            connector.SaveGraph(g); //  ("tryoutGraph1", g.Triples, null);
         }
-
-        public static void QueryFile()
-        {
-            IGraph g = new Graph();
-
-            g.LoadFromFile("HelloWorld.rdf");
-            ISparqlDataset ds = new InMemoryDataset(g);
-            LeviathanQueryProcessor processor = new LeviathanQueryProcessor(ds);
-
-            SparqlQueryParser qParser = new SparqlQueryParser();
-            SparqlQuery query = qParser.ParseFromString(@"
-                SELECT * WHERE {
-                        ?movie a <http://wade-ovi.org/ontology/Film> .
-                            <http://wade-ovi.org/ontology/genre> ?genre      
-                    } LIMIT 100");
-
-            var results = processor.ProcessQuery(query);
-        }
-
     }
 }
