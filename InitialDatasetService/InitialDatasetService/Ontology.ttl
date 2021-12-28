@@ -1,0 +1,68 @@
+@base <http://www.wade-ovi.org/> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+# Class definition
+
+<Movie> a rdfs:Class ;
+	rdfs:label "Movie" ;
+	rdfs:comment "Work of art"@en .
+	
+<Director> a rdf:Class ;
+	rdfs:subClassOf <PersonsWithNames> ;
+	rdfs:label "Director" .
+
+<Producer> a rdf:Class ;
+	rdfs:subClassOf <PersonsWithNames> ;
+	rdfs:label "Producer" .
+
+<directedBy> a rdfs:Property ;
+	rdfs:domain <Movie> ;
+	rdfs:range <Director> .
+
+<producedBy> a rdfs:Property ;
+	rdfs:domain <Movie> ; 
+	rdfs:range <Producer> .
+
+<Actor> a rdf:Class ;
+	rdfs:subClassOf <PersonsWithNames> ;
+	rdfs:label "Actor" .
+
+<starring> a rdfs:Property ;
+	rdfs:domain <Movie> ;
+	rdfs:range <Actor> .
+
+<Writer> a rdf:Class ;
+	rdfs:subClassOf <PersonsWithNames> ;
+	rdfs:label "Writer" .
+
+<writtenBy> a rdfs:Property ;
+	rdfs:domain <Movie> ;
+	rdfs:range <Writer> .
+
+<budget> a rdfs:Property ;
+	rdfs:domain <Movie> ;
+	rdfs:range rdfs:Literal .
+
+<PersonsWithNames> a rdf:Class .
+
+<name> a rdfs:Property ;
+	rdfs:domain <PersonsWithNames> ;
+	rdfs:range rdfs:Literal .
+
+<runtime> a rdfs:Property ;
+	rdfs:domain <Movie> ;
+	rdfs:range rdfs:Literal .
+
+<abstract> a rdfs:Property ;
+	rdfs:domain <Movie> ;
+	rdfs:range rdfs:Literal .
+
+<genre> a rdfs:Property ;
+	rdfs:domain <Movie> ;
+	rdfs:range rdfs:Literal .
+
+<language> a rdfs:Property ;
+	rdfs:domain <Movie> ;
+	rdfs:range rdfs:Literal .
