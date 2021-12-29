@@ -1,4 +1,4 @@
-@base <http://www.wade-ovi.org/> .
+@base <http://www.wade-ovi.org/resources#> .
 @prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
 @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
@@ -33,6 +33,10 @@
 	rdfs:domain <Movie> ;
 	rdfs:range <Actor> .
 
+<title> a rdfs:Property ;
+	rdfs:domain <Movie> ;
+	rdfs:range rdfs:Literal .
+	
 <Writer> a rdf:Class ;
 	rdfs:subClassOf <PersonsWithNames> ;
 	rdfs:label "Writer" .
