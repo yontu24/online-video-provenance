@@ -39,7 +39,7 @@ namespace InitialDatasetService.MicroServices
             }
             */
 
-            SparqlRemoteEndpoint endpoint = new SparqlRemoteEndpoint(new Uri("http://dbpedia.org/sparql"));
+            SparqlRemoteEndpoint endpoint = new SparqlRemoteEndpoint(new Uri("http://live.dbpedia.org/sparql"));
             endpoint.ResultsAcceptHeader = "application/sparql-results+json";
             endpoint.Timeout = 300000; // 5 mins
             /*
@@ -83,37 +83,44 @@ namespace InitialDatasetService.MicroServices
 
             SparqlResultSet results = endpoint.QueryWithResultSet(queryString);
             
-            var prefix = "http://www.wade-ovi.org/resources/";
+            var prefix = "http://www.wade-ovi.org/resources#";
             var uri = new Uri(prefix);
             g.NamespaceMap.AddNamespace("resources", uri);
+            var rdfUri = new Uri("http://www.w3.org/1999/02/22-rdf-syntax-ns#");
+            g.NamespaceMap.AddNamespace("rdf", rdfUri);
             Dictionary<string, Dictionary<string, List<string>>> movieInfo = new Dictionary<string, Dictionary<string, List<string>>>();
             foreach (var result in results)
             {
                 
-                var title = g.CreateUriNode(new Uri(prefix + result.Value("movie").ToString().Split("/").Last()));
-                var genre = g.CreateUriNode(new Uri(prefix + result.Value("genre").ToString().Split("/").Last()));
-                var abstr = g.CreateUriNode(new Uri(prefix + result.Value("abstract").ToString()));
-                var budget = g.CreateUriNode(new Uri(prefix + result.Value("budget").ToString()));
-                var director = g.CreateUriNode(new Uri(prefix + result.Value("director").ToString().Split("/").Last()));
-                var language = g.CreateUriNode(new Uri(prefix + result.Value("language").ToString()));
-                var producer = g.CreateUriNode(new Uri(prefix + result.Value("producer").ToString().Split("/").Last()));
-                var cinematography = g.CreateUriNode(new Uri(prefix + result.Value("cinematography").ToString()));
-                var writer = g.CreateUriNode(new Uri(prefix + result.Value("writer").ToString().Split("/").Last()));
-                var runtime = g.CreateUriNode(new Uri(prefix + result.Value("runtime").ToString()));
-                var starring = g.CreateUriNode(new Uri(prefix + result.Value("starring").ToString().Split(",").Last()));
+                var title = g.CreateUriNode($"resources:{result.Value("movie").ToString().Split('/').Last()}");
+                var genre = g.CreateUriNode($"resources:{result.Value("genre").ToString().Split('/').Last()}");
+                var abstr = g.CreateUriNode($"resources:{result.Value("abstract").ToString()}");
+                var budget = g.CreateUriNode($"resources:{result.Value("budget").ToString()}");
+                var director = g.CreateUriNode($"resources:{result.Value("director").ToString().Split('/').Last()}");
+                var language = g.CreateUriNode($"resources:{result.Value("language").ToString()}");
+                var producer = g.CreateUriNode($"resources:{result.Value("producer").ToString().Split('/').Last()}");
+                var cinematography = g.CreateUriNode($"resources:{result.Value("cinematography").ToString()}");
+                var writer = g.CreateUriNode($"resources:{result.Value("writer").ToString().Split('/').Last()}");
+                var runtime = g.CreateUriNode($"resources:{result.Value("runtime").ToString()}");
+                var starring = g.CreateUriNode($"resources:{result.Value("starring").ToString().Split('/').Last()}");
 
-                var subject = g.CreateUriNode(new Uri(prefix + "movie/" + result.Value("movie").ToString().Split("/").Last()));
-
+                var subject = g.CreateUriNode($"resources:movie/{result.Value("movie").ToString().Split("/").Last()}");
+                triples.Add(new Triple(subject, g.CreateUriNode("rdf:type"), g.GetUriNode("resources:Movie")));
+                
                 triples.Add(new Triple(subject, g.CreateUriNode("resources:title"), title));
                 triples.Add(new Triple(subject, g.CreateUriNode("resources:starring"), starring));
+                triples.Add(new Triple(starring, g.CreateUriNode("rdf:type"), g.GetUriNode("resources:Actor")));
                 triples.Add(new Triple(subject, g.CreateUriNode("resources:budget"), budget));
                 triples.Add(new Triple(subject, g.CreateUriNode("resources:runtime"), runtime));
                 triples.Add(new Triple(subject, g.CreateUriNode("resources:abstract"), abstr));
                 triples.Add(new Triple(subject, g.CreateUriNode("resources:genre"), genre));
                 triples.Add(new Triple(subject, g.CreateUriNode("resources:language"), language));
                 triples.Add(new Triple(subject, g.CreateUriNode("resources:directedBy"), director));
+                triples.Add(new Triple(director, g.CreateUriNode("rdf:type"), g.GetUriNode("resources:Director")));
                 triples.Add(new Triple(subject, g.CreateUriNode("resources:producedBy"), producer));
+                triples.Add(new Triple(producer, g.CreateUriNode("rdf:type"), g.GetUriNode("resources:Producer")));
                 triples.Add(new Triple(subject, g.CreateUriNode("resources:writtenBy"), writer));
+                triples.Add(new Triple(writer, g.CreateUriNode("rdf:type"), g.GetUriNode("resources:Writer")));
             }
 
             connector.UpdateGraph(prefix, triples,null);

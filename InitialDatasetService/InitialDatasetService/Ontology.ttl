@@ -1,72 +1,73 @@
 @base <http://www.wade-ovi.org/resources#> .
+@prefix r: <http://www.wade-ovi.org/resources#> .
 @prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
 @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
 
 # Class definition
 
-<Movie> a rdfs:Class ;
+r:Movie a rdfs:Class ;
 	rdfs:label "Movie" ;
 	rdfs:comment "Work of art"@en .
 	
-<Director> a rdf:Class ;
-	rdfs:subClassOf <PersonsWithNames> ;
+r:Director a rdf:Class ;
+	rdfs:subClassOf r:PersonsWithNames ;
 	rdfs:label "Director" .
 
-<Producer> a rdf:Class ;
-	rdfs:subClassOf <PersonsWithNames> ;
+r:Producer a rdf:Class ;
+	rdfs:subClassOf r:PersonsWithNames ;
 	rdfs:label "Producer" .
 
-<directedBy> a rdfs:Property ;
-	rdfs:domain <Movie> ;
+r:directedBy a rdfs:Property ;
+	rdfs:domain r:Movie ;
 	rdfs:range <Director> .
 
-<producedBy> a rdfs:Property ;
-	rdfs:domain <Movie> ; 
-	rdfs:range <Producer> .
+r:producedBy a rdfs:Property ;
+	rdfs:domain r:Movie ; 
+	rdfs:range r:Producer .
 
-<Actor> a rdf:Class ;
-	rdfs:subClassOf <PersonsWithNames> ;
+r:Actor a rdf:Class ;
+	rdfs:subClassOf r:PersonsWithNames ;
 	rdfs:label "Actor" .
 
-<starring> a rdfs:Property ;
-	rdfs:domain <Movie> ;
-	rdfs:range <Actor> .
+r:starring a rdfs:Property ;
+	rdfs:domain r:Movie ;
+	rdfs:range r:Actor .
 
-<title> a rdfs:Property ;
-	rdfs:domain <Movie> ;
+r:title a rdfs:Property ;
+	rdfs:domain r:Movie ;
 	rdfs:range rdfs:Literal .
 	
-<Writer> a rdf:Class ;
-	rdfs:subClassOf <PersonsWithNames> ;
+r:Writer a rdf:Class ;
+	rdfs:subClassOf r:PersonsWithNames ;
 	rdfs:label "Writer" .
 
-<writtenBy> a rdfs:Property ;
-	rdfs:domain <Movie> ;
-	rdfs:range <Writer> .
+r:writtenBy a rdfs:Property ;
+	rdfs:domain r:Movie ;
+	rdfs:range r:Writer .
 
-<budget> a rdfs:Property ;
-	rdfs:domain <Movie> ;
+r:budget a rdfs:Property ;
+	rdfs:domain r:Movie ;
 	rdfs:range rdfs:Literal .
 
-<PersonsWithNames> a rdf:Class .
+r:PersonsWithNames a rdf:Class .
 
-<name> a rdfs:Property ;
-	rdfs:domain <PersonsWithNames> ;
+r:name a rdfs:Property ;
+	rdfs:domain r:PersonsWithNames ;
 	rdfs:range rdfs:Literal .
 
-<runtime> a rdfs:Property ;
-	rdfs:domain <Movie> ;
+r:runtime a rdfs:Property ;
+	rdfs:domain r:Movie ;
 	rdfs:range rdfs:Literal .
 
-<abstract> a rdfs:Property ;
-	rdfs:domain <Movie> ;
+r:abstract a rdfs:Property ;
+	rdfs:domain r:Movie ;
 	rdfs:range rdfs:Literal .
 
-<genre> a rdfs:Property ;
-	rdfs:domain <Movie> ;
+r:genre a rdfs:Property ;
+	rdfs:domain r:Movie ;
 	rdfs:range rdfs:Literal .
 
-<language> a rdfs:Property ;
-	rdfs:domain <Movie> ;
+r:language a rdfs:Property ;
+	rdfs:domain r:Movie ;
 	rdfs:range rdfs:Literal .
