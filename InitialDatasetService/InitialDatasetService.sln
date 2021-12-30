@@ -3,7 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.31702.278
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "InitialDatasetService", "InitialDatasetService\InitialDatasetService.csproj", "{3AAC6A5E-CB0C-4EFC-A50E-2C9AE8121B3C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "InitialDatasetService", "InitialDatasetService\InitialDatasetService.csproj", "{3AAC6A5E-CB0C-4EFC-A50E-2C9AE8121B3C}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "QueryBuilderService", "..\QueryBuilder\QueryBuilder\QueryBuilderService.csproj", "{0CBD7B8D-E664-40AD-8610-EC39DB90BA27}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,6 +17,10 @@ Global
 		{3AAC6A5E-CB0C-4EFC-A50E-2C9AE8121B3C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{3AAC6A5E-CB0C-4EFC-A50E-2C9AE8121B3C}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{3AAC6A5E-CB0C-4EFC-A50E-2C9AE8121B3C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0CBD7B8D-E664-40AD-8610-EC39DB90BA27}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0CBD7B8D-E664-40AD-8610-EC39DB90BA27}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0CBD7B8D-E664-40AD-8610-EC39DB90BA27}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0CBD7B8D-E664-40AD-8610-EC39DB90BA27}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

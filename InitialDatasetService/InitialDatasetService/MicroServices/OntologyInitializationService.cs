@@ -56,7 +56,7 @@ namespace InitialDatasetService.MicroServices
             List<Triple> triples = new();
             List<string> infoToPull = new List<string>() { "genre", "abstract" , "budget", "cinematography",
                 "director", "language", "producer", "starring", "runtime", "writer"};
-
+            List<string> infoToPull2 = new List<string>() { "wikipageid", "editor", "musicComposer", "shortMovie", "distribuitor", "productionCompany" };
             /*
              *
              *  also, maximum query paramsm aside from dbo:film and schema:CreativeWork seems to be 10
@@ -67,6 +67,7 @@ namespace InitialDatasetService.MicroServices
              */
 
             string selectVariables = "?movie " + String.Join(" ", infoToPull.Select(x => $"Group_Concat(distinct ?{x}, ', ') as ?{x}"));
+            string selectVariables2 = "?movie " + String.Join(" ", infoToPull2.Select(x => $"Group_Concat(distinct ?{x}, ', ') as ?{x}"));
 
             string queryString = $@"                  
                     SELECT {selectVariables} WHERE {{
@@ -82,9 +83,11 @@ namespace InitialDatasetService.MicroServices
                             dbp:{infoToPull[7]} ?{infoToPull[7]} ;
                             dbp:{infoToPull[8]} ?{infoToPull[8]} ;
                             dbp:{infoToPull[9]} ?{infoToPull[9]} 
-                    }} LIMIT 5";
+                    }} LIMIT 1";
 
             SparqlResultSet results = endpoint.QueryWithResultSet(queryString);
+
+            
 
             var prefix = "http://www.wade-ovi.org/resources#";
             g.NamespaceMap.AddNamespace("resources", new Uri(prefix));
@@ -92,6 +95,21 @@ namespace InitialDatasetService.MicroServices
             
             foreach (var result in results)
             {
+                string queryString2 = $@"                  
+                    SELECT {selectVariables2} WHERE {{
+                        ?movie a dbo:Film .
+                        ?movie a schema:CreativeWork ;
+                            dbo:{infoToPull2[0]} ?{infoToPull2[0]} ; 
+                            dbp:{infoToPull2[1]} ?{infoToPull2[1]} ;
+                            dbo:{infoToPull2[2]} ?{infoToPull2[2]} ;
+                            dbp:{infoToPull2[3]} ?{infoToPull2[3]} ;
+                            dbo:{infoToPull2[4]} ?{infoToPull2[4]} ;
+                            dbo:{infoToPull2[5]} ?{infoToPull2[5]} 
+                           FILTER(regex(?movie, {result.Value("movie").ToString()}))
+              
+                   }} LIMIT 1";
+
+                SparqlResultSet results2 = endpoint.QueryWithResultSet(queryString2);
                 // subject
                 var subject = g.CreateUriNode($"resources:movie/{result.Value("movie").ToString().Split("/").Last()}");
                 triples.Add(new Triple(subject, g.CreateUriNode("rdf:type"), g.GetUriNode("resources:Movie")));
@@ -203,7 +221,7 @@ namespace InitialDatasetService.MicroServices
                 }
             }
 
-            tList<string> output = results.ToList().Select(x => x.ToString()).ToList();
+            List<string> output = results.ToList().Select(x => x.ToString()).ToList();
 
         }
 
