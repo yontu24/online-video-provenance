@@ -22,7 +22,7 @@ namespace QueryBuilderService.Controllers
         [HttpGet]
         public IActionResult GetQuery()
         {
-            SparqlRemoteEndpoint endpoint = new SparqlRemoteEndpoint(new Uri("http://dbpedia.org/sparql"));
+            SparqlRemoteEndpoint endpoint = new SparqlRemoteEndpoint(new Uri("http://live.dbpedia.org/sparql"));
             endpoint.ResultsAcceptHeader = "application/sparql-results+json";
             endpoint.Timeout = 300000; // 5 mins
             string query = _queryBuilder.MainInfoQuery();

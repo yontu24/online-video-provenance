@@ -18,7 +18,7 @@ namespace QueryBuilderService.Services
         protected Dictionary<string, List<String>> prefixVariablePairs = new Dictionary<string, List<string>>()
             { 
                 {"dbo", new List<string>(){
-                        "genre", "abstract"
+                        "genre", "abstract"//, "wikiPageID"
                     }
                 },
                 {"dbp", new List<string>(){
@@ -62,7 +62,7 @@ namespace QueryBuilderService.Services
                     queryString.AppendLine($"{key}:{variable} ?{variable};");
 
             // FILTER regex(str(?name), \"Friends\")
-            queryString.AppendLine("FILTER regex(str(?name), \"Friends\")} Limit 100");
+            queryString.AppendLine(/*"FILTER regex(str(?name), \"Friends\")*/"} Limit 100");
             string returnString = queryString.ToString();
             int idx = returnString.LastIndexOf(';');
 

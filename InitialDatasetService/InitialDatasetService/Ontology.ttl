@@ -18,6 +18,14 @@ r:Producer a rdf:Class ;
 	rdfs:subClassOf r:PersonsWithNames ;
 	rdfs:label "Producer" .
 
+r:Editor a rdf:Class ;
+	rdfs:subClassOf r:PersonsWithNames ;
+	rdfs:label "Editor" .
+
+r:MusicComposer a rdf:Class ;
+	rdfs:subClassOf r:PersonsWithNames ;
+	rdfs:label "Music Composer" .
+
 r:directedBy a rdfs:Property ;
 	rdfs:domain r:Movie ;
 	rdfs:range <Director> .
@@ -46,6 +54,14 @@ r:writtenBy a rdfs:Property ;
 	rdfs:domain r:Movie ;
 	rdfs:range r:Writer .
 
+r:editedBy a rdfs:Property ;
+	rdfs:domain r:Movie ;
+	rdfs:range r:Editor .
+
+r:musicBy a rdfs:Property ;
+	rdfs:domain r:Movie ;
+	rdfs:range r:MusicComposer .
+
 r:budget a rdfs:Property ;
 	rdfs:domain r:Movie ;
 	rdfs:range rdfs:Literal .
@@ -57,6 +73,27 @@ r:name a rdfs:Property ;
 	rdfs:range rdfs:Literal .
 
 r:runtime a rdfs:Property ;
+	rdfs:domain r:Movie ;
+	rdfs:range rdfs:Literal .
+
+r:wikipageid a rdfs:Property ;
+	rdfs:domain r:Movie ;
+	rdfs:range rdfs:Literal .
+	
+r:short a rdfs:Property ;
+	rdfs:domain r:Movie ;
+	rdfs:range rdfs:Literal .
+
+r:distributor a rdfs:Property ;
+	rdfs:domain r:Movie ;
+	rdfs:range rdfs:Literal .
+
+r:productionCompany a rdfs:Property ;
+	rdfs:domain r:Movie ;
+	rdfs:range rdfs:Literal ;
+	rdfs:label "Production Company" .
+
+r:short a rdfs:Property ;
 	rdfs:domain r:Movie ;
 	rdfs:range rdfs:Literal .
 
