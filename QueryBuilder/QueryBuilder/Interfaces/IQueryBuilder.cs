@@ -13,6 +13,8 @@ namespace QueryBuilderService.Interfaces
 
         public string MainInfoQuery();
 
-        public string GetSpecificMovieInfo(string movie);
+        public string GetMovieInfoByTitle(string title);
+
+        public string GetMatchingTitles(string title);
     }
 }

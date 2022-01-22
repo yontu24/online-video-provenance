@@ -95,7 +95,7 @@ namespace InitialDatasetService.MicroServices
             
             foreach (var result in results)
             {
-                string queryString2 = $@"                  
+                /*string queryString2 = $@"                  
                     SELECT {selectVariables2} WHERE {{
                         ?movie a dbo:Film .
                         ?movie a schema:CreativeWork ;
@@ -109,7 +109,7 @@ namespace InitialDatasetService.MicroServices
               
                    }} LIMIT 1";
 
-                SparqlResultSet results2 = endpoint.QueryWithResultSet(queryString2);
+                SparqlResultSet results2 = endpoint.QueryWithResultSet(queryString2);*/
                 // subject
                 var subject = g.CreateUriNode($"resources:movie/{result.Value("movie").ToString().Split("/").Last()}");
                 triples.Add(new Triple(subject, g.CreateUriNode("rdf:type"), g.GetUriNode("resources:Movie")));
