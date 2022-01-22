@@ -1,0 +1,22 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net5.0</TargetFramework>
+  </PropertyGroup>
+  
+   <PropertyGroup>
+    <!-- where should the nuget package be created at -->
+    <PackageOutputPath>./nupkg</PackageOutputPath>
+    
+    <!-- nuget related properties -->
+    <Authors>Sayed Ibrahim Hashimi</Authors>
+    <Description>Library created to help in building SPARQL queries</Description>
+    <Version>1.0.2</Version>
+    <Copyright>No Copyright</Copyright>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="dotNetRDF" Version="2.7.2" />
+  </ItemGroup>
+
+</Project>
