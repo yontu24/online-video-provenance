@@ -32,6 +32,6 @@ namespace QueryBuilderLibrary.Implementations
 
         public SparqlRemoteEndpoint GetConnection() => _endpoint;
 
-        // could also add the query function on this
+        public SparqlResultSet RunQuery(string query) => _endpoint.QueryWithResultSet(query);
     }
 }

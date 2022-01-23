@@ -1,5 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using QueryBuilderLibrary.Implementations;
+using SearchService.Helpers;
+using SearchService.Interfaces;
 using System;
 
 namespace SearchService.Controllers
@@ -8,18 +10,29 @@ namespace SearchService.Controllers
     [Route("[controller]")]
     public class SearchServiceController : ControllerBase
     {
-        public SearchServiceController()
-        {
+        protected readonly ISearchQueryBuilder _queryBuilder;
 
+        public SearchServiceController(ISearchQueryBuilder queryBuilder)
+        {
+            _queryBuilder = queryBuilder;
         }
 
-        [HttpGet("/getTitle/{title}")]
+        [HttpGet("/getTitles/{title}")]
         public IActionResult GetMatchingTitles(string title)
         {
-            QueryBuilder queryBuilder = new QueryBuilder();
             SparqlEndpointConnection endpointConnection = new SparqlEndpointConnection(new Uri("http://localhost:8080/rdf4j-server/repositories/wade1"));
+            string query = _queryBuilder.GetMatchingTitles(title);
 
-            return Ok();
+            return Ok(ResultProcessingHelper.ProcessTitlesResult(endpointConnection.RunQuery(query)));
+        }
+
+        [HttpGet("/getTitleInfo/{title}")]
+        public IActionResult GetMovieInfoByTitle(string title)
+        {
+            SparqlEndpointConnection endpointConnection = new SparqlEndpointConnection(new Uri("http://localhost:8080/rdf4j-server/repositories/wade1"));
+            string query = _queryBuilder.GetMovieInfoByTitle(title);
+
+            return Ok(ResultProcessingHelper.ProcessMovieInfoResult(endpointConnection.RunQuery(query)));
         }
     }
 }
