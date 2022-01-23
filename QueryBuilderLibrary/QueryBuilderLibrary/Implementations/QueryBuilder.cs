@@ -20,7 +20,7 @@ namespace QueryBuilderLibrary.Implementations
         private string _groupBy = string.Empty;
         private string _separator = "|separator|";
         private StringBuilder _whereBody = new StringBuilder();
-
+        private string _limit = string.Empty;
         #endregion
 
         #region properties
@@ -60,9 +60,25 @@ namespace QueryBuilderLibrary.Implementations
             return this;
         }
 
+        public IQueryBuilder AddDistinctSubject(string subject)
+        {
+            AddMultipleDistinctSubjects(new List<string>() { subject });
+            _subject = subject;
+
+            return this;
+        }
+
         public IQueryBuilder AddMultipleSubjects(List<string> subjects)
         {
             var temp = string.Join(" ", subjects.Select(x => "?" + x));
+            _declaredSubjects += " " + temp;
+            AddGroupBy(subjects);
+
+            return this;
+        }
+        public IQueryBuilder AddMultipleDistinctSubjects(List<string> subjects)
+        {
+            var temp = string.Join(" ", subjects.Select(x => "distinct ?" + x));
             _declaredSubjects += " " + temp;
             AddGroupBy(subjects);
 
@@ -194,6 +210,13 @@ namespace QueryBuilderLibrary.Implementations
             return this;
         }
 
+        public IQueryBuilder AddLimit(uint limit )
+        {
+            _limit = "LIMIT " + limit;
+
+            return this;
+        }
+
         public IQueryBuilder AddGroupBy(string subject) => AddGroupBy(new List<string>() { subject });
 
         public IQueryBuilder AddGroupBy(List<string> subjects)
@@ -204,14 +227,27 @@ namespace QueryBuilderLibrary.Implementations
             return this;
         }
 
-        public string BuildQuery()
+        public string BuildQuery(bool noGroupBy = false)
         {
             StringBuilder query = new StringBuilder();
             query
                 .AppendLine(_declaredPrefixes)
                 .AppendLine($"SELECT {_declaredSubjects} {_aggregatedSubjects} WHERE {{")
-                .AppendLine(_whereBody.ToString())
-                .AppendLine($"}} GROUP BY {_groupBy}");
+                .AppendLine(_whereBody.ToString());
+
+            if(!noGroupBy)
+            {
+                query
+                    .AppendLine($"}} GROUP BY {_groupBy}")
+                    .AppendLine($" {_limit}");
+            }
+            else
+            {
+                query.AppendLine($"}} {_limit}");
+            }
+            
+
+
 
             return query.ToString();
         }

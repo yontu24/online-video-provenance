@@ -1,3 +1,5 @@
+using InitialDatasetService.Interfaces;
+using InitialDatasetService.MicroServices;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
@@ -31,6 +33,7 @@ namespace InitialDatasetService
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "InitialDatasetService", Version = "v1" });
             });
+            services.AddScoped<IDatasetInitialization, DatasetInitialization>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
