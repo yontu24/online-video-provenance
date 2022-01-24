@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en-US">
+	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.1/angular-animate.js"></script>
+	<script src="http://localhost:8080/ovi/app/app.js"></script>
+	<script src="http://localhost:8080/ovi/app/app.controller.js"></script>
+	<script src="http://localhost:8080/ovi/app/app.service.js"></script>
+	<link rel="stylesheet" href="http://localhost:8080/ovi/assets/styles/search-movie.css">
+	<head>
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta charset="utf-8">
+		<title>Online video provenance</title>
+	</head>
+
+	<body>
+		<div ng-app="ovi" ng-controller="searchController">
+			<div ng-hide="details" class="center">
+				<h1>Search movie</h1>
+				<form>
+					<div class="field">
+						<input type="text" ng-model="title" required>
+						<span></span>
+						<label>Enter title</label>
+					</div>
+					
+					<h1>Display</h1>
+					<div class="radiobutton">
+						<label>
+							<input type="radio" ng-model="searchby" value="title1" />
+							<span>Titles only</span>
+						</label>
+						<label>
+							<input type="radio" ng-model="searchby" value="info" checked/>
+							<span>Movie info</span>
+						</label>
+					</div>
+				</form>
+			</div>
+			<div class="buttons">
+				<input type="submit" ng-click="fetchData(title, searchby)" value="Search">
+			</div>
+		
+			<div ng-show="details">
+				<ul>
+					<li ng-repeat="(property, dictionary) in datas">
+						{{property}}
+						<ul>
+							<li ng-repeat="(key, value) in dictionary">
+								<a ng-href={{ value }}>{{ key }}</a>
+							</li>
+						</ul>
+					</li>
+				</ul>
+			</div>
+		</div>
+	</body>
+</html>
