@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <TargetFramework>net5.0</TargetFramework>
@@ -11,7 +11,7 @@
     <!-- nuget related properties -->
     <Authors>Alejandroo Balanis</Authors>
     <Description>Library created to help in building SPARQL queries</Description>
-    <Version>1.1.4</Version>
+    <Version>1.1.4.1</Version>
     <Copyright>No Copyright</Copyright>
   </PropertyGroup>
 

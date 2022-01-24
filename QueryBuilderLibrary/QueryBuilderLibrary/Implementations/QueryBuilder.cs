@@ -195,7 +195,7 @@ namespace QueryBuilderLibrary.Implementations
 
         public IQueryBuilder AddStringFilter(string subject, string value)
         {
-            _whereBody.AppendLine($"FILTER( regex(str(?{subject}), \"{value}\") )");
+            _whereBody.AppendLine($"FILTER( regex(lcase(str(?{subject})), \"{value}\") )");
 
             return this;
         }
@@ -205,7 +205,7 @@ namespace QueryBuilderLibrary.Implementations
             if (string.IsNullOrEmpty(_subject))
                 throw new Exception("Subject has not been set");
 
-            _whereBody.AppendLine($"FILTER( regex(str(?{_subject}), \"{value}\") )");
+            _whereBody.AppendLine($"FILTER( regex(lcase(str(?{_subject})), \"{value}\") )");
 
             return this;
         }

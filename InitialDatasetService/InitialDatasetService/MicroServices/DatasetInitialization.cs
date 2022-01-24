@@ -42,7 +42,7 @@ namespace InitialDatasetService.MicroServices
             
             for (var currentLetter = 'a'; currentLetter <= 'z'; currentLetter ++)
             {
-                
+                /*
                 string queryString = $@"                  
                     SELECT ?movie ?prop (GROUP_CONCAT(distinct ?value; SEPARATOR = ', ') as ?value) WHERE {{
                         {{select distinct ?movie WHERE{{?movie a dbo:Film. ?movie a schema:CreativeWork .
@@ -58,10 +58,11 @@ namespace InitialDatasetService.MicroServices
                         filter( ?prop not in (rdf:type))
                             
                     }}";
-                
-               /*
+                */
+               
                 QueryBuilder innerQueryBuilder = new QueryBuilder();
                 innerQueryBuilder
+                   .SetSeparator(", ")
                    .AddDistinctSubject("movie")
                    .WithSubjectOfType("dbo", "Film")
                    .WithSubjectOfType("schema", "CreativeWork")
@@ -75,6 +76,7 @@ namespace InitialDatasetService.MicroServices
                 
                 QueryBuilder outerQueryBuilder = new QueryBuilder();
                 outerQueryBuilder
+                    .SetSeparator(", ")
                     .AddSubject("movie")
                     .AddSubject("prop")
                     .AddAggregatedSubject("value");
@@ -85,8 +87,8 @@ namespace InitialDatasetService.MicroServices
                     .AddFilter("?prop not in (rdf:type)");
 
                 var finalQuery = outerQueryBuilder.BuildQuery(true);
-               */
-                SparqlResultSet queryResult = endpoint.QueryWithResultSet(queryString);
+               
+                SparqlResultSet queryResult = endpoint.QueryWithResultSet(finalQuery);
                 var processedResult = ProcessInfoResult(queryResult);
 
                 
