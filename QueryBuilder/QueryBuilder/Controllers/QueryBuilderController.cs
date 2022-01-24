@@ -50,8 +50,8 @@ namespace QueryBuilderService.Controllers
         [HttpGet("/getMovieInfo/{title}")]
         public IActionResult GetMovieInfoByTitle(string title)
         {
-            SparqlRemoteEndpoint endpoint = new SparqlRemoteEndpoint(new Uri("http://dbpedia.org/sparql"));
-            // SparqlRemoteEndpoint endpoint = new SparqlRemoteEndpoint(new Uri("http://localhost:8080/rdf4j-server/repositories/wade1"));
+            // SparqlRemoteEndpoint endpoint = new SparqlRemoteEndpoint(new Uri("http://dbpedia.org/sparql"));
+            SparqlRemoteEndpoint endpoint = new SparqlRemoteEndpoint(new Uri("http://localhost:8080/rdf4j-server/repositories/wade1"));
             endpoint.ResultsAcceptHeader = "application/sparql-results+json";
             endpoint.Timeout = 300000; // 5 mins
             string query = _queryBuilder.GetMovieInfoByTitle(title.ToLower());

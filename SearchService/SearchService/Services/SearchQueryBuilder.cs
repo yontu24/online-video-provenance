@@ -34,7 +34,7 @@ namespace SearchService.Services
                 .UseSubject(CommonVariables.CommonSubjects[0]) // "movie"
                 .WithSubjectOfType("Movie")
                 .AddTriple("title", "name")
-                .AddStringFilter(title);
+                .AddStringFilter("name", title.ToLower());
             // some weird error here where i could not chain the newly added AddTriple method
             queryBuilder
                 .AddTriple("?movie ?prop ?value.")

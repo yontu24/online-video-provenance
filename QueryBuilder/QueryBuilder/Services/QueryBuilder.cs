@@ -73,7 +73,7 @@ namespace QueryBuilderService.Services
 
         public string GetMovieInfoByTitle(string title)
         {
-            // return GetMovieInfoByTitleOwn(title);
+            return GetMovieInfoByTitleOwn(title);
 
             List<string> propSubjList = new List<string>() { "name", "value" };
             string subject = GetSubject(propSubjList);
@@ -118,8 +118,8 @@ namespace QueryBuilderService.Services
                 .AppendLine("PREFIX resources: <http://www.wade-ovi.org/resources#>")
                 .AppendLine($"SELECT ?movie ?prop {subject} WHERE {{ ?movie a resources:Movie;")
                 .AppendLine("resources:title ?name.")
-                .AppendLine($"filter( regex(lcase(str(?name)), \"{title}\"))")
-                // .AppendLine($"filter( regex(lcase(str(?name)), \"^{title}$\"))")
+                // .AppendLine($"filter( regex(lcase(str(?name)), \"{title}\"))")
+                .AppendLine($"filter( regex(lcase(str(?name)), \"^{title}$\"))")
                 .AppendLine("?movie ?prop ?value.")
                 .AppendLine("filter( ?prop not in (rdf:type))")
                 .AppendLine("} GROUP BY ?movie ?prop");

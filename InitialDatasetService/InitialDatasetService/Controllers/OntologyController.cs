@@ -1,11 +1,5 @@
 ﻿using InitialDatasetService.Interfaces;
-using InitialDatasetService.MicroServices;
 using Microsoft.AspNetCore.Mvc;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using QueryBuilderLibrary.Implementations;
 
 namespace InitialDatasetService.Controllers
 {

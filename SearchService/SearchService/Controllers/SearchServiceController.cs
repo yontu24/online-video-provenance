@@ -41,7 +41,7 @@ namespace SearchService.Controllers
             SparqlEndpointConnection endpointConnection = new SparqlEndpointConnection(new Uri("http://live.dbpedia.org/sparql"));
             string query = _queryBuilder.GetMoviesFromDbpediaByTitle(title);
             var processedResults = ResultProcessingHelper.ProcessInfoResult("movie", endpointConnection.RunQuery(query));
-            DatasetUpdateHelper.UpdateDatasetMovies(processedResults);
+            // DatasetUpdateHelper.UpdateDatasetMovies(processedResults);
             return Ok(processedResults);
         }
 
@@ -51,7 +51,7 @@ namespace SearchService.Controllers
             SparqlEndpointConnection endpointConnection = new SparqlEndpointConnection(new Uri("http://live.dbpedia.org/sparql"));
             string query = _queryBuilder.GetPersonDetailsFromDbpediaByName(name);
             var processedResults = ResultProcessingHelper.ProcessInfoResult("person", endpointConnection.RunQuery(query));
-            DatasetUpdateHelper.UpdateDatasetPersons(processedResults);
+            // DatasetUpdateHelper.UpdateDatasetPersons(processedResults);
             return Ok(processedResults);
         }
     }
