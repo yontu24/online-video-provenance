@@ -28,7 +28,7 @@ namespace InitialDatasetService.MicroServices
             };
         public void InitializeDataset()
         {
-
+        
             FileLoader.Load(g, "Ontology.ttl");
             
             SparqlRemoteEndpoint endpoint = new SparqlRemoteEndpoint(new Uri(GlobalVariables.dbpediaEndpointUrl));

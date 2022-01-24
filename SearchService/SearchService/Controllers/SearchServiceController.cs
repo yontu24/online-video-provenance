@@ -32,7 +32,27 @@ namespace SearchService.Controllers
             SparqlEndpointConnection endpointConnection = new SparqlEndpointConnection(new Uri("http://localhost:8080/rdf4j-server/repositories/wade1"));
             string query = _queryBuilder.GetMovieInfoByTitle(title);
 
-            return Ok(ResultProcessingHelper.ProcessMovieInfoResult(endpointConnection.RunQuery(query)));
+            return Ok(ResultProcessingHelper.ProcessInfoResult("movie", endpointConnection.RunQuery(query)));
+        }
+
+        [HttpGet("/dbpedia/movies/{title}")]
+        public IActionResult GetMoviesFromDbpediaByTitle(string title)
+        {
+            SparqlEndpointConnection endpointConnection = new SparqlEndpointConnection(new Uri("http://live.dbpedia.org/sparql"));
+            string query = _queryBuilder.GetMoviesFromDbpediaByTitle(title);
+            var processedResults = ResultProcessingHelper.ProcessInfoResult("movie", endpointConnection.RunQuery(query));
+            DatasetUpdateHelper.UpdateDatasetMovies(processedResults);
+            return Ok(processedResults);
+        }
+
+        [HttpGet("/dbpedia/persons/{name}")]
+        public IActionResult GetPersonsFromDbpediaByName(string name)
+        {
+            SparqlEndpointConnection endpointConnection = new SparqlEndpointConnection(new Uri("http://live.dbpedia.org/sparql"));
+            string query = _queryBuilder.GetPersonDetailsFromDbpediaByName(name);
+            var processedResults = ResultProcessingHelper.ProcessInfoResult("person", endpointConnection.RunQuery(query));
+            DatasetUpdateHelper.UpdateDatasetPersons(processedResults);
+            return Ok(processedResults);
         }
     }
 }

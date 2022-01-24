@@ -27,27 +27,27 @@ namespace SearchService.Helpers
             return movieInfo;
         }
 
-        public static Dictionary<string, Dictionary<string, List<string>>> ProcessMovieInfoResult(SparqlResultSet results)
+        public static Dictionary<string, Dictionary<string, List<string>>> ProcessInfoResult(string inputKey, SparqlResultSet results)
         {
             QueryBuilder queryBuilder = new QueryBuilder();
 
-            return ProcessMovieInfoResult(results, queryBuilder.Separator);
+            return ProcessInfoResult(inputKey, results, queryBuilder.Separator);
         }
 
-        public static Dictionary<string, Dictionary<string, List<string>>> ProcessMovieInfoResult(SparqlResultSet results, string separator)
+        public static Dictionary<string, Dictionary<string, List<string>>> ProcessInfoResult(string inputKey, SparqlResultSet results, string separator)
         {
-            Dictionary<string, Dictionary<string, List<string>>> movieInfo = new Dictionary<string, Dictionary<string, List<string>>>();
+            Dictionary<string, Dictionary<string, List<string>>> info = new Dictionary<string, Dictionary<string, List<string>>>();
 
             foreach (var result in results)
             {
-                var movie = result.Value("movie").ToString();
-                if (!movieInfo.ContainsKey(movie))
-                    movieInfo[movie] = new Dictionary<string, List<string>>();
+                var key = result.Value(inputKey).ToString();
+                if (!info.ContainsKey(key))
+                    info[key] = new Dictionary<string, List<string>>();
 
-                movieInfo[movie][result.Value("prop").ToString()] = result.Value("value").ToString().Split(separator).ToList();
+                info[key][result.Value("prop").ToString()] = result.Value("value").ToString().Split(separator).ToList();
             }
 
-            return movieInfo;
+            return info;
         }
     }
 }

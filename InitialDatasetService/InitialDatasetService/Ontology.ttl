@@ -11,19 +11,19 @@ r:Movie a rdfs:Class ;
 	rdfs:comment "Work of art"@en .
 	
 r:Director a rdf:Class ;
-	rdfs:subClassOf r:PersonsWithNames ;
+	rdfs:subClassOf r:Person ;
 	rdfs:label "Director" .
 
 r:Producer a rdf:Class ;
-	rdfs:subClassOf r:PersonsWithNames ;
+	rdfs:subClassOf r:Person ;
 	rdfs:label "Producer" .
 
 r:Editor a rdf:Class ;
-	rdfs:subClassOf r:PersonsWithNames ;
+	rdfs:subClassOf r:Person ;
 	rdfs:label "Editor" .
 
 r:MusicComposer a rdf:Class ;
-	rdfs:subClassOf r:PersonsWithNames ;
+	rdfs:subClassOf r:Person ;
 	rdfs:label "Music Composer" .
 
 r:directedBy a rdfs:Property ;
@@ -35,7 +35,7 @@ r:producedBy a rdfs:Property ;
 	rdfs:range r:Producer .
 
 r:Actor a rdf:Class ;
-	rdfs:subClassOf r:PersonsWithNames ;
+	rdfs:subClassOf r:Person ;
 	rdfs:label "Actor" .
 
 r:starring a rdfs:Property ;
@@ -47,7 +47,7 @@ r:title a rdfs:Property ;
 	rdfs:range rdfs:Literal .
 	
 r:Writer a rdf:Class ;
-	rdfs:subClassOf r:PersonsWithNames ;
+	rdfs:subClassOf r:Person ;
 	rdfs:label "Writer" .
 
 r:writtenBy a rdfs:Property ;
@@ -66,11 +66,55 @@ r:budget a rdfs:Property ;
 	rdfs:domain r:Movie ;
 	rdfs:range rdfs:Literal .
 
-r:PersonsWithNames a rdf:Class .
+r:Person a rdf:Class .
 
 r:name a rdfs:Property ;
-	rdfs:domain r:PersonsWithNames ;
+	rdfs:domain r:Person ;
 	rdfs:range rdfs:Literal .
+	
+r:child a rdfs:Property ;
+	rdfs:domain r:Person ;
+	rdfs:range rdfs:Literal .
+
+r:education a rdfs:Property ;
+	rdfs:domain r:Person ;
+	rdfs:range rdfs:Literal .
+
+r:nationality a rdfs:Property ;
+	rdfs:domain r:Person ;
+	rdfs:range rdfs:Literal .
+
+r:parent a rdfs:Property ;
+	rdfs:domain r:Person ;
+	rdfs:range rdfs:Literal .
+
+r:spouse a rdfs:Property ;
+	rdfs:domain r:Person ;
+	rdfs:range rdfs:Literal .
+
+r:profession a rdfs:Property ;
+	rdfs:domain r:Person ;
+	rdfs:range rdfs:Literal .
+
+r:sex a rdfs:Property ;
+	rdfs:domain r:Person ;
+	rdfs:range rdfs:Literal .
+
+r:birthYear a rdfs:Property ;
+	rdfs:domain r:Person ;
+	rdfs:range rdfs:Literal .
+
+r:birthPlace a rdfs:Property ;
+	rdfs:domain r:Person ;
+	rdfs:range rdfs:Literal .
+
+r:eyeColour a rdfs:Property ;
+	rdfs:domain r:Person ;
+	rdfs:range rdfs:Literal .
+
+r:hairColour a rdfs:Property ;
+	rdfs:domain r:Person ;
+	rdfs:range rdfs:Literal .	
 
 r:runtime a rdfs:Property ;
 	rdfs:domain r:Movie ;
