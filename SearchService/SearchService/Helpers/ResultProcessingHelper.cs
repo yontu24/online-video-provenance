@@ -41,10 +41,6 @@ namespace SearchService.Helpers
             Dictionary<string, Dictionary<string, dynamic>> movieInfo = new Dictionary<string, Dictionary<string, dynamic>>();
             Regex pattern = new Regex("[_+]");
 
-            // - movie
-            // -- prop
-            // --- propUri : prop value 
-
             foreach (var result in results)
             {
                 var movie = result.Value("movie").ToString();
@@ -53,26 +49,19 @@ namespace SearchService.Helpers
 
                 string prop = result.Value("prop").ToString();
                 List<string> value = result.Value("value").ToString().Split(separator).ToList();
-                
+                movieInfo[movie][prop] = new Dictionary<string, string>();
+
                 if (!value.FirstOrDefault().Contains("http"))
-                {
-                    movieInfo[movie][prop] = string.Join(", ", value);
-                }
+                    foreach(string val in value)
+                        movieInfo[movie][prop][prop] = val;
                 else
-                {
-                    movieInfo[movie][prop] = new Dictionary<string, string>();
                     foreach (string val in value)
-                    {
                         if (val.Contains("http"))
                         {
                             string temp = WebUtility.UrlDecode(val).Split("#").Last();
                             temp = pattern.Replace(temp, " ");
                             movieInfo[movie][prop][val] = temp;
-                                // .Add(new Dictionary<string, string>() { { temp, val } });
                         }
-                    }
-                }
-                // movieInfo[movie][result.Value("prop").ToString()] = result.Value("value").ToString().Split(separator).ToList();
             }
 
             return movieInfo;
