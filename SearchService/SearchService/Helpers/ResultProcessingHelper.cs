@@ -1,4 +1,5 @@
 ﻿using QueryBuilderLibrary.Implementations;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net;
@@ -9,21 +10,21 @@ namespace SearchService.Helpers
 {
     public static class ResultProcessingHelper
     {
-        public static Dictionary<string, string> ProcessTitlesResult(SparqlResultSet results)
+        public static Dictionary<string, dynamic> ProcessTitlesResult(SparqlResultSet results)
         {
             QueryBuilder queryBuilder = new QueryBuilder();
 
             return ProcessTitlesResult(results, queryBuilder.Separator);
         }
 
-        public static Dictionary<string, string> ProcessTitlesResult(SparqlResultSet results, string separator)
+        public static Dictionary<string, dynamic> ProcessTitlesResult(SparqlResultSet results, string separator)
         {
-            Dictionary<string, string> movieInfo = new Dictionary<string, string>();
+            Dictionary<string, dynamic> movieInfo = new Dictionary<string, dynamic>();
 
             foreach (var result in results)
             {
                 var movie = result.Value("movie").ToString();
-                movieInfo[movie] = result.Value("name").ToString();
+                movieInfo[movie] = new Dictionary<string, string>() { { "name", result.Value("name").ToString().Split(separator).First() } };
             }
 
             return movieInfo;
