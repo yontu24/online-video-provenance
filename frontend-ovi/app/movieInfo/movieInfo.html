@@ -1,0 +1,15 @@
+<table>
+    <tr>
+        <th>Property</th>
+        <th>Value</th>
+    </tr>
+    <tr ng-repeat="(property, dictionary) in info.movies">
+        <td >{{ property }}</td>
+        <td>
+            <div ng-repeat="(key, value) in dictionary">
+                <p>{{ key.label }} : {{ value }}</p>
+                <!-- <a target="_self" ng-href={{ key }}>{{ value }}</a> -->
+            </div>
+        </td>
+    </tr>
+</table>

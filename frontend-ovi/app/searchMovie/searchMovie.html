@@ -1,0 +1,23 @@
+<h1>Search movie</h1>
+<form>
+    <div class="field">
+        <input type="text" ng-model="searchmovie.title" required>
+        <span></span>
+        <label>Enter title</label>
+    </div>
+    
+    <!-- <h1>Display</h1>
+    <div class="radiobutton">
+        <label>
+            <input type="radio" ng-model="searchmovie.searchby" value="title1" />
+            <span>Titles only</span>
+        </label>
+        <label>
+            <input type="radio" ng-model="searchmovie.searchby" value="info" checked/>
+            <span>Movie info</span>
+        </label>
+    </div> -->
+    <div class="buttons">
+        <input type="submit" ng-click="searchmovie.fetchData(searchmovie.title)" value="Search">
+    </div>
+</form>

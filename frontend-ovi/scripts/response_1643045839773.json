@@ -1,0 +1,36 @@
+{
+   "http://www.wade-ovi.org/resources#movie/Act_of_Piracy":{
+      "http://www.wade-ovi.org/resources#producedBy":{
+         "http://www.wade-ovi.org/resources#Edgar%20Bold,%20Igo%20Kantor":"Edgar Bold, Igo Kantor"
+      },
+      "http://www.wade-ovi.org/resources#abstract":{
+         "http//abstract":"South African thriller film directed by John Cardos and starring Gary Busey, Belinda Bauer and Ray Sharkey. While enjoying an exotic cruise to Australia, a family yacht is taken over by terrorists. It is also known as Barracuda."
+      },
+      "http://www.wade-ovi.org/resources#cinematography":{
+         "http://www.wade-ovi.org/resources#VINCENT":"Vincent G. Cox"
+      },
+      "http://www.wade-ovi.org/resources#language":{
+         "http://www.wade-ovi.org/resources#English":"English"
+      },
+      "http://www.wade-ovi.org/resources#runtime":{
+         "http://www.wade-ovi.org/resources#runtime":101.0,
+         "http://www.wade-ovi.org/resources#runtime":6060,
+         "http://www.wade-ovi.org/resources#runtime":6060.0
+      },
+      "http://www.wade-ovi.org/resources#directedBy":{
+         "http://www.wade-ovi.org/resources#John_Cardos":"John Cardos"
+      },
+      "http://www.wade-ovi.org/resources#title":{
+         "http://www.wade-ovi.org/resources#Act of Piracy":"Act of Piracy"
+      },
+      "http://www.wade-ovi.org/resources#starring":{
+         "http://www.wade-ovi.org/resources#Ray+Sharkey":"Ray Sharkey"
+      },
+      "http://www.wade-ovi.org/resources#writtenBy":{
+         "http://www.wade-ovi.org/resources#Hal%20Reed":"Hal Reed"
+      },
+      "http://www.wade-ovi.org/resources#musicBy":{
+         "http://www.wade-ovi.org/resources#Morton_Stevens":"Morton Stevens"
+      }
+   }
+}
