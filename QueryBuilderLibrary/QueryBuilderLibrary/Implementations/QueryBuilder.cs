@@ -11,7 +11,7 @@ namespace QueryBuilderLibrary.Implementations
     {
         #region fields
 
-        private string _declaredPrefixes = string.Empty;
+        private StringBuilder _declaredPrefixes = new StringBuilder();
         private string _prefix = string.Empty;
         private string _subject = string.Empty;
         // what's in _subjectAggregated does not need to be in group by
@@ -46,7 +46,7 @@ namespace QueryBuilderLibrary.Implementations
 
         public IQueryBuilder DeclarePrefix(string prefix, string prefixUri)
         {
-            _declaredPrefixes += $"PREFIX {prefix}:<{prefixUri}>\r\n";
+            _declaredPrefixes.AppendLine($"PREFIX {prefix}:<{prefixUri}>");
             _prefix = prefix;
 
             return this;
@@ -231,23 +231,15 @@ namespace QueryBuilderLibrary.Implementations
         {
             StringBuilder query = new StringBuilder();
             query
-                .AppendLine(_declaredPrefixes)
+                .AppendLine(_declaredPrefixes.ToString())
                 .AppendLine($"SELECT {_declaredSubjects} {_aggregatedSubjects} WHERE {{")
-                .AppendLine(_whereBody.ToString());
+                .AppendLine(_whereBody.ToString())
+                .AppendLine("}");
 
             if(!noGroupBy)
-            {
-                query
-                    .AppendLine($"}} GROUP BY {_groupBy}")
-                    .AppendLine($" {_limit}");
-            }
-            else
-            {
-                query.AppendLine($"}} {_limit}");
-            }
-            
-
-
+                query.Append($"GROUP BY {_groupBy}");
+    
+            query.Append($"{_limit}");
 
             return query.ToString();
         }

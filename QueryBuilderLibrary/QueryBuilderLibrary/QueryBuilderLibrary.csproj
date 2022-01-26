@@ -9,9 +9,9 @@
     <PackageOutputPath>./nupkg</PackageOutputPath>
     
     <!-- nuget related properties -->
-    <Authors>Alejandroo Balanis</Authors>
+    <Authors>Alexandru Balan, Ionut Craciun, Sebastian Aparaschivei</Authors>
     <Description>Library created to help in building SPARQL queries</Description>
-    <Version>1.1.4.1</Version>
+    <Version>1.1.5</Version>
     <Copyright>No Copyright</Copyright>
   </PropertyGroup>
 
