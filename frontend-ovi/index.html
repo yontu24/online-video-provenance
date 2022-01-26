@@ -8,8 +8,13 @@
 	<script src="http://localhost:8080/ovi/app/app.js"></script>
 	<script src="http://localhost:8080/ovi/app/app.controller.js"></script>
 	<script src="http://localhost:8080/ovi/app/app.service.js"></script>
+	<!-- <script src="http://localhost:8080/ovi/app/searchMovie/searchMovie.controller.js"></script> -->
 	<!-- <script src="http://localhost:8080/ovi/app/searchMovie/searchMovie.component.js"></script> -->
+	<script src="http://localhost:8080/ovi/app/movieInfo/movieInfo.controller.js"></script>
 	<script src="http://localhost:8080/ovi/app/movieInfo/movieInfo.component.js"></script>
+	<script src="http://localhost:8080/ovi/app/findTitles/findTitles.service.js"></script>
+	<script src="http://localhost:8080/ovi/app/findTitles/findTitles.controller.js"></script>
+	<script src="http://localhost:8080/ovi/app/findTitles/findTitles.component.js"></script>
 	<link rel="stylesheet" href="http://localhost:8080/ovi/assets/styles/search-movie.css">
 	<head>
 		<meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -36,8 +41,8 @@
 			<div ng-show="details" class="buttons">
 				<input type="button" ng-click="details = !details; clear();" value="Search">
 			</div>
-			<movie-info ng-show="details" movies="datas"></movie-info>
-			<!-- <movie-info ng-show="details"></movie-info> -->
+			<find-titles ng-if="details" titles="datas"></find-titles>
+			<!-- <movie-info ng-show="details" movies="datas"></movie-info> -->
 		</div>
 	</body>
 </html>

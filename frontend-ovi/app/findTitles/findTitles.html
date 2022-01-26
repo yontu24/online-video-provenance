@@ -1,0 +1,8 @@
+<div ng-if="!titlesCtrl.isMovieFound">
+    <h1>Available titles. Click one</h1>
+    <ul>
+        <li ng-click="titlesCtrl.findMovieByTitle(value.name);" ng-repeat="(uriTitle, value) in titlesCtrl.titles">{{ uriTitle }} {{ value.name }}</li>
+    </ul>
+</div>
+
+<movie-info ng-if="titlesCtrl.titlesArray != []" movies="titlesCtrl.titlesArray"></movie-info>

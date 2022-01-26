@@ -3,9 +3,7 @@ app.component('movieInfo', {
         movies: '='
     },
     transclude: true,
-    controller: function() {
-        this.message = 'An Entity of Type: Class.';
-    },
+    controller: movieInfoController,
     controllerAs: 'info',
     templateUrl: 'http://localhost:8080/ovi/app/movieInfo/movieInfo.html'
 });
