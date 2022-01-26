@@ -30,23 +30,23 @@ namespace SearchService.Helpers
             return movieInfo;
         }
 
-        public static Dictionary<string, Dictionary<string, dynamic>> ProcessInfoResult(string inputKey, SparqlResultSet results)
+        public static Dictionary<string, Dictionary<string, Dictionary<string, string>>> ProcessInfoResult(string inputKey, SparqlResultSet results)
         {
             QueryBuilder queryBuilder = new QueryBuilder();
 
             return ProcessInfoResult(inputKey, results, queryBuilder.Separator);
         }
 
-        public static Dictionary<string, Dictionary<string, dynamic>> ProcessInfoResult(string inputKey, SparqlResultSet results, string separator)
+        public static Dictionary<string, Dictionary<string, Dictionary<string, string>>> ProcessInfoResult(string inputKey, SparqlResultSet results, string separator)
         {
-            Dictionary<string, Dictionary<string, dynamic>> movieInfo = new Dictionary<string, Dictionary<string, dynamic>>();
+            Dictionary<string, Dictionary<string, Dictionary<string, string>>> movieInfo = new Dictionary<string, Dictionary<string, Dictionary<string, string>>>();
             Regex pattern = new Regex("[_+]");
 
             foreach (var result in results)
             {
-                var movie = result.Value("movie").ToString();
+                var movie = result.Value(inputKey).ToString();
                 if (!movieInfo.ContainsKey(movie))
-                    movieInfo[movie] = new Dictionary<string, dynamic>();
+                    movieInfo[movie] = new Dictionary<string, Dictionary<string, string>>();
 
                 string prop = result.Value("prop").ToString();
                 List<string> value = result.Value("value").ToString().Split(separator).ToList();
@@ -59,7 +59,7 @@ namespace SearchService.Helpers
                     foreach (string val in value)
                         if (val.Contains("http"))
                         {
-                            string temp = WebUtility.UrlDecode(val).Split("#").Last();
+                            string temp = WebUtility.UrlDecode(val).Split("#").Last().Split("/").Last();
                             temp = pattern.Replace(temp, " ");
                             movieInfo[movie][prop][val] = temp;
                         }

@@ -5,8 +5,10 @@ using System;
 
 namespace SearchService.Services
 {
+    
     public class SearchQueryBuilder : ISearchQueryBuilder
     {
+        
         public string GetMatchingTitles(string title)
         {
             QueryBuilder queryBuilder = new QueryBuilder();
@@ -47,7 +49,6 @@ namespace SearchService.Services
         {
             QueryBuilder innerQueryBuilder = new QueryBuilder();
             innerQueryBuilder
-               .SetSeparator(", ")
                .AddDistinctSubject("movie")
                .WithSubjectOfType("dbo", "Film")
                .WithSubjectOfType("schema", "CreativeWork")
@@ -61,7 +62,6 @@ namespace SearchService.Services
 
             QueryBuilder outerQueryBuilder = new QueryBuilder();
             outerQueryBuilder
-                .SetSeparator(", ")
                 .AddSubject("movie")
                 .AddSubject("prop")
                 .AddAggregatedSubject("value");
@@ -78,7 +78,6 @@ namespace SearchService.Services
         {
             QueryBuilder innerQueryBuilder = new QueryBuilder();
             innerQueryBuilder
-               .SetSeparator(", ")
                .AddDistinctSubject("person")
                .WithSubjectOfType("dbo", "Person")
                .UsePrefix("dbp")
@@ -88,7 +87,6 @@ namespace SearchService.Services
 
             QueryBuilder outerQueryBuilder = new QueryBuilder();
             outerQueryBuilder
-                .SetSeparator(", ")
                 .AddSubject("person")
                 .AddSubject("prop")
                 .AddAggregatedSubject("value");

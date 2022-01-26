@@ -62,7 +62,6 @@ namespace InitialDatasetService.MicroServices
                
                 QueryBuilder innerQueryBuilder = new QueryBuilder();
                 innerQueryBuilder
-                   .SetSeparator(", ")
                    .AddDistinctSubject("movie")
                    .WithSubjectOfType("dbo", "Film")
                    .WithSubjectOfType("schema", "CreativeWork")
@@ -76,7 +75,6 @@ namespace InitialDatasetService.MicroServices
                 
                 QueryBuilder outerQueryBuilder = new QueryBuilder();
                 outerQueryBuilder
-                    .SetSeparator(", ")
                     .AddSubject("movie")
                     .AddSubject("prop")
                     .AddAggregatedSubject("value");
@@ -123,7 +121,7 @@ namespace InitialDatasetService.MicroServices
             {
                 foreach (var value in valuesList)
                 {
-                    var valueName = value.ToString().Split("/").Last();
+                    var valueName = WebUtility.UrlEncode(value.ToString().Split("/").Last().Replace("_", " "));
                     var node = g.CreateUriNode($@"resources:{valueName}");
                     triples.Add(new Triple(node, g.CreateUriNode("rdf:type"), g.GetUriNode(@$"resources:{string.Concat(propertyName[0].ToString().ToUpper(), propertyName.AsSpan(1))}")));
                     triples.Add(new Triple(node, g.CreateUriNode("resources:name"),g.CreateLiteralNode(valueName)));
@@ -135,16 +133,12 @@ namespace InitialDatasetService.MicroServices
             {
                 foreach (var value in valuesList)
                 {
-                    var names = value.ToString().Split("/").Last().Replace("_", " ");
-                    foreach(var name in names.Split(","))
-                    {
-                        var decodedName = WebUtility.UrlEncode(name);
-                        var node = g.CreateUriNode($@"resources:{decodedName}");
-                        triples.Add(new Triple(node, g.CreateUriNode("rdf:type"), g.GetUriNode("resources:Actor")));
-                        triples.Add(new Triple(node, g.CreateUriNode("resources:name"), g.CreateLiteralNode(decodedName)));
-                        triples.Add(new Triple(subject, g.CreateUriNode("resources:starring"), node));
-                    }
-                    
+                    var name = value.ToString().Split("/").Last().Replace("_", " ");
+                    var decodedName = WebUtility.UrlEncode(name);
+                    var node = g.CreateUriNode($@"resources:{decodedName}");
+                    triples.Add(new Triple(node, g.CreateUriNode("rdf:type"), g.GetUriNode("resources:Actor")));
+                    triples.Add(new Triple(node, g.CreateUriNode("resources:name"), g.CreateLiteralNode(decodedName)));
+                    triples.Add(new Triple(subject, g.CreateUriNode("resources:starring"), node));  
                 }
             }
             else
@@ -152,7 +146,7 @@ namespace InitialDatasetService.MicroServices
                 if(propertyName == "name") { propertyName = "title"; }//did this so i didn't have to modify the ontology
                 foreach (var value in valuesList)
                 {
-                    var valueName = value.ToString().Split("/").Last();
+                    var valueName = WebUtility.UrlEncode(value.ToString().Split("/").Last().Replace("_", " "));
                     triples.Add(new Triple(subject, g.CreateUriNode(@$"resources:{propertyName}"), g.CreateLiteralNode(valueName)));
                 }
             }
@@ -168,7 +162,7 @@ namespace InitialDatasetService.MicroServices
                 if (!movieInfo.ContainsKey(movie))
                     movieInfo[movie] = new Dictionary<string, List<string>>();
 
-                movieInfo[movie][result.Value("prop").ToString()] = result.Value("value").ToString().Split("|split|").ToList();
+                movieInfo[movie][result.Value("prop").ToString()] = result.Value("value").ToString().Split("|separator|").ToList();
 
                 // movieInfo[result.Value("prop").ToString()] = result.Value("value").ToString().Split("|split|").ToList();              
             }

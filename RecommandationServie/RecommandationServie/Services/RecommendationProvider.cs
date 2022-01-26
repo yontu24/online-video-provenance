@@ -35,5 +35,10 @@ namespace RecommandationServie.Services
 
             return connection.RunQuery(query);
         }
+
+        public SparqlResultSet GetRecomandationByParams(string actors, string directors, string genres)
+        {
+            throw new NotImplementedException();
+        }
     }
 }
