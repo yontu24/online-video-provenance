@@ -1,3 +1,5 @@
+'use strict';
+
 function findTitlesController($interval, getRequestMovieInfo, processMovieInfo) {
     var self = this;
     self.$onInit = () => {
@@ -11,7 +13,6 @@ function findTitlesController($interval, getRequestMovieInfo, processMovieInfo) 
                 (response) => {
                     self.titlesArray = processMovieInfo.getMovieInfo(JSON.stringify(response.data));
                     self.titlesNumber = Object.keys(self.titlesArray).length;
-                    console.log(self.titlesArray);
                 },
                 (error) => {
                     self.titlesArray = error.statusText;

@@ -1,3 +1,5 @@
+'use strict';
+
 function searchMovieFormController(manipulateData, getRequestTitle) {
     var self = this;
 

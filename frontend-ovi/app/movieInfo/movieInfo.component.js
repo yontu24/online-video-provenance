@@ -1,9 +1,12 @@
-app.component('movieInfo', {
-    bindings: {
-        movies: '='
-    },
-    transclude: true,
-    controller: movieInfoController,
-    controllerAs: 'info',
-    templateUrl: 'http://localhost:8080/ovi/app/movieInfo/movieInfo.html'
-});
+'use strict';
+
+angular.module('movieInfo')
+    .component('movieInfo', {
+        bindings: {
+            movies: '='
+        },
+        transclude: true,
+        controller: movieInfoController,
+        controllerAs: 'info',
+        templateUrl: 'movieInfo/movieInfo.html'
+    });

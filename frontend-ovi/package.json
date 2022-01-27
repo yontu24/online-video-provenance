@@ -1,0 +1,28 @@
+{
+	"name": "angular-ovi",
+	"private": true,
+	"version": "1.0.0",
+	"description": "An OVI application for AngularJS",
+	"repository": "https://github.com/yontu24/online-video-provenance/tree/main/frontend-ovi",
+	"license": "MIT",
+	"dependencies": {
+		"angular": "1.8.x",
+		"angular-animate": "1.8.x",
+		"angular-route": "1.8.x"
+	},
+	"devDependencies": {
+		"angular-mocks": "1.8.x",
+		"http-server": "^14.1.x",
+		"cpx": "^1.5.0"
+	},
+	"scripts": {
+		"postinstall": "npm run copy-libs",
+		"update-deps": "npm update",
+		"postupdate-deps": "npm run copy-libs",
+    "copy-libs": "cpx \"node_modules/{angular,angular-*}/**/*\" app/lib -C",
+		"prestart": "npm install",
+		"start": "http-server ./app -a localhost -p 8000 -c-1",
+		"preupdate-webdriver": "npm install",
+		"update-webdriver": "webdriver-manager update"
+	}
+}

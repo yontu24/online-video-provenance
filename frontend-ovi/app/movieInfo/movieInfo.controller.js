@@ -1,3 +1,5 @@
+'use strict';
+
 function movieInfoController() {
     var self = this;
     self.message = 'An Entity of Type: Class.';
