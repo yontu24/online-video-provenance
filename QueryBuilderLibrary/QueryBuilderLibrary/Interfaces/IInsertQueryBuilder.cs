@@ -32,6 +32,8 @@ namespace QueryBuilderLibrary.Interfaces
         public IInsertQueryBuilder UseGraphForWhere(string graph);
         public IInsertQueryBuilder UseSubject(string subject);
 
+        public IInsertQueryBuilder UsePrefix(string prefix);
+
         public string BuildQuery();
     }
 }

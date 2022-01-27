@@ -4,7 +4,7 @@ using System.Text;
 
 namespace QueryBuilderLibrary.Implementations
 {
-    class InsertQueryBuilder : IInsertQueryBuilder
+    public class InsertQueryBuilder : IInsertQueryBuilder
     {
         #region fields
 
@@ -13,7 +13,10 @@ namespace QueryBuilderLibrary.Implementations
         private string _subject = string.Empty;
         private StringBuilder _insertBody = new StringBuilder();
         private string _insertGraph = string.Empty;
-        private string _subjectQuestionMark = string.Empty;
+        private string _beforeSubject = string.Empty;
+        private string _afterSubject = string.Empty;
+        private string _beforeObject = string.Empty;
+        private string _afterObject = string.Empty;
         private StringBuilder _whereBody = new StringBuilder();
         private string _whereGraph = string.Empty;
 
@@ -65,6 +68,13 @@ namespace QueryBuilderLibrary.Implementations
             return this;
         }
 
+        public IInsertQueryBuilder UsePrefix(string prefix)
+        {
+            _prefix = prefix;
+
+            return this;
+        }
+
         public IInsertQueryBuilder AddInsertTriple(string triple)
         {
             _insertBody.AppendLine(triple);
@@ -74,9 +84,9 @@ namespace QueryBuilderLibrary.Implementations
 
         public IInsertQueryBuilder AddInsertTriple(string subject, string prefix, string predicate, string obj)
         {
-            CheckSubject(subject, obj);
+            CheckSubjectAndObject(subject, obj);
 
-            _insertBody.AppendLine($"{_subjectQuestionMark}{subject} {prefix}:{predicate} ?{obj} .");
+            _insertBody.AppendLine($"{_beforeSubject}{subject}{_afterSubject} {prefix}:{predicate} {_beforeObject}{obj}{_afterObject} .");
 
             return this;
         }
@@ -86,10 +96,10 @@ namespace QueryBuilderLibrary.Implementations
             if (string.IsNullOrEmpty(_subject) || string.IsNullOrEmpty(_prefix))
                 throw new Exception("Subject and/or Prefix have not been set");
 
-            CheckSubject(_subject, _prefix);
+            CheckSubjectAndObject(_subject, obj);
 
 
-            _insertBody.AppendLine($"{_subjectQuestionMark}{_subject} {_prefix}:{predicate} ?{obj} .");
+            _insertBody.AppendLine($"{_beforeSubject}{_subject}{_afterSubject} {_prefix}:{predicate} {_beforeObject}{obj}{_afterObject} .");
 
             return this;
         }
@@ -99,9 +109,9 @@ namespace QueryBuilderLibrary.Implementations
             if (string.IsNullOrEmpty(_prefix))
                 throw new Exception("Prefix has not been set");
 
-            CheckSubject(subject, _prefix);
+            CheckSubjectAndObject(subject, obj);
 
-            _insertBody.AppendLine($"{_subjectQuestionMark}{subject} {_prefix}:{predicate} ?{obj} .");
+            _insertBody.AppendLine($"{_beforeSubject}{subject}{_afterSubject} {_prefix}:{predicate} {_beforeObject}{obj}{_afterObject} .");
 
             return this;
         }
@@ -111,18 +121,18 @@ namespace QueryBuilderLibrary.Implementations
             if (string.IsNullOrEmpty(_prefix))
                 throw new Exception("Subject has not been set");
 
-            CheckSubject(_subject, prefix);
+            CheckSubjectAndObject(_subject, obj);
 
-            _insertBody.AppendLine($"{_subjectQuestionMark}{_subject} {prefix}:{predicate} ?{obj} .");
+            _insertBody.AppendLine($"{_beforeSubject}{_subject}{_afterSubject} {prefix}:{predicate} {_beforeObject}{obj}{_afterObject} .");
 
             return this;
         }
 
         public IInsertQueryBuilder AddInsertTripleWithLiteral(string subject, string prefix, string predicate, string obj)
         {
-            CheckSubject(subject, obj);
+            CheckSubjectAndObject(subject, obj);
 
-            _insertBody.AppendLine($"{_subjectQuestionMark}{subject} {prefix}:{predicate} {obj} .");
+            _insertBody.AppendLine($"{_beforeSubject}{subject}{_afterSubject} {prefix}:{predicate} \"{obj}\" .");
 
             return this;
         }
@@ -132,10 +142,10 @@ namespace QueryBuilderLibrary.Implementations
             if (string.IsNullOrEmpty(_subject) || string.IsNullOrEmpty(_prefix))
                 throw new Exception("Subject and/or Prefix have not been set");
 
-            CheckSubject(_subject, _prefix);
+            CheckSubjectAndObject(_subject, obj);
 
 
-            _insertBody.AppendLine($"{_subjectQuestionMark}{_subject} {_prefix}:{predicate} {obj} .");
+            _insertBody.AppendLine($"{_beforeSubject}{_subject}{_afterSubject} {_prefix}:{predicate} \"{obj}\" .");
 
             return this;
         }
@@ -145,9 +155,9 @@ namespace QueryBuilderLibrary.Implementations
             if (string.IsNullOrEmpty(_prefix))
                 throw new Exception("Prefix has not been set");
 
-            CheckSubject(subject, _prefix);
+            CheckSubjectAndObject(subject, obj);
 
-            _insertBody.AppendLine($"{_subjectQuestionMark}{subject} {_prefix}:{predicate} {obj} .");
+            _insertBody.AppendLine($"{_beforeSubject}{subject}{_afterSubject} {_prefix}:{predicate} \"{obj}\" .");
 
             return this;
         }
@@ -157,9 +167,9 @@ namespace QueryBuilderLibrary.Implementations
             if (string.IsNullOrEmpty(_prefix))
                 throw new Exception("Subject has not been set");
 
-            CheckSubject(_subject, prefix);
+            CheckSubjectAndObject(_subject, obj);
 
-            _insertBody.AppendLine($"{_subjectQuestionMark}{_subject} {prefix}:{predicate} {obj} .");
+            _insertBody.AppendLine($"{_beforeSubject}{_subject}{_afterSubject} {prefix}:{predicate} \"{obj}\" .");
 
             return this;
         }
@@ -181,9 +191,9 @@ namespace QueryBuilderLibrary.Implementations
 
         public IInsertQueryBuilder AddWhereTriple(string subject, string prefix, string predicate, string obj)
         {
-            CheckSubject(subject, obj);
+            CheckSubjectAndObject(subject, obj);
 
-            _whereBody.AppendLine($"?{subject} {prefix}:{predicate} ?{obj} .");
+            _whereBody.AppendLine($"?{subject} {prefix}:{predicate} {_beforeObject}{obj}{_afterObject} .");
 
             return this;
         }
@@ -193,10 +203,10 @@ namespace QueryBuilderLibrary.Implementations
             if (string.IsNullOrEmpty(_subject) || string.IsNullOrEmpty(_prefix))
                 throw new Exception("Subject and/or Prefix have not been set");
 
-            CheckSubject(_subject, _prefix);
+            CheckSubjectAndObject(_subject, obj);
 
 
-            _whereBody.AppendLine($"?{_subject} {_prefix}:{predicate} ?{obj} .");
+            _whereBody.AppendLine($"?{_subject} {_prefix}:{predicate} {_beforeObject}{obj}{_afterObject} .");
 
             return this;
         }
@@ -206,9 +216,9 @@ namespace QueryBuilderLibrary.Implementations
             if (string.IsNullOrEmpty(_prefix))
                 throw new Exception("Prefix has not been set");
 
-            CheckSubject(subject, _prefix);
+            CheckSubjectAndObject(subject, obj);
 
-            _whereBody.AppendLine($"?{subject} {_prefix}:{predicate} ?{obj} .");
+            _whereBody.AppendLine($"?{subject} {_prefix}:{predicate} {_beforeObject}{obj}{_afterObject} .");
 
             return this;
         }
@@ -218,16 +228,16 @@ namespace QueryBuilderLibrary.Implementations
             if (string.IsNullOrEmpty(_prefix))
                 throw new Exception("Subject has not been set");
 
-            CheckSubject(_subject, prefix);
+            CheckSubjectAndObject(_subject, obj);
 
-            _whereBody.AppendLine($"?{_subject} {prefix}:{predicate} ?{obj} .");
+            _whereBody.AppendLine($"?{_subject} {prefix}:{predicate} {_beforeObject}{obj}{_afterObject} .");
 
             return this;
         }
 
         public IInsertQueryBuilder AddWhereTripleWithLiteral(string subject, string prefix, string predicate, string obj)
         {
-            CheckSubject(subject, obj);
+            CheckSubjectAndObject(subject, obj);
 
             _whereBody.AppendLine($"?{subject} {prefix}:{predicate} {obj} .");
 
@@ -239,7 +249,7 @@ namespace QueryBuilderLibrary.Implementations
             if (string.IsNullOrEmpty(_subject) || string.IsNullOrEmpty(_prefix))
                 throw new Exception("Subject and/or Prefix have not been set");
 
-            CheckSubject(_subject, _prefix);
+            CheckSubjectAndObject(_subject, obj);
 
 
             _whereBody.AppendLine($"?{_subject} {_prefix}:{predicate} {obj} .");
@@ -252,7 +262,7 @@ namespace QueryBuilderLibrary.Implementations
             if (string.IsNullOrEmpty(_prefix))
                 throw new Exception("Prefix has not been set");
 
-            CheckSubject(subject, _prefix);
+            CheckSubjectAndObject(subject, obj);
 
             _whereBody.AppendLine($"?{subject} {_prefix}:{predicate} {obj} .");
 
@@ -264,7 +274,7 @@ namespace QueryBuilderLibrary.Implementations
             if (string.IsNullOrEmpty(_prefix))
                 throw new Exception("Subject has not been set");
 
-            CheckSubject(_subject, prefix);
+            CheckSubjectAndObject(_subject, obj);
 
             _whereBody.AppendLine($"?{_subject} {prefix}:{predicate} {obj} .");
 
@@ -280,7 +290,7 @@ namespace QueryBuilderLibrary.Implementations
                 .AppendLine("INSERT {")
                 .AppendLine(_insertBody.ToString())
                 .AppendLine("}")
-                .AppendLine("WHERE {")
+                .AppendLine("} WHERE {")
                 .AppendLine(_whereBody.ToString())
                 .AppendLine("}");
 
@@ -293,9 +303,9 @@ namespace QueryBuilderLibrary.Implementations
                 _insertBody.AppendLine("}");
 
             if (!_insertBody.ToString().Contains("GRAPH "))
-                _insertBody.Insert(0, $"GRAPH {_insertGraph } {{");
+                _insertBody.Insert(0, $"GRAPH <{_insertGraph}> {{");
             else
-                _insertBody.AppendLine($"GRAPH {_insertGraph} {{");
+                _insertBody.AppendLine($"GRAPH <{_insertGraph}> {{");
         }
 
         private void WhereGraphChanged()
@@ -304,17 +314,34 @@ namespace QueryBuilderLibrary.Implementations
                 _whereBody.AppendLine("}");
 
             if (!_whereBody.ToString().Contains("GRAPH "))
-                _whereBody.Insert(0, $"GRAPH {_whereGraph} {{");
+                _whereBody.Insert(0, $"GRAPH <{_whereGraph}> {{");
             else
-                _whereBody.AppendLine($"GRAPH {_whereGraph} {{");
+                _whereBody.AppendLine($"GRAPH <{_whereGraph}> {{");
         }
 
-        private void CheckSubject(string subject, string obj)
+        private void CheckSubjectAndObject(string subject, string obj)
         {
-            if (subject.Contains("http") || subject.Contains("/"))
-                _subjectQuestionMark = "?";
+            if ((subject.Contains("http") || subject.Contains("/") || subject.Contains(":")) && (!subject.StartsWith("\"") && !subject.EndsWith("\"")))
+            { 
+                _beforeSubject = "<";
+                _afterSubject = ">";
+            }
             else
-                _subjectQuestionMark = string.Empty;
+            {
+                _beforeSubject = "?";
+                _afterSubject = string.Empty;
+            }
+
+            if (obj.Contains("http") || obj.Contains("/") || obj.Contains(":"))
+            {
+                _beforeObject = "<";
+                _afterObject = ">";
+            }
+            else
+            {
+                _beforeObject = "?";
+                _afterObject = string.Empty;
+            }
         }
     }
 }
