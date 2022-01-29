@@ -17,7 +17,7 @@ namespace SearchService.Controllers
             _queryBuilder = queryBuilder;
         }
 
-        [HttpGet("/getTitles/{title}")]
+        [HttpGet("/movies/titles/{title}")]
         public IActionResult GetMatchingTitles(string title)
         {
             SparqlEndpointConnection endpointConnection = new SparqlEndpointConnection(new Uri("http://localhost:8080/rdf4j-server/repositories/wade1"));
@@ -26,7 +26,7 @@ namespace SearchService.Controllers
             return Ok(ResultProcessingHelper.ProcessTitlesResult(endpointConnection.RunQuery(query)));
         }
 
-        [HttpGet("/getTitleInfo/{title}")]
+        [HttpGet("/movies/data/{title}")]
         public IActionResult GetMovieInfoByTitle(string title)
         {
             SparqlEndpointConnection endpointConnection = new SparqlEndpointConnection(new Uri("http://localhost:8080/rdf4j-server/repositories/wade1"));

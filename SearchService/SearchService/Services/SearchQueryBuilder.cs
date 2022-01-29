@@ -2,6 +2,7 @@
 using SearchService.Helpers;
 using SearchService.Interfaces;
 using System;
+using System.Net;
 
 namespace SearchService.Services
 {
@@ -24,10 +25,10 @@ namespace SearchService.Services
             return queryBuilder.BuildQuery();
         }
 
-        public string GetMovieInfoByTitle(string title)
+        public string GetMovieInfoByTitle(string movieUri)
         {
             QueryBuilder queryBuilder = new QueryBuilder();
-
+            var decodedUri = WebUtility.UrlDecode(movieUri).Trim().Replace(" ", "+");
             queryBuilder
                 .DeclarePrefix(CommonVariables.ResourcesPrefix, CommonVariables.ResourcesPrefixUri.OriginalString)
                 .AddMultipleSubjects(CommonVariables.CommonSubjects)
@@ -36,7 +37,7 @@ namespace SearchService.Services
                 .UseSubject(CommonVariables.CommonSubjects[0]) // "movie"
                 .WithSubjectOfType("Movie")
                 .AddTriple("title", "name")
-                .AddStringFilter("name", title.ToLower());
+                .AddFilter($"?movie = (<{decodedUri}>)");
             // some weird error here where i could not chain the newly added AddTriple method
             queryBuilder
                 .AddTriple("?movie ?prop ?value.")
