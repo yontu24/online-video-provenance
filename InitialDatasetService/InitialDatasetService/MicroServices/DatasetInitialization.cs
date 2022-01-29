@@ -98,7 +98,7 @@ namespace InitialDatasetService.MicroServices
                 g.NamespaceMap.AddNamespace("rdf", new Uri("http://www.w3.org/1999/02/22-rdf-syntax-ns#"));
                 foreach (KeyValuePair<string, Dictionary<string, List<string>>> movie in processedResult)
                 {
-                    var movieTitle = movie.Key.ToString().Split("/").Last();
+                    var movieTitle = movie.Key.ToString().Split("/").Last().Replace("_", "+");
                     var subject = g.CreateUriNode($"resources:movie/{movieTitle}");
                     triples.Add(new Triple(subject, g.CreateUriNode("rdf:type"), g.GetUriNode("resources:Movie")));
 
@@ -115,11 +115,11 @@ namespace InitialDatasetService.MicroServices
                     }
                 }
 
-                string query = queryBuilder.BuildQuery();
-                connector.Update(query);
+                //string query = queryBuilder.BuildQuery();
+                //connector.Update(query);
             }
 
-            // connector.UpdateGraph(GlobalVariables.ResourcesPrefix, triples, null);
+             connector.UpdateGraph(GlobalVariables.ResourcesPrefix, triples, null);
 
         }
 

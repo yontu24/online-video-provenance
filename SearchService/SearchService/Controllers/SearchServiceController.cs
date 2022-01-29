@@ -26,7 +26,7 @@ namespace SearchService.Controllers
             return Ok(ResultProcessingHelper.ProcessTitlesResult(endpointConnection.RunQuery(query)));
         }
 
-        [HttpGet("/movies/data/{title}")]
+        [HttpGet("/movies/data/{movieUri}")]
         public IActionResult GetMovieInfoByTitle(string title)
         {
             SparqlEndpointConnection endpointConnection = new SparqlEndpointConnection(new Uri("http://localhost:8080/rdf4j-server/repositories/wade1"));
