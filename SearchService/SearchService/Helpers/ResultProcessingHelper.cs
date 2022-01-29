@@ -24,7 +24,7 @@ namespace SearchService.Helpers
             foreach (var result in results)
             {
                 var movie = result.Value("movie").ToString();
-                movieInfo[movie] = new Dictionary<string, string>() { { "name", result.Value("name").ToString().Split(separator).First() } };
+                movieInfo[movie] = new Dictionary<string, string>() { { "name", WebUtility.UrlDecode(result.Value("name").ToString().Split(separator).First()) } };
             }
 
             return movieInfo;
@@ -54,7 +54,7 @@ namespace SearchService.Helpers
 
                 if (!value.FirstOrDefault().Contains("http"))
                     foreach(string val in value)
-                        movieInfo[movie][prop][prop] = val;
+                        movieInfo[movie][prop][prop] = WebUtility.UrlDecode(val);
                 else
                     foreach (string val in value)
                         if (val.Contains("http"))

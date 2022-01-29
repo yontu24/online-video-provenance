@@ -102,6 +102,8 @@ namespace InitialDatasetService.MicroServices
                     var subject = g.CreateUriNode($"resources:movie/{movieTitle}");
                     triples.Add(new Triple(subject, g.CreateUriNode("rdf:type"), g.GetUriNode("resources:Movie")));
 
+                    queryBuilder.AddInsertTriple($"resources:movie/{movieTitle}", "rdf", "type", "resources:Movie");
+
                     foreach (KeyValuePair<string, List<string>> property in movie.Value)
                     {
                         var propertyName = property.Key.ToString().Split("/").Last();
