@@ -11,7 +11,7 @@
     <!-- nuget related properties -->
     <Authors>Alexandru Balan, Ionut Craciun, Sebastian Aparaschivei</Authors>
     <Description>Library created to help in building SPARQL queries</Description>
-    <Version>1.1.5.951</Version>
+    <Version>1.1.5.957</Version>
     <Copyright>No Copyright</Copyright>
   </PropertyGroup>
 

@@ -31,5 +31,7 @@ namespace QueryBuilderLibrary.Interfaces
         public IQueryBuilder WithSubjectOfType(string predicate);
         public IQueryBuilder WithSubjectOfType(string subject, string predicate);
         public IQueryBuilder WithSubjectOfType(string subject, string prefix, string predicate);
+        public IQueryBuilder AddMultipleValuesFilter(string subject, List<string> values, bool literalValuesFlag = false)
+;
     }
 }

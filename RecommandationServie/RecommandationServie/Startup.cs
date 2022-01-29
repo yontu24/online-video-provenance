@@ -6,14 +6,14 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using Microsoft.OpenApi.Models;
-using RecommandationServie.Interfaces;
-using RecommandationServie.Services;
+using RecommandationService.Interfaces;
+using RecommandationService.Services;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace RecommandationServie
+namespace RecommandationService
 {
     public class Startup
     {

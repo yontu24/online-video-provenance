@@ -205,14 +205,57 @@ namespace QueryBuilderLibrary.Implementations
             if (string.IsNullOrEmpty(_subject))
                 throw new Exception("Subject has not been set");
 
-            _whereBody.AppendLine($"FILTER( regex(lcase(str(?{_subject})), \"{value}\") )");
+            _whereBody.AppendLine($" FILTER( regex(lcase(str(?{_subject})), \"{value}\") )");
 
+            return this;
+        }
+
+        public IQueryBuilder AddMultipleValuesFilter(List<string>values, string prefix)
+        {
+            if (string.IsNullOrEmpty(_subject))
+                throw new Exception("Subject has not been set");
+
+            _whereBody.AppendLine($" FILTER( lcase(str(?{_subject})) IN ( ");
+            var filter = "";
+            foreach(var value in values)
+            {
+                filter += $"{prefix}:{value.ToLower()}, ";
+            }
+            filter = filter.Remove(filter.Length-2);
+            _whereBody.AppendLine($" {filter}) )");
+            
+
+            return this;
+
+        }
+        
+        public IQueryBuilder AddMultipleValuesFilter(string subject, List<string> values, bool literalValuesFlag = false)
+        {
+            if (string.IsNullOrEmpty(subject))
+                throw new Exception("Subject has not been set");
+
+            _whereBody.AppendLine($" FILTER ( ");
+            string filter = "";
+            foreach (var value in values)
+            {
+                var formatedValue = value.Trim().Replace(" ", "+");
+                if(literalValuesFlag == false)
+                {
+                    filter += $" ?{subject} = <{formatedValue}> || ";
+                }
+                else
+                {
+                    filter += $" ?{subject} = \"{formatedValue}\" || ";
+                }
+            }
+            string formatedFilter = filter.Substring(0, filter.Length - 3);
+            _whereBody.AppendLine($"{formatedFilter} )");
             return this;
         }
 
         public IQueryBuilder AddLimit(uint limit )
         {
-            _limit = "LIMIT " + limit;
+            _limit = " LIMIT " + limit;
 
             return this;
         }
@@ -232,12 +275,12 @@ namespace QueryBuilderLibrary.Implementations
             StringBuilder query = new StringBuilder();
             query
                 .AppendLine(_declaredPrefixes.ToString())
-                .AppendLine($"SELECT {_declaredSubjects} {_aggregatedSubjects} WHERE {{")
+                .AppendLine($" SELECT {_declaredSubjects} {_aggregatedSubjects} WHERE {{")
                 .AppendLine(_whereBody.ToString())
                 .AppendLine("}");
 
             if(!noGroupBy)
-                query.Append($"GROUP BY {_groupBy}");
+                query.Append($"GROUP BY {_groupBy} ");
     
             query.Append($"{_limit}");
 
