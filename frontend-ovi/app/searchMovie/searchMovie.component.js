@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('ovi')
+angular.module('searchMovie')
     .component('searchMovieForm', {
         transclude: true,
         controller: searchMovieFormController,

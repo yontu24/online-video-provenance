@@ -4,6 +4,7 @@ angular.module('ovi',
     [
         'ngRoute',
         'ngAnimate',
+        'searchMovie',
         'findTitles',
         'movieInfo'
     ]

@@ -1,18 +1,29 @@
 'use strict';
 
-function findTitlesController($interval, getRequestMovieInfo, processMovieInfo) {
+// encode la recomandari
+// de pus param la func title 25
+
+function findTitlesController($routeParams, $location, $interval, manipulateData, getRequestTitlesFromDataset, getRequestTitlesFromAnotherSource) {
     var self = this;
+
+    self.titleId = $routeParams.titleId;
+    
     self.$onInit = () => {
         self.isMovieFound = false;
         self.titlesArray = [];
+        self.fetchData(self.titleId);
     }
 
-    self.fetchData = (title) => {
-        if (title) {
-            getRequestMovieInfo.get(title).then(
+    self.fetchData = (uri) => {
+        if (uri) {
+            getRequestTitlesFromDataset.get(uri).then(
                 (response) => {
-                    self.titlesArray = processMovieInfo.getMovieInfo(JSON.stringify(response.data));
+                    self.titlesArray = manipulateData.getTitles(JSON.stringify(response.data));
                     self.titlesNumber = Object.keys(self.titlesArray).length;
+
+                    if (!self.titlesNumber) {
+                        self.fetchDataFromAnotherSource(title);
+                    }
                 },
                 (error) => {
                     self.titlesArray = error.statusText;
@@ -21,14 +32,25 @@ function findTitlesController($interval, getRequestMovieInfo, processMovieInfo) 
         }
     }
 
-    self.findMovieByTitle = (title) => {
-        console.log('Am selectat titlul ' + title);
+    self.fetchDataFromAnotherSource = (uri) => {
+        getRequestTitlesFromAnotherSource.get(uri).then(
+            (response) => {
+                self.titlesArray = manipulateData.getTitles(JSON.stringify(response.data));
+                self.titlesNumber = Object.keys(self.titlesArray).length;
+            },
+            (error) => {
+                self.titlesArray = error.statusText;
+            }
+        );
+    }
 
+    self.displayMovieInfo = (uri) => {
+        uri = encodeURIComponent(uri);
+        console.log('AM selectat ' + uri);
         $interval(() => {
             if (!self.isMovieFound) {
                 self.isMovieFound = true;
-
-                self.fetchData(title);
+                $location.path('/movieInfo/' + uri);
             }
         }, 1000);
     }

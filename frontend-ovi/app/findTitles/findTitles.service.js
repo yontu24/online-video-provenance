@@ -1,31 +1,25 @@
 'use strict';
 
-angular.module('ovi')
-    .factory('getRequestMovieInfo', ($http) => {
+angular.module('findTitles')
+    .factory('getRequestTitlesFromAnotherSource', ($http) => {
         function get(title) {
-            return $http.get('_responses/response_1643045839773.json');
-            // return $http.get('http://localhost:58397/getTitleInfo/' + title);
+            return $http.get('http://localhost:5000/dbpedia/movies/' + title);
         }
         return {
             get: get
         }
-    }).factory('processMovieInfo', () => {
-        function getMovieInfo(data) {   // json
-            data = JSON.parse(data);
-            var title = Object.keys(data)[0];
-            var movieProps = data[title];
-            var newProps = {};
-
-            for (var property in movieProps) {
-                if (movieProps.hasOwnProperty(property)) {
-                    newProps[property.split('#').pop()] = movieProps[property];
-                }
-            }
-
-            console.log(newProps);
-            return newProps;
+    }).factory('getRequestTitlesFromDataset', ($http) => {
+        function get(title) {
+            return $http.get('http://localhost:5000/movies/titles/' + title);
         }
         return {
-            getMovieInfo: getMovieInfo
+            get: get
+        }
+    }).factory('manipulateData', () => {
+        function getTitles(data) {
+            return JSON.parse(data);
+        }
+        return {
+            getTitles: getTitles
         }
     });

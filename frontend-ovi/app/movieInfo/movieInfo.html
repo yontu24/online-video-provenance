@@ -1,13 +1,17 @@
-<table ng-if="info.movies != []">
+<div class="buttons">
+    <input type="submit" ng-click="info.goToSearchPage()" value="Search again">
+</div>
+
+<table ng-if="info.triples != []">
     <tr>
         <th>Property</th>
         <th>Value</th>
     </tr>
-    <tr ng-repeat="(property, dictionary) in info.movies">
+    <tr ng-repeat="(property, dictionary) in info.triples">
         <td >{{ property }}</td>
         <td>
             <div ng-repeat="(key, value) in dictionary">
-                <p ng-click="info.findMovieByTitle(value)">{{ key.label }} : {{ value }}</p>
+                <p>{{ key.label }} : {{ value }}</p>
                 <!-- <a target="_self" ng-href={{ key }}>{{ value }}</a> -->
             </div>
         </td>

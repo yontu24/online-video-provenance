@@ -2,11 +2,17 @@
 
 angular.module('findTitles')
     .component('findTitles', {
-        bindings: {
-            titles: '='
-        },
         transclude: true,
-        controller: findTitlesController,
+        controller:
+        [
+            '$routeParams', 
+            '$location',
+            '$interval', 
+            'manipulateData', 
+            'getRequestTitlesFromDataset', 
+            'getRequestTitlesFromAnotherSource',
+            findTitlesController
+        ],
         controllerAs: 'titlesCtrl',
         templateUrl: 'findTitles/findTitles.html'
     });

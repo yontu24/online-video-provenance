@@ -1,23 +1,12 @@
 'use strict';
 
-function searchMovieFormController(manipulateData, getRequestTitle) {
+function searchMovieFormController($location) {
     var self = this;
 
-    self.fetchData = (title) => {
+    self.findTitles = (title) => {
         if (title) {
-            getRequestTitle.get(title).then(
-                (response) => {
-                    self.datas = manipulateData.getMovieInfo(JSON.stringify(response.data));
-                    self.propertiesNumber = Object.keys(self.datas).length;
-                },
-                (error) => {
-                    self.datas = error.statusText;
-                }
-            );
-
-            self.datas = '';
-            self.propertiesNumber = 0;
-            self.title = '';
+            $location.path('/findTitle/' + title);
+            title = '';
         }
     };
 }

@@ -7,11 +7,13 @@
     <script src="app.config.js"></script>
 	<script src="app.controller.js"></script>
 	<script src="app.service.js"></script>
-	<!-- <script src="searchMovie/searchMovie.controller.js"></script> -->
-	<!-- <script src="searchMovie/searchMovie.component.js"></script> -->
+	<script src="searchMovie/searchMovie.module.js"></script>
+	<script src="searchMovie/searchMovie.controller.js"></script>
+	<script src="searchMovie/searchMovie.component.js"></script>
 	<script src="movieInfo/movieInfo.module.js"></script>
 	<script src="movieInfo/movieInfo.controller.js"></script>
 	<script src="movieInfo/movieInfo.component.js"></script>
+	<script src="movieInfo/movieInfo.service.js"></script>
 	<script src="findTitles/findTitles.module.js"></script>
 	<script src="findTitles/findTitles.service.js"></script>
 	<script src="findTitles/findTitles.controller.js"></script>
@@ -24,26 +26,6 @@
 	</head>
 
 	<body>
-		<div ng-controller="searchController">
-			<div ng-hide="details" class="center">
-				<h1>Search movie</h1>
-				<form>
-					<div class="field">
-						<input type="text" ng-model="title" required>
-						<span></span>
-						<label>Enter title</label>
-					</div>
-					<div class="buttons">
-						<input type="submit" ng-click="fetchData(title)" value="Search">
-					</div>
-				</form>
-			</div>
-			<!-- <search-movie-form ng-hide="details" class="center" ng-transclude></search-movie-info> -->
-			<div ng-show="details" class="buttons">
-				<input type="button" ng-click="details = !details; clear();" value="Search">
-			</div>
-			<find-titles ng-if="details" titles="datas"></find-titles>
-			<!-- <movie-info ng-show="details" movies="datas"></movie-info> -->
-		</div>
+		<div ng-view></div>
 	</body>
 </html>

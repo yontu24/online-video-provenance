@@ -2,6 +2,6 @@
 
 angular.module('findTitles', 
     [
-        
+        'ngRoute'
     ]
 );

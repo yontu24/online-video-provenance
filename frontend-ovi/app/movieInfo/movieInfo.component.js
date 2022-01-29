@@ -2,11 +2,15 @@
 
 angular.module('movieInfo')
     .component('movieInfo', {
-        bindings: {
-            movies: '='
-        },
         transclude: true,
-        controller: movieInfoController,
+        controller:
+        [
+            '$routeParams',
+            '$location',
+            'getRequestMovieInfo', 
+            'processMovieInfo',
+            movieInfoController
+        ],
         controllerAs: 'info',
         templateUrl: 'movieInfo/movieInfo.html'
     });
