@@ -75,7 +75,7 @@ namespace SearchService.Services
             return outerQueryBuilder.BuildQuery(true);
         }
 
-        public string GetPersonDetailsFromDbpediaByName(string name)
+        public string GetPersonDetailsFromDbpediaByUri(string uri)
         {
             QueryBuilder innerQueryBuilder = new QueryBuilder();
             innerQueryBuilder
@@ -83,7 +83,7 @@ namespace SearchService.Services
                .WithSubjectOfType("dbo", "Person")
                .UsePrefix("dbp")
                .AddTriple("name", "name")
-               .AddStringFilter("name", $@"{name.ToLower()}")
+               .AddFilter($" ?person = <{uri}> ")
                .AddLimit(10);
 
             QueryBuilder outerQueryBuilder = new QueryBuilder();
@@ -98,6 +98,22 @@ namespace SearchService.Services
                 .AddFilter("?prop not in (rdf:type)");
 
             return outerQueryBuilder.BuildQuery(true);
+        }
+
+        public string GetResourceByUri(string uri)
+        {
+            var filter = $" ?subject = <{uri}> || ?predicate = <{uri}> || ?object = <{uri}> ";
+            QueryBuilder queryBuilder = new QueryBuilder();
+            queryBuilder
+                .AddSubject("subject")
+                .AddSubject("predicate")
+                .AddSubject("object");
+            queryBuilder
+                .AddTriple("?subject ?predicate ?object.")
+                .AddFilter(filter);
+
+            return queryBuilder.BuildQuery(true);
+
         }
     }
 }

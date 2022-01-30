@@ -38,8 +38,6 @@ namespace InitialDatasetService.MicroServices
             SesameHttpProtocolConnector connector = new SesameHttpProtocolConnector("http://localhost:8080/rdf4j-server", "wade1") { Timeout = int.MaxValue };
             connector.SaveGraph(g);
 
-            var personsWithNames = new List<string>() { "director" };
-
             for (var currentLetter = 'a'; currentLetter <= 'z'; currentLetter ++)
             {
                 /*
@@ -137,6 +135,7 @@ namespace InitialDatasetService.MicroServices
                     triples.Add(new Triple(node, g.CreateUriNode("rdf:type"), g.GetUriNode(@$"resources:{string.Concat(propertyName[0].ToString().ToUpper(), propertyName.AsSpan(1))}")));
                     triples.Add(new Triple(node, g.CreateUriNode("resources:name"), g.CreateLiteralNode(valueName)));
                     triples.Add(new Triple(subject, g.CreateUriNode(@$"resources:{propertyParameters[propertyName]}"), node));
+                    triples.Add(new Triple(node, g.CreateUriNode("resources:dbpediaReference"), g.CreateLiteralNode(value)));
 
                     queryBuilder
                         .UseSubject($"resources:{valueName}")
@@ -158,6 +157,7 @@ namespace InitialDatasetService.MicroServices
                     triples.Add(new Triple(node, g.CreateUriNode("rdf:type"), g.GetUriNode("resources:Actor")));
                     triples.Add(new Triple(node, g.CreateUriNode("resources:name"), g.CreateLiteralNode(decodedName)));
                     triples.Add(new Triple(subject, g.CreateUriNode("resources:starring"), node));
+                    triples.Add(new Triple(node, g.CreateUriNode("resources:dbpediaReference"), g.CreateLiteralNode(value)));
 
                     queryBuilder
                         .UseSubject($"resources:{decodedName}")

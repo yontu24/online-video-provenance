@@ -3,6 +3,7 @@ using QueryBuilderLibrary.Implementations;
 using SearchService.Helpers;
 using SearchService.Interfaces;
 using System;
+using System.Net;
 
 namespace SearchService.Controllers
 {
@@ -45,13 +46,24 @@ namespace SearchService.Controllers
             return Ok(processedResults);
         }
 
-        [HttpGet("/dbpedia/persons/{name}")]
-        public IActionResult GetPersonsFromDbpediaByName(string name)
+        [HttpGet("/dbpedia/persons/{uri}")]
+        public IActionResult GetPersonsFromDbpediaByUri(string uri)
         {
+            uri = WebUtility.UrlDecode(uri).Trim().Replace(" ", "+");
             SparqlEndpointConnection endpointConnection = new SparqlEndpointConnection(new Uri("http://live.dbpedia.org/sparql"));
-            string query = _queryBuilder.GetPersonDetailsFromDbpediaByName(name);
+            string query = _queryBuilder.GetPersonDetailsFromDbpediaByUri(uri);
             var processedResults = ResultProcessingHelper.ProcessInfoResult("person", endpointConnection.RunQuery(query));
              DatasetUpdateHelper.UpdateDatasetPersons(processedResults);
+            return Ok(processedResults);
+        }
+
+        [HttpGet("/resource/{resourceUri}")]
+        public IActionResult GetResourceByUri(string resourceUri)
+        {
+            var uri = WebUtility.UrlDecode(resourceUri).Trim().Replace(" ", "+");
+            SparqlEndpointConnection endpointConnection = new SparqlEndpointConnection(new Uri("http://localhost:8080/rdf4j-server/repositories/wade1"));
+            string query = _queryBuilder.GetResourceByUri(uri);
+            var processedResults = ResultProcessingHelper.ProcessResourceResult(endpointConnection.RunQuery(query));
             return Ok(processedResults);
         }
     }

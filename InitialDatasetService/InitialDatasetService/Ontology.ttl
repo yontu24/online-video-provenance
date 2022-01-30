@@ -116,6 +116,10 @@ r:hairColour a rdfs:Property ;
 	rdfs:domain r:Person ;
 	rdfs:range rdfs:Literal .	
 
+r:dbpediaReference a rdfs:Property ;
+	rdfs:domain r:Person ;
+	rdfs:range rdfs:Literal .	
+
 r:runtime a rdfs:Property ;
 	rdfs:domain r:Movie ;
 	rdfs:range rdfs:Literal .
@@ -152,3 +156,4 @@ r:genre a rdfs:Property ;
 r:language a rdfs:Property ;
 	rdfs:domain r:Movie ;
 	rdfs:range rdfs:Literal .
+

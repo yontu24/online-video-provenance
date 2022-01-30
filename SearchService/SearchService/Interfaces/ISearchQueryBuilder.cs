@@ -12,6 +12,7 @@ namespace SearchService.Interfaces
         public string GetMovieInfoByTitle(string title);
         public string GetMoviesFromDbpediaByTitle(string title);
 
-        public string GetPersonDetailsFromDbpediaByName(string name);
+        public string GetPersonDetailsFromDbpediaByUri(string uri);
+        public string GetResourceByUri(string uri);
     }
 }

@@ -4,7 +4,7 @@ using Microsoft.AspNetCore.Mvc;
 namespace InitialDatasetService.Controllers
 {
     [ApiController]
-    [Route("/api1")]
+    [Route("/initialize")]
     public class OntologyController : ControllerBase
     {
         private readonly IDatasetInitialization _datasetInitialization;
