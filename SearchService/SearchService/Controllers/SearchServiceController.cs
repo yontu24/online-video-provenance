@@ -57,7 +57,7 @@ namespace SearchService.Controllers
             return Ok(processedResults);
         }
 
-        [HttpGet("/resource/{resourceUri}")]
+        [HttpGet("/resources/{resourceUri}")]
         public IActionResult GetResourceByUri(string resourceUri)
         {
             var uri = WebUtility.UrlDecode(resourceUri).Trim().Replace(" ", "+");

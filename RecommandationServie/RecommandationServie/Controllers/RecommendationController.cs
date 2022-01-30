@@ -18,7 +18,7 @@ namespace RecommandationService.Controllers
             _recommendationProvider = recommendationProvider;
         }
 
-        [HttpGet("/recomandation")]
+        [HttpGet("/recommendation")]
         public IActionResult RecommendBasedOnParams()
         {
             string genresInput = Request.Query["genres"];
