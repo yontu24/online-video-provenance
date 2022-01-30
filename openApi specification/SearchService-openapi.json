@@ -1,0 +1,558 @@
+{
+  "openapi": "3.0.1",
+  "info": {
+    "title": "OpenAPI definition",
+    "version": "v0"
+  },
+  "servers": [
+    {
+      "url": "http://localhost:3003/SearchService"
+    }
+  ],
+  "paths": {
+    "/movies/titles/{title}": {
+      "get": {
+        "parameters": [
+          {
+            "name": "title",
+            "in": "path",
+            "description": "The title of the movie we wish to search or a string that the title should contain",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "example": "appeal"
+          }
+        ],
+        "description": "Get a list of movie titles from our dataset that contain the string given as parameter",
+        "operationId": "",
+        "responses": {
+          "200": {
+            "description": "A list of key-value pairs where the key is the URI of the movie and the value is a dictionary containing the name of the movie. (P.S it was structured like this to ease the rendering on the front-end). If there is no search result the value of the response will be { }.",
+            "content": {
+              "application/json": {
+                "examples": {
+                  "200OnSearchMovieTitlesByString": {
+                    "value": {
+                      "http://www.wade-ovi.org/resources#movie/(Sex)+Appeal": {
+                        "name": "Appeal"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "SearchController"
+        ]
+      }
+    },
+    "/movies/data/{movieUri}": {
+      "description": "Get all the data regarding a movie identified by the Uri given as parameter from our dataset. The URI must be previously encoded.",
+      "get": {
+        "parameters": [
+          {
+            "name": "movieUri",
+            "in": "path",
+            "schema": {
+              "type": "string"
+            },
+            "required": true,
+            "example": "http%3A%2F%2Fwww.wade-ovi.org%2Fresources%23movie%2F%28Sex%29%2BAppeal",
+            "description": "Encoded URI corresponding to the movie we want to retrieve data about."
+          }
+        ],
+        "summary": "",
+        "description": "Get all the data regarding a movie identified by the Uri given as parameter from our dataset. The URI must be previously encoded.",
+        "operationId": "",
+        "responses": {
+          "200": {
+            "description": "ResourceUri-ResourceName pairs grouped by the URI of the property they are part of, all under the URI of the movie that was searched.",
+            "content": {
+              "application/json": {
+                "examples": {
+                  "200OnSearchMovieInfoByUri": {
+                    "value": {
+                      "http://www.wade-ovi.org/resources#movie/(Sex)+Appeal": {
+                        "http://www.wade-ovi.org/resources#writtenBy": {
+                          "http://www.wade-ovi.org/resources#Megan+Zheng": "Megan Zheng"
+                        },
+                        "http://www.wade-ovi.org/resources#producedBy": {
+                          "http://www.wade-ovi.org/resources#Hsu+Hsiao-ming": "Hsu Hsiao-ming"
+                        },
+                        "http://www.wade-ovi.org/resources#starring": {
+                          "http://www.wade-ovi.org/resources#Alyssa+Chia": "Alyssa Chia",
+                          "http://www.wade-ovi.org/resources#Amber+Kuo": "Amber Kuo",
+                          "http://www.wade-ovi.org/resources#Leon+Dai": "Leon Dai",
+                          "http://www.wade-ovi.org/resources#Vivian+Hsu": "Vivian Hsu"
+                        },
+                        "http://www.wade-ovi.org/resources#title": {
+                          "http://www.wade-ovi.org/resources#title": "(Sex) Appeal"
+                        },
+                        "http://www.wade-ovi.org/resources#language": {
+                          "http://www.wade-ovi.org/resources#language": "Mandarin"
+                        },
+                        "http://www.wade-ovi.org/resources#cinematography": {
+                          "http://www.wade-ovi.org/resources#cinematography": "Mark Lee Ping-bing"
+                        },
+                        "http://www.wade-ovi.org/resources#abstract": {
+                          "http://www.wade-ovi.org/resources#abstract": "(Sex) Appeal (Taiwan: 寒蟬效應, China: 不能说的夏天) is a 2014 Taiwanese-Chinese youth romance drama film directed by Wang Wei-ming. It was released in Taiwan and China on October 24, 2014."
+                        },
+                        "http://www.wade-ovi.org/resources#runtime": {
+                          "http://www.wade-ovi.org/resources#runtime": "109.0"
+                        },
+                        "http://www.wade-ovi.org/resources#directedBy": {
+                          "http://www.wade-ovi.org/resources#Wang+Wei-ming": "Wang Wei-ming"
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "SearchController"
+        ]
+      }
+    },
+    "/resources/{resourceUri}": {
+      "description": "Get all the data regarding a movie identified by the Uri given as parameter from our dataset. The URI must be previously encoded.",
+      "get": {
+        "parameters": [
+          {
+            "name": "resourceUri",
+            "in": "path",
+            "schema": {
+              "type": "string"
+            },
+            "required": true,
+            "example": "http%3A%2F%2Fwww.wade-ovi.org%2Fresources%23Megan%2BZheng",
+            "description": "Encoded URI corresponding to the resource we want to retrieve data about."
+          }
+        ],
+        "summary": "",
+        "description": "Get all the triples that a resource is part of.",
+        "operationId": "",
+        "responses": {
+          "200": {
+            "description": "List of all the triples (represented by subject predicate and object) that the resource is part of, numbered.",
+            "content": {
+              "application/json": {
+                "examples": {
+                  "200OnSearchResourceTriplesByUri": {
+                    "value": {
+                      "0": {
+                        "subject": "http://www.wade-ovi.org/resources#Megan+Zheng",
+                        "predicate": "http://www.w3.org/1999/02/22-rdf-syntax-ns#type",
+                        "object": "http://www.wade-ovi.org/resources#Writer"
+                      },
+                      "1": {
+                        "subject": "http://www.wade-ovi.org/resources#Megan+Zheng",
+                        "predicate": "http://www.wade-ovi.org/resources#name",
+                        "object": "Megan+Zheng"
+                      },
+                      "2": {
+                        "subject": "http://www.wade-ovi.org/resources#Megan+Zheng",
+                        "predicate": "http://www.wade-ovi.org/resources#dbpediaReference",
+                        "object": "http://dbpedia.org/resource/Megan_Zheng"
+                      },
+                      "3": {
+                        "subject": "http://www.wade-ovi.org/resources#movie/(Sex)+Appeal",
+                        "predicate": "http://www.wade-ovi.org/resources#writtenBy",
+                        "object": "http://www.wade-ovi.org/resources#Megan+Zheng"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "SearchController"
+        ]
+      }
+    },
+    "/dbpedia/movies/{title}": {
+      "description": "",
+      "get": {
+        "parameters": [
+          {
+            "name": "title",
+            "in": "path",
+            "schema": {
+              "type": "string"
+            },
+            "required": true,
+            "example": "the blue orange",
+            "description": "String that must be contained by the movie title we look for on dbpedia."
+          }
+        ],
+        "summary": "",
+        "description": "Query dbpedia for movies that contain the title given as parameter and insert all the results in our dataset. More specifically insert all the movies from the result, but only the properties that match the ones we have in our ontology (e.g genre, starring, runtime, directedBy etc.)",
+        "operationId": "",
+        "responses": {
+          "200": {
+            "description": "List of all the movies that had the search string in their titles, along with all the properties they have. P.S this is a version of the response the service would get from dbpedia; the response that this route would return would be a simple \"OK\".",
+            "content": {
+              "application/json": {
+                "examples": {
+                  "200OnSearchMovieByTitleDbpedia": {
+                    "value": {
+                      "http://dbpedia.org/resource/Tintin_and_the_Blue_Oranges": {
+                        "http://www.w3.org/2002/07/owl#sameAs": {
+                          "http://ca.dbpedia.org/resource/Tintín_i_el_misteri_de_les_taronges_blaves": "Tintín i el misteri de les taronges blaves",
+                          "http://de.dbpedia.org/resource/Tim_und_Struppi_und_die_blauen_Orangen": "Tim und Struppi und die blauen Orangen",
+                          "http://es.dbpedia.org/resource/Tintín_y_las_Naranjas_Azules": "Tintín y las Naranjas Azules",
+                          "http://fa.dbpedia.org/resource/تن\u200cتن_و_پرتقال\u200cهای_آبی": "تن\u200cتن و پرتقال\u200cهای آبی",
+                          "http://fr.dbpedia.org/resource/Tintin_et_les_Oranges_bleues": "Tintin et les Oranges bleues",
+                          "http://id.dbpedia.org/resource/Tintin_dan_Jeruk_Biru_(film)": "Tintin dan Jeruk Biru (film)",
+                          "http://it.dbpedia.org/resource/Tintin_et_les_oranges_bleues": "Tintin et les oranges bleues",
+                          "http://nl.dbpedia.org/resource/Kuifje_en_de_blauwe_sinaasappels": "Kuifje en de blauwe sinaasappels",
+                          "http://pt.dbpedia.org/resource/Tintin_et_les_oranges_bleues": "Tintin et les oranges bleues",
+                          "http://rdf.freebase.com/ns/m.03ky0g": "m.03ky0g",
+                          "http://sl.dbpedia.org/resource/Tintin_in_modre_pomaranče": "Tintin in modre pomaranče",
+                          "http://sv.dbpedia.org/resource/Tintin_och_de_blå_apelsinerna": "Tintin och de blå apelsinerna",
+                          "http://www.wikidata.org/entity/Q370830": "Q370830",
+                          "https://global.dbpedia.org/id/3RMPo": "3RMPo"
+                        },
+                        "http://dbpedia.org/property/name": {
+                          "http://dbpedia.org/property/name": "Tintin and the Blue Oranges"
+                        },
+                        "http://dbpedia.org/property/producer": {
+                          "http://dbpedia.org/property/producer": "Robert Laffont"
+                        },
+                        "http://dbpedia.org/ontology/runtime": {
+                          "http://dbpedia.org/ontology/runtime": "6300"
+                        },
+                        "http://dbpedia.org/ontology/wikiPageRevisionID": {
+                          "http://dbpedia.org/ontology/wikiPageRevisionID": "1029954688"
+                        },
+                        "http://dbpedia.org/ontology/wikiPageExternalLink": {
+                          "http://homecinema.thedigitalfix.co.uk/content/id/73464/tintin-and-the-mystery-of-the-golden-fleece--tintin-and-the-blue-oranges.html": "tintin-and-the-mystery-of-the-golden-fleece--tintin-and-the-blue-oranges.html"
+                        },
+                        "http://dbpedia.org/property/wikiPageUsesTemplate": {
+                          "http://dbpedia.org/resource/Template:Film_date": "Template:Film date",
+                          "http://dbpedia.org/resource/Template:IMDb_title": "Template:IMDb title",
+                          "http://dbpedia.org/resource/Template:Infobox_film": "Template:Infobox film",
+                          "http://dbpedia.org/resource/Template:Short_description": "Template:Short description",
+                          "http://dbpedia.org/resource/Template:Tintin_and_Hergé": "Template:Tintin and Hergé",
+                          "http://dbpedia.org/resource/Template:Unreferenced": "Template:Unreferenced"
+                        },
+                        "http://www.w3.org/2000/01/rdf-schema#comment": {
+                          "http://www.w3.org/2000/01/rdf-schema#comment": "Tintin and the Blue Oranges (French: Tintin et les Oranges bleues) is a 1964 Franco-Spanish film directed by Philippe Condroyer and starring Jean-Pierre Talbot as Tintin. It was the second live-action movie, with an original story based on characters from the comic book series The Adventures of Tintin, written and drawn by the Belgian artist Hergé. The accompanying book version is in photos and text rather than the usual comic-book style."
+                        },
+                        "http://dbpedia.org/property/cinematography": {
+                          "http://dbpedia.org/property/cinematography": "Jean Badal"
+                        },
+                        "http://dbpedia.org/property/director": {
+                          "http://dbpedia.org/property/director": "Philippe Condroyer"
+                        },
+                        "http://dbpedia.org/ontology/musicComposer": {
+                          "http://dbpedia.org/resource/Antoine_Duhamel": "Antoine Duhamel"
+                        },
+                        "http://xmlns.com/foaf/0.1/depiction": {
+                          "http://commons.wikimedia.org/wiki/Special:FilePath/Kylie_Minogue_-_Fever.png": "Kylie Minogue - Fever.png"
+                        },
+                        "http://dbpedia.org/ontology/wikiPageID": {
+                          "http://dbpedia.org/ontology/wikiPageID": "877013"
+                        },
+                        "http://dbpedia.org/property/editing": {
+                          "http://dbpedia.org/property/editing": "Madeleine Bibollet"
+                        },
+                        "http://dbpedia.org/property/language": {
+                          "http://dbpedia.org/property/language": "French, Arabic, Spanish"
+                        },
+                        "http://xmlns.com/foaf/0.1/name": {
+                          "http://xmlns.com/foaf/0.1/name": "Tintin and the Blue Oranges"
+                        },
+                        "http://dbpedia.org/ontology/wikiPageOutDegree": {
+                          "http://dbpedia.org/ontology/wikiPageOutDegree": "44"
+                        },
+                        "http://xmlns.com/foaf/0.1/isPrimaryTopicOf": {
+                          "http://en.wikipedia.org/wiki/Tintin_and_the_Blue_Oranges": "Tintin and the Blue Oranges"
+                        },
+                        "http://purl.org/dc/terms/subject": {
+                          "http://dbpedia.org/resource/Category:1964_adventure_films": "Category:1964 adventure films",
+                          "http://dbpedia.org/resource/Category:1964_films": "Category:1964 films",
+                          "http://dbpedia.org/resource/Category:Films_based_on_Belgian_comics": "Category:Films based on Belgian comics",
+                          "http://dbpedia.org/resource/Category:Films_set_in_Spain": "Category:Films set in Spain",
+                          "http://dbpedia.org/resource/Category:Films_shot_in_Spain": "Category:Films shot in Spain",
+                          "http://dbpedia.org/resource/Category:French-language_films": "Category:French-language films",
+                          "http://dbpedia.org/resource/Category:French_films": "Category:French films",
+                          "http://dbpedia.org/resource/Category:Spanish-language_films": "Category:Spanish-language films",
+                          "http://dbpedia.org/resource/Category:Spanish_films": "Category:Spanish films",
+                          "http://dbpedia.org/resource/Category:Tintin_films": "Category:Tintin films"
+                        },
+                        "http://dbpedia.org/property/music": {
+                          "http://dbpedia.org/resource/Antoine_Duhamel": "Antoine Duhamel"
+                        },
+                        "http://www.w3.org/2000/01/rdf-schema#label": {
+                          "http://www.w3.org/2000/01/rdf-schema#label": "Tintin and the Blue Oranges"
+                        },
+                        "http://dbpedia.org/property/runtime": {
+                          "http://dbpedia.org/property/runtime": "6300.0"
+                        },
+                        "http://dbpedia.org/property/starring": {
+                          "http://dbpedia.org/property/starring": "see below"
+                        },
+                        "http://dbpedia.org/ontology/abstract": {
+                          "http://dbpedia.org/ontology/abstract": "Tintin and the Blue Oranges (French: Tintin et les Oranges bleues) is a 1964 Franco-Spanish film directed by Philippe Condroyer and starring Jean-Pierre Talbot as Tintin. It was the second live-action movie, with an original story based on characters from the comic book series The Adventures of Tintin, written and drawn by the Belgian artist Hergé. The accompanying book version is in photos and text rather than the usual comic-book style. The term \"blue orange\" is a moderately popular image among the French, and was originally inspired by Paul Éluard's strange quote \"Earth is blue like an orange\" as a reference to the colour of the fruit when it rots."
+                        },
+                        "http://dbpedia.org/property/country": {
+                          "http://dbpedia.org/property/country": "France, Spain"
+                        },
+                        "http://dbpedia.org/property/writer": {
+                          "http://dbpedia.org/property/writer": "http://dbpedia.org/resource/Hergé"
+                        },
+                        "http://www.w3.org/ns/prov#wasDerivedFrom": {
+                          "http://en.wikipedia.org/wiki/Tintin_and_the_Blue_Oranges?oldid=1029954688&ns=0": "Tintin and the Blue Oranges?oldid=1029954688&ns=0"
+                        },
+                        "http://dbpedia.org/ontology/writer": {
+                          "http://dbpedia.org/resource/Hergé": "Hergé",
+                          "http://dbpedia.org/resource/René_Goscinny": "René Goscinny"
+                        },
+                        "http://dbpedia.org/ontology/Work/runtime": {
+                          "http://dbpedia.org/ontology/Work/runtime": "105.0"
+                        },
+                        "http://dbpedia.org/ontology/wikiPageWikiLink": {
+                          "http://dbpedia.org/resource/Agal_(accessory)": "Agal (accessory)",
+                          "http://dbpedia.org/resource/Antoine_Duhamel": "Antoine Duhamel",
+                          "http://dbpedia.org/resource/Bianca_Castafiore": "Bianca Castafiore",
+                          "http://dbpedia.org/resource/Burjassot": "Burjassot",
+                          "http://dbpedia.org/resource/Captain_Haddock": "Captain Haddock",
+                          "http://dbpedia.org/resource/Category:1964_adventure_films": "Category:1964 adventure films",
+                          "http://dbpedia.org/resource/Category:1964_films": "Category:1964 films",
+                          "http://dbpedia.org/resource/Category:Films_based_on_Belgian_comics": "Category:Films based on Belgian comics",
+                          "http://dbpedia.org/resource/Category:Films_set_in_Spain": "Category:Films set in Spain",
+                          "http://dbpedia.org/resource/Category:Films_shot_in_Spain": "Category:Films shot in Spain",
+                          "http://dbpedia.org/resource/Category:French-language_films": "Category:French-language films",
+                          "http://dbpedia.org/resource/Category:French_films": "Category:French films",
+                          "http://dbpedia.org/resource/Category:Spanish-language_films": "Category:Spanish-language films",
+                          "http://dbpedia.org/resource/Category:Spanish_films": "Category:Spanish films",
+                          "http://dbpedia.org/resource/Category:Tintin_films": "Category:Tintin films",
+                          "http://dbpedia.org/resource/Demographics_of_Belgium": "Demographics of Belgium",
+                          "http://dbpedia.org/resource/Félix_Fernández_(actor)": "Félix Fernández (actor)",
+                          "http://dbpedia.org/resource/Gandia": "Gandia",
+                          "http://dbpedia.org/resource/Hergé": "Hergé",
+                          "http://dbpedia.org/resource/Jean-Pierre_Talbot": "Jean-Pierre Talbot",
+                          "http://dbpedia.org/resource/Jean_Bouise": "Jean Bouise",
+                          "http://dbpedia.org/resource/Jenny_Orléans": "Jenny Orléans",
+                          "http://dbpedia.org/resource/Live_action": "Live action",
+                          "http://dbpedia.org/resource/Marlinspike_Hall": "Marlinspike Hall",
+                          "http://dbpedia.org/resource/Max_Elloy": "Max Elloy",
+                          "http://dbpedia.org/resource/Monastery_of_Santa_María_de_la_Valldigna": "Monastery of Santa María de la Valldigna",
+                          "http://dbpedia.org/resource/Nestor_(comics)": "Nestor (comics)",
+                          "http://dbpedia.org/resource/Paul_Éluard": "Paul Éluard",
+                          "http://dbpedia.org/resource/Professor_Calculus": "Professor Calculus",
+                          "http://dbpedia.org/resource/René_Goscinny": "René Goscinny",
+                          "http://dbpedia.org/resource/Simat_de_la_Valldigna": "Simat de la Valldigna",
+                          "http://dbpedia.org/resource/Snowy_(character)": "Snowy (character)",
+                          "http://dbpedia.org/resource/The_Adventures_of_Tintin": "The Adventures of Tintin",
+                          "http://dbpedia.org/resource/Thomson_and_Thompson": "Thomson and Thompson",
+                          "http://dbpedia.org/resource/Tintin_(character)": "Tintin (character)",
+                          "http://dbpedia.org/resource/Xàtiva": "Xàtiva",
+                          "http://dbpedia.org/resource/Ángel_Álvarez": "Ángel Álvarez"
+                        },
+                        "http://dbpedia.org/ontology/wikiPageLength": {
+                          "http://dbpedia.org/ontology/wikiPageLength": "6979"
+                        },
+                        "http://purl.org/linguistics/gold/hypernym": {
+                          "http://dbpedia.org/resource/Film": "Film"
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "SearchController"
+        ]
+      }
+    },
+    "/dbpedia/persons/{uri}": {
+      "description": "",
+      "get": {
+        "parameters": [
+          {
+            "name": "uri",
+            "in": "path",
+            "schema": {
+              "type": "string"
+            },
+            "required": true,
+            "example": "http%3A%2F%2Fdbpedia.org%2Fresource%2FMegan_Zheng",
+            "description": "Uri corresponding to the person we are searching for (this is the URI saved as dbpediaReference for each person in our dataset)"
+          }
+        ],
+        "summary": "",
+        "description": "Get all the data regarding a person identified by the Uri given as parameter from dbpedia. The URI must be previously encoded. The data is then inserted in our dataset (only the fields present in our ontology, such as spose, hairColour, birthPlace etc.). This route will be used when accessing the triples viewing page of a person on the front-end and clicking the 'find more' button there.",
+        "operationId": "",
+        "responses": {
+          "200": {
+            "description": "List of all the properties the person with the input URI has. P.S this is a version of the response the service would get from dbpedia; the response that this route would return would be a simple \"OK\".",
+            "content": {
+              "application/json": {
+                "examples": {
+                  "200OnSearchPersonByUriOnDbpedia": {
+                    "value": {
+                      "http://dbpedia.org/resource/Megan_Zheng": {
+                        "http://purl.org/linguistics/gold/hypernym": {
+                          "http://dbpedia.org/resource/Actress": "Actress"
+                        },
+                        "http://www.w3.org/2002/07/owl#sameAs": {
+                          "http://ar.dbpedia.org/resource/ميغان_زهنغ": "ميغان زهنغ",
+                          "http://arz.dbpedia.org/resource/ميجان_زهنج": "ميجان زهنج",
+                          "http://id.dbpedia.org/resource/Megan_Zheng": "Megan Zheng",
+                          "http://rdf.freebase.com/ns/m.0g258f": "m.0g258f",
+                          "http://viaf.org/viaf/254637053": "254637053",
+                          "http://www.wikidata.org/entity/Q6808765": "Q6808765",
+                          "http://yago-knowledge.org/resource/Megan_Zheng": "Megan Zheng",
+                          "http://zh.dbpedia.org/resource/鄭智允_(新加坡演員)": "鄭智允 (新加坡演員)",
+                          "https://global.dbpedia.org/id/4rdoA": "4rdoA"
+                        },
+                        "http://dbpedia.org/property/s": {
+                          "http://dbpedia.org/property/s": "郑智允"
+                        },
+                        "http://dbpedia.org/property/occupation": {
+                          "http://dbpedia.org/resource/Actor": "Actor"
+                        },
+                        "http://xmlns.com/foaf/0.1/isPrimaryTopicOf": {
+                          "http://en.wikipedia.org/wiki/Megan_Zheng": "Megan Zheng"
+                        },
+                        "http://dbpedia.org/property/p": {
+                          "http://dbpedia.org/property/p": "Zhèng Zhìyǔn"
+                        },
+                        "http://schema.org/sameAs": {
+                          "http://viaf.org/viaf/254637053": "254637053"
+                        },
+                        "http://www.w3.org/ns/prov#wasDerivedFrom": {
+                          "http://en.wikipedia.org/wiki/Megan_Zheng?oldid=1025873917&ns=0": "Megan Zheng?oldid=1025873917&ns=0"
+                        },
+                        "http://dbpedia.org/ontology/birthPlace": {
+                          "http://dbpedia.org/resource/Singapore": "Singapore"
+                        },
+                        "http://dbpedia.org/property/wikiPageUsesTemplate": {
+                          "http://dbpedia.org/resource/Template:Authority_control": "Template:Authority control",
+                          "http://dbpedia.org/resource/Template:Awards": "Template:Awards",
+                          "http://dbpedia.org/resource/Template:Birth_date_and_age": "Template:Birth date and age",
+                          "http://dbpedia.org/resource/Template:Golden_Horse_Award_for_Best_New_Performer": "Template:Golden Horse Award for Best New Performer",
+                          "http://dbpedia.org/resource/Template:IMDb_name": "Template:IMDb name",
+                          "http://dbpedia.org/resource/Template:Infobox_Chinese": "Template:Infobox Chinese",
+                          "http://dbpedia.org/resource/Template:Infobox_musical_artist": "Template:Infobox musical artist",
+                          "http://dbpedia.org/resource/Template:Infobox_person": "Template:Infobox person",
+                          "http://dbpedia.org/resource/Template:Reflist": "Template:Reflist",
+                          "http://dbpedia.org/resource/Template:Short_description": "Template:Short description",
+                          "http://dbpedia.org/resource/Template:Zh": "Template:Zh"
+                        },
+                        "http://dbpedia.org/property/birthPlace": {
+                          "http://dbpedia.org/resource/Singapore": "Singapore"
+                        },
+                        "http://dbpedia.org/ontology/birthDate": {
+                          "http://dbpedia.org/ontology/birthDate": "1993-10-08"
+                        },
+                        "http://dbpedia.org/property/name": {
+                          "http://dbpedia.org/property/name": "Megan Zheng"
+                        },
+                        "http://dbpedia.org/property/yearsActive": {
+                          "http://dbpedia.org/property/yearsActive": "2003"
+                        },
+                        "http://purl.org/dc/terms/subject": {
+                          "http://dbpedia.org/resource/Category:1993_births": "Category:1993 births",
+                          "http://dbpedia.org/resource/Category:21st-century_Singaporean_actresses": "Category:21st-century Singaporean actresses",
+                          "http://dbpedia.org/resource/Category:Living_people": "Category:Living people",
+                          "http://dbpedia.org/resource/Category:Singaporean_film_actresses": "Category:Singaporean film actresses",
+                          "http://dbpedia.org/resource/Category:Singaporean_people_of_Chinese_descent": "Category:Singaporean people of Chinese descent"
+                        },
+                        "http://dbpedia.org/property/birthDate": {
+                          "http://dbpedia.org/property/birthDate": "1993-10-08"
+                        },
+                        "http://dbpedia.org/ontology/abstract": {
+                          "http://dbpedia.org/ontology/abstract": "Megan Zheng (also known as Megan Tay, Chinese: 郑智允; pinyin: Zhèng Zhìyǔn) is a Singaporean actress & novelist who starred in two Singaporean movies: Homerun and One More Chance. For her role in Homerun, Zheng, then 10 years old, became the first Singaporean to win a Golden Horse Award, sharing her Best New Performer award with Wang Baoqiang."
+                        },
+                        "http://www.w3.org/2000/01/rdf-schema#comment": {
+                          "http://www.w3.org/2000/01/rdf-schema#comment": "Megan Zheng (also known as Megan Tay, Chinese: 郑智允; pinyin: Zhèng Zhìyǔn) is a Singaporean actress & novelist who starred in two Singaporean movies: Homerun and One More Chance. For her role in Homerun, Zheng, then 10 years old, became the first Singaporean to win a Golden Horse Award, sharing her Best New Performer award with Wang Baoqiang."
+                        },
+                        "http://dbpedia.org/ontology/wikiPageID": {
+                          "http://dbpedia.org/ontology/wikiPageID": "6350976"
+                        },
+                        "http://dbpedia.org/ontology/wikiPageRevisionID": {
+                          "http://dbpedia.org/ontology/wikiPageRevisionID": "1025873917"
+                        },
+                        "http://dbpedia.org/ontology/occupation": {
+                          "http://dbpedia.org/resource/Actor": "Actor",
+                          "http://dbpedia.org/resource/Megan_Zheng__PersonFunction__1": "Megan Zheng  PersonFunction  1"
+                        },
+                        "http://dbpedia.org/ontology/wikiPageWikiLink": {
+                          "http://dbpedia.org/resource/Actor": "Actor",
+                          "http://dbpedia.org/resource/Ariel_Lin": "Ariel Lin",
+                          "http://dbpedia.org/resource/Audition": "Audition",
+                          "http://dbpedia.org/resource/Blind_Shaft": "Blind Shaft",
+                          "http://dbpedia.org/resource/Category:1993_births": "Category:1993 births",
+                          "http://dbpedia.org/resource/Category:21st-century_Singaporean_actresses": "Category:21st-century Singaporean actresses",
+                          "http://dbpedia.org/resource/Category:Living_people": "Category:Living people",
+                          "http://dbpedia.org/resource/Category:Singaporean_film_actresses": "Category:Singaporean film actresses",
+                          "http://dbpedia.org/resource/Category:Singaporean_people_of_Chinese_descent": "Category:Singaporean people of Chinese descent",
+                          "http://dbpedia.org/resource/Cue_(theatrical)": "Cue (theatrical)",
+                          "http://dbpedia.org/resource/Daniel_Yun": "Daniel Yun",
+                          "http://dbpedia.org/resource/Documentary_film": "Documentary film",
+                          "http://dbpedia.org/resource/Fairfield_Methodist_Schools": "Fairfield Methodist Schools",
+                          "http://dbpedia.org/resource/Film_director": "Film director",
+                          "http://dbpedia.org/resource/Film_producer": "Film producer",
+                          "http://dbpedia.org/resource/Golden_Horse_Film_Festival_and_Awards": "Golden Horse Film Festival and Awards",
+                          "http://dbpedia.org/resource/Gunbound": "Gunbound",
+                          "http://dbpedia.org/resource/Homerun_(film)": "Homerun (film)",
+                          "http://dbpedia.org/resource/Jack_Neo": "Jack Neo",
+                          "http://dbpedia.org/resource/Jurong_East": "Jurong East",
+                          "http://dbpedia.org/resource/Kevin_Teo": "Kevin Teo",
+                          "http://dbpedia.org/resource/Legolas": "Legolas",
+                          "http://dbpedia.org/resource/Malaysia": "Malaysia",
+                          "http://dbpedia.org/resource/Raintree_Pictures": "Raintree Pictures",
+                          "http://dbpedia.org/resource/SIM_University": "SIM University",
+                          "http://dbpedia.org/resource/Screenwriter": "Screenwriter",
+                          "http://dbpedia.org/resource/Singapore": "Singapore",
+                          "http://dbpedia.org/resource/The_Best_Bet": "The Best Bet",
+                          "http://dbpedia.org/resource/The_Lord_of_the_Rings": "The Lord of the Rings",
+                          "http://dbpedia.org/resource/Wang_Baoqiang": "Wang Baoqiang",
+                          "http://dbpedia.org/resource/Xiang_Yun": "Xiang Yun"
+                        },
+                        "http://xmlns.com/foaf/0.1/name": {
+                          "http://xmlns.com/foaf/0.1/name": "Megan Zheng"
+                        },
+                        "http://www.w3.org/2000/01/rdf-schema#label": {
+                          "http://www.w3.org/2000/01/rdf-schema#label": "Megan Zheng"
+                        },
+                        "http://dbpedia.org/ontology/birthYear": {
+                          "http://dbpedia.org/ontology/birthYear": "1993"
+                        },
+                        "http://dbpedia.org/ontology/activeYearsEndYear": {
+                          "http://dbpedia.org/ontology/activeYearsEndYear": "2005"
+                        },
+                        "http://dbpedia.org/ontology/wikiPageLength": {
+                          "http://dbpedia.org/ontology/wikiPageLength": "6263"
+                        },
+                        "http://dbpedia.org/ontology/activeYearsStartYear": {
+                          "http://dbpedia.org/ontology/activeYearsStartYear": "2003"
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "SearchController"
+        ]
+      }
+    }
+  }
+}

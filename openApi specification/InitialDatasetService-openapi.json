@@ -1,0 +1,46 @@
+{
+  "openapi": "3.0.1",
+  "info": {
+    "title": "OpenAPI definition",
+    "version": "v0"
+  },
+  "servers": [
+    {
+      "url": "http://localhost:3001/InitialDatasetService"
+    }
+  ],
+  "paths": {
+    "/dataset": {
+      "get": {
+        "description": "Send a request to this route for the service to query dbpedia for movies informations and insert it into our dataset. The service queries dbpedia for a number of movies (100 at the moment) that start with a certain letter. It does so for every letter of the alphabet.",
+        "tags": [
+          "InitializeDataset controller"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "string"
+                },
+                "examples": {
+                  "200OnDataInitializationService": {
+                    "value": "\"OK\""
+                  }
+                }
+              },
+              "application/json": {
+                "examples": {
+                  "200OnRegister": {
+                    "value": "222"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

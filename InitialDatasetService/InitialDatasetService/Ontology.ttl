@@ -28,7 +28,7 @@ r:MusicComposer a rdf:Class ;
 
 r:directedBy a rdfs:Property ;
 	rdfs:domain r:Movie ;
-	rdfs:range <Director> .
+	rdfs:range r:Director .
 
 r:producedBy a rdfs:Property ;
 	rdfs:domain r:Movie ; 
