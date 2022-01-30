@@ -12,19 +12,24 @@ angular.module('movieInfo')
         function getMovieInfo(data) {   // json
             data = JSON.parse(data);
 
-            console.log(data);
+            var titleUri = 'http://www.wade-ovi.org/resources#title';
+            var titlePropertyLiteral = 'title';
 
-            var title = Object.keys(data)[0];
-            var movieProps = data[title];
+            var movieUri = Object.keys(data)[0];
+            var movieTriples = data[movieUri];
             var newProps = {};
 
-            for (var property in movieProps) {
-                if (movieProps.hasOwnProperty(property)) {
-                    newProps[property.split('#').pop()] = movieProps[property];
+            for (var property in movieTriples) {
+                if (movieTriples.hasOwnProperty(property)) {
+                    newProps[property.split('#').pop()] = movieTriples[property];
                 }
             }
 
-            return newProps;
+            return {
+                triples: newProps,
+                title: newProps[titlePropertyLiteral][titleUri],
+                movieUri: movieUri
+            }
         }
         return {
             getMovieInfo: getMovieInfo

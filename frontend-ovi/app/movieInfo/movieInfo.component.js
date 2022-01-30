@@ -9,6 +9,7 @@ angular.module('movieInfo')
             '$location',
             'getRequestMovieInfo', 
             'processMovieInfo',
+            'concatenateUris',
             movieInfoController
         ],
         controllerAs: 'info',

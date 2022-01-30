@@ -2,6 +2,7 @@
 
 angular.module('movieInfo', 
     [
-        'ngRoute'
+        'ngRoute',
+        'titleRecommendation'
     ]
 );

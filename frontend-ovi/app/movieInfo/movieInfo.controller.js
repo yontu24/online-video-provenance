@@ -8,6 +8,8 @@ function movieInfoController($routeParams, $location, getRequestMovieInfo, proce
     self.$onInit = () => {
         self.triples = [];
         self.triplesNumber = 0;
+        self.movieTitle = '';
+        self.movieUri = '';
 
         self.fetchData(self.titleStr);
     }
@@ -16,7 +18,10 @@ function movieInfoController($routeParams, $location, getRequestMovieInfo, proce
         if (title) {
             getRequestMovieInfo.get(title).then(
                 (response) => {
-                    self.triples = processMovieInfo.getMovieInfo(JSON.stringify(response.data));
+                    self.objectResponse = processMovieInfo.getMovieInfo(JSON.stringify(response.data));
+                    self.triples = self.objectResponse.triples;
+                    self.movieTitle = self.objectResponse.title;
+                    self.movieUri = self.objectResponse.movieUri;
                     self.triplesNumber = Object.keys(self.triples).length;
                 },
                 (error) => {
