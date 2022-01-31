@@ -68,20 +68,21 @@ namespace SearchService.Helpers
             return movieInfo;
         }
 
-        public static Dictionary<string, Dictionary<string, string>> ProcessResourceResult(SparqlResultSet results)
+        public static List<Dictionary<string, string>> ProcessResourceResult(SparqlResultSet results)
         {
-            var number = 0;
-            var processedResults = new Dictionary<string, Dictionary<string, string>>();
+            
+            var processedResults = new List<Dictionary<string, string>>();
+            var dictionary = new Dictionary<string, string>();
             foreach(var result in results)
             {
-                processedResults[number.ToString()] = new Dictionary<string, string>();
+                dictionary = new Dictionary<string, string>();
                 var subject = result.Value("subject").ToString();
                 var predicate = result.Value("predicate").ToString();
                 var obj = result.Value("object").ToString();
-                processedResults[number.ToString()]["subject"] = subject;
-                processedResults[number.ToString()]["predicate"] = predicate;
-                processedResults[number.ToString()]["object"] = obj;
-                number++;
+                dictionary["subject"] = subject;
+                dictionary["predicate"] = predicate;
+                dictionary["object"] = obj;
+                processedResults.Add(dictionary);
             }
 
             return processedResults;
