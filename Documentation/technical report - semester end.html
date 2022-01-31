@@ -18,7 +18,69 @@
   <div role="contentinfo">
     <ol role="directory">
       <li>
-        <a href=""></a>
+        <a href="#abstract">Abstract</a>
+      </li>
+      <li>
+        <a href="#projectProgress">Project progress</a>
+        <ol>
+          <li>
+            <a href="#requirements">Requirements</a>
+          </li>
+          <li>
+            <a href="#architectureChanges">Architecture changes and observations</a>
+            <ol>
+              <li>
+                <a href="#architectureChangesLibrary">Query Builder Library</a>
+              </li>
+              <li>
+                <a href="#architectureChangesPersons">Persons references</a>
+              </li>
+            </ol>
+          </li>
+        </ol>
+      </li>
+      <li>
+        <a href="#implementedServices">Implemented services</a>
+        <ol>
+          <li>
+            <a href="#searchService">Search Service</a>
+            <ol>
+              <li>
+                <a href="#getMovieTitles">/movies/titles/{title}</a>
+              </li>
+              <li>
+                <a href="#getMovieData">/movies/data/{movieUri}</a>
+              </li>
+              <li>
+                <a href="#getMovieDataDbpedia">/dbpedia/movies/{title}</a>
+              </li>
+              <li>
+                <a href="#getPersonsData">/dbpedia/persons/{name}</a>
+              </li>
+              <li>
+                <a href="#getAllNodes">/resource/{resourceUri}</a>
+              </li>
+            </ol>
+          </li>
+          <li>
+            <a href="#datasetInitializationService">Dataset Initialization Service</a>
+          </li>
+          <li>
+            <a href="#recommandationService">Recommandation Service</a>
+          </li>
+          <li>
+            <a href="#queryBuilderLibrary">Query Builder Library</a>
+          </li>
+        </ol>
+      </li>
+      <li>
+        <a href="#rdf4j">RDF4J</a>
+      </li>
+      <li>
+        <a href="#ontology">Ontology</a>
+      </li>
+      <li>
+        <a href="#finalConsiderations">Final considerations</a>
       </li>
     </ol>
   </div>
@@ -31,38 +93,105 @@
       progress we made and some more in-depth information on what we managed to do.
     </p>
   </section>
-  <section role="doc-introduction">
-    <h2>Introduction</h2>
-    <p>
-
-    </p>
-  </section>
-
   <section id="projectProgress">
     <h2>Project progress</h2>
     <p>
-
+      In this section we will talk about our final considerations regarding the project and the reasons for some of the
+      decisions taken while developing it.
     </p>
+    <section id="requirements">
+      <h3>Requirements</h3>
+      <p>
+        The main requirement was to develop a system that is able to model and manage data, namely to support operations
+        such as query, visualize and recommend. To this extent, we believe that we have achieved the established goal.
+      </p>
+      <p>
+        By modelling and managing data we refer to the process of gathering information from outside sources and then
+        transfomring so that it can be added to our dataset. This part is handled by the Dataset Initialization service.
+      </p>
+      <p>
+        Through querying and visualising we refer to what the Search Service does, which is building <a
+          href="https://www.w3.org/TR/rdf-sparql-query/">SPARQL queries</a>, runnning them against our endpoint and then
+        the results are displayed for the user to see in the graphical interface. The recommendation aspect is handled
+        by a dedicated <a href="recommandationService">Recommendation Service</a>, which gives recommendations based on
+        the movie that is currently visualized.
+      </p>
+      <p>
+        As for <a href="https://www.w3.org/TR/prov-overview/">provenance</a>, we limited ourselves to data that we could
+        gather from <a href="https://www.dbpedia.org/">DBpedia</a>. The way our application works is that if an user
+        wants to find our more about a person involved in the production of a movie, he is able to see all other movies
+        that he is invovled in and also general information about him.
+      </p>
+    </section>
+    <section id="architectureChanges">
+      <h3>Architecture changes and observations</h3>
+      <section id="architectureChangesLibrary">
+        <h4>Query Builder Library</h4>
+        <p>
+          Maybe the greates difference from the what we specifidd in our initial considerations would be the presence of
+          the Query Builder Library. The reason for its necessity was simple: we wanted a smarter and cleaner way to
+          build queries.
+        </p>
+        <p>
+          For the first iterations of the Search Service, much like now, there were multiple queries that had to be run.
+          So as to not have the queries be stored as strings, we wanted to devise a way to be able to build the
+          differente
+          queries on the spot. At first, we tried to do so by creating helper classes inside this service, but as we
+          started developing the other services, we realized that there would be a nned for these classes there as well.
+        </p>
+        <p>
+          We considered that creating a service that would build queries would not be quite efficent, due to the fact
+          that
+          multiple paramteres would have to be sent, depending on the complexity of the query and more time would be
+          lost
+          to make the call. As a response to this problem, we chose to make a library that would handle creating
+          queries.
+          The library was then packed and imported by the other services to use as needed.
+        </p>
+      </section>
+      <section id="architectureChangesDataset">
+        <h4>Dataset initialization</h4>
+        <p>
+          Another change consists of how the dataset is initialized. In the begining we had about 10 properties that
+          were
+          required for a movie to have so that we could add it onto our dataset. We realized however that not all movies
+          are as well documented as others and this is why we opted to instead get all of the movie's properties and
+          then
+          take the properties that we are interested in, if they exist. If not, the movie would be added as is, with a
+          smaller number of properties compared to others.
+        </p>
+      </section>
+      <section id="architectureChangesPersons">
+        <h4>Persons references</h4>
+        <p>
+          As briefly mentioned in the requirements section, we are not only able to visualize information about movies,
+          but also about the persons invovled in their production.
+        </p>
+        <p>
+          For this however, we no longer save the information in our dataset. Instead we save their DBpedia URI. When
+          the user wants to see the general information about the person in question, a call will be made to an endpoint
+          of the Search Service, which will query DBpedia and return the concerned information in real-time.
+        </p>
+      </section>
+    </section>
   </section>
   <section id="implementedServices">
     <h2>Implemented services</h2>
     <section id="searchService">
       <h3>Search Service</h3>
-
-      <img width="100%" height="120%" src="images/searchServiceClassDiagram.svg">
-
+      <img width="100%" height="100%" src="images/searchServiceClassDiagram.svg" />
       <p>
         As initially designed, search service handles all operations related to searching, that is querying our dataset
-        and also querying <a href="https://www.dbpedia.org/">DBpedia</a>. Compared to the initial considerations for
+        and also querying DBpedia. Compared to the initial considerations for
         this service, tree more endpoints have been added, totaling to five:
       </p>
       <section id="getMovieTitles">
         <h4>/movies/titles/{title}</h4>
         <p>
-          The first endpoint, "/movies/titles/{title}", will be used whenever an user searches for a movie by its title
-          or only part of it (e.g. "The Lord of the Rings" or just "lord" or "ring"). When this happens, a GET request
-          will be made, our dataset will be queried agains and all matching titles will be returned, along with their
-          URI. The titles will be displayed as a list for the user to see.
+          The first endpoint will be used whenever an user searches for a movie by its title or only part of it (e.g.
+          "The Lord of the Rings" or just "lord" or "ring"). When this happens, a GET request will be made, our dataset
+          will be queried agains and all matching titles will be returned, along with their URI. The titles will be
+          displayed as a list for the user to see.
         </p>
         <p>
           This information is obtaiend by constructing and running the following query:
@@ -88,9 +217,8 @@
       <section id="getMovieData">
         <h4>/movies/data/{movieUri}</h4>
         <p>
-          When the user clicks on one of the titles from the list, another GET request will be made, this time to the
-          "/movies/data/{movieUri}" endpoint, which will return all properties of said title. This is done by using the
-          following query:
+          When the user clicks on one of the titles from the list, another GET request will be made, to this endpoint,
+          which will return all properties of said title. This is done by using the following query:
         </p>
         <pre>
           <code>
@@ -210,9 +338,7 @@
     </section>
     <section id="datasetInitializationService">
       <h3>Dataset Initialization Service</h3>
-
-      <img height="100%" width="100%" src="images/datasetInitializationServiceClassDiagram.svg">
-
+      <img height="100%" width="100%" src="images/datasetInitializationServiceClassDiagram.svg" />
       <p>
         This service only has one endpoint and its purpose is to populate our dataset. In other words, the process of
         gathering data, processing it and then inserting said data into our dataset takes place here. This service will
@@ -228,7 +354,7 @@
     </section>
     <section id="recommandationService">
       <h3>Recommandation Service</h3>
-      <img height="100%" width="100%" src="images/recommendationServiceClassDiagram.svg">
+      <img height="100%" width="100%" src="images/recommendationServiceClassDiagram.svg" />
       <p>
         This service will be called when an user wishes to get recomandation based on a movie he is currently
         visualising. It only has one endpoint, <b>/recommend</b> which receives a GET requesnt and it will take its
@@ -244,7 +370,7 @@
     </section>
     <section id="queryBuilderLibrary">
       <h3>Query Builder Library</h3>
-      <img height="100%" width="100%" src="images/queryBuilderLibraryClassDiagram.svg">
+      <img height="100%" width="100%" src="images/queryBuilderLibraryClassDiagram.svg" />
       <p>
         To ease the process of building queries in code, we constructed a library that would help us in this regard.
         Currently, this library has classes that support building select queries and insert queries only, as they were
@@ -275,15 +401,97 @@
       </p>
     </section>
   </section>
-  <section id="considerations">
-    <h2>Considerations</h2>
-
+  <section id="rdf4j">
+    <h2>RDF4J</h2>
+    <p>
+      In their words, <a href="https://rdf4j.org/">Eclipse RDF4J</a> is a powerful Java framweork for processing and
+      handling RDF data. This includes creating, parsing, scalable storage, reasoning and querying with RDF and Linked
+      Data. We make use of the tools provided by RDF4J in order to store our dataset and also to expose our SPARQL
+      endpoint.
+    </p>
+    <p>
+      What we mainly use of these tools is the Repository API. A repository object acts as an entry-point to the
+      contained triplestores. RDF4J offers multiple triplestores impelmentations, of which we used their Memory Store.
+      It uses main memory, with the option of having it persist to disk and has the best performance for smaller
+      datasets. Also, by connecting to the Repository API we gain access to the SPARQL endpoint.
+    </p>
+    <p>
+      Another thing to note here is that validation is stricter for RDF4J, as compared to DBpedia. Because of this,
+      building queries had to be done in a more explicit way. The simplest example would be the need to specify parts
+      of the query that DBpedia would automatically infer, such as the absence of WHERE clauses for an insert, when
+      the clause would be empty or the need to specify grouping for each variable declared in a SELECT clause.
+    </p>
+    <img width="100%" height="100%" src="images/rdf4j-architecture.svg" />
   </section>
-  <section id="">
-    <h2></h2>
-
+  <section id="ontology">
+    <h2>Ontology</h2>
+    <p>
+      As already stated before, we chose to implement our own ontology, based on the information that we would insert
+      into our dataset. It is not as extensive as the ones offered by <a href="https://movielabs.com/">MovieLabs</a> for
+      example, but it fits our project precisely, since it was built just for it.
+    </p>
+    <p>
+      We chose the most common properties that a person would look for when looking up information about a movie, such
+      as budget, director, music etc. The same applies for information about persons. Ideally, we would have wanted to
+      have more information related to movies, but as we already mentioned, not all movies are throughly documented.
+      Although we already compromised to a certain extent on the fact that even for the most common properties some
+      movies may not have any information on them, having more niche properties would employ the possibility that for
+      some of them we may only have one triple.
+    </p>
+    <img width="100%" height="100%" src="images/vowlOntologyGraph.svg" />
+  </section>
+  <section id="finalConsiderations">
+    <h2>Final considerations</h2>
+    <p>
+      On a final note, while it may still be improved upon, we believe that the presented system does make a valid
+      solution to the proposed problem. We created an application where the user is able to query and visualize data,
+      while also receiving recommendations based on the content that he is currently visualizing.
+    </p>
+    <p>
+      The main point that could be improved upon would be the ontology and by correlation the dataset. If multiple data
+      sources could be used instead of just one, obviously more information could be gathered and the gaps we encounterd
+      while extracting information from DBpedia could be completed by extracting information from a different source. As
+      a result of this, we would also be able to extend our ontology, knowing that the additional classes and properties
+      would not be left unused.
+    </p>
+    <p>
+      Another point to consider would be the deployment of the application. As we were constrained and pressed for time,
+      we did not manage to have the final version of the applicaiton be ready to be deployed and we had to give up on
+      this aspect.
+    </p>
   </section>
 
 </body>
-
+<section id="bibliography">
+  <h2>Bibliography</h2>
+  <ol>
+    <li>
+      <a href="https://www.dbpedia.org/">DBpedia</a>
+    </li>
+    <li>
+      <a href="https://movielabs.com/">MovieLabs</a>
+    </li>
+    <li>
+      <a href="https://schema.org/">Schema.org</a>
+    </li>
+    <li>
+      <a href="https://rdf4j.org/">Eclipse RDF4J</a>
+    </li>
+    <li>
+      <a href="http://vowl.visualdataweb.org/webvowl.html">WebVOWL</a>
+    </li>
+    <li>
+      <a href="https://www.w3.org/TR/rdf-sparql-query/">SPARQL Query Language for RDF</a>
+    </li>
+    <li>
+      <a href="https://www.w3.org/TR/prov-overview/">Provenance</a>
+    </li>
+    <li>
+      <a href="https://w3c.github.io/scholarly-html/">Scholarly HTML</a>
+    </li>
+    <li>
+      <a href="https://online.visual-paradigm.com/">VisualParadigm</a>
+    </li>
+  </ol>
+</section>
 </html>
