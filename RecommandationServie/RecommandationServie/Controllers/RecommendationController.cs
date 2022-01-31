@@ -29,7 +29,7 @@ namespace RecommandationService.Controllers
             string movie = "";
             if(movieInput != null)
             {
-                movie = WebUtility.UrlDecode(movieInput);
+                movie = WebUtility.UrlDecode(movieInput).Trim().Replace(" ", "+");
             }
             if(genresInput != null)
             {
