@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="style.css">
+  <title>User Guide</title>
+</head>
+
+<body>
+  <header>
+    <h1>User Guide</h1>
+  </header>
+  <div role="contentinfo">
+    <ol role="directory">
+      <li>
+        <a href="#introduction">Introduciton</a>
+      </li>
+    </ol>
+  </div>
+  <section id="introduction">
+    <h2>Introduction</h2>
+    <p>
+      This document contains instructions regarding to the use of the solution provided. The inteded usage for the
+      client can be found here, along with the usage for the Search Service and the Query Builder Library.
+    </p>
+  </section>
+  <section id="client">
+    <h2>Client usage</h2>
+    <p>
+      The client consists of an application developed in <a href="">AngularJS</a>. It has five main components and it
+      mainly interacts with the Search Service and also with the Recommendation Service.
+    </p>
+    <p>
+      On the front-page, the user is able to search for titles in our dataset by entering a string into the search bar.
+      When pressing the search button, a request is made to the "/movies/titles/{title}" endpoint of the Search Service.
+      This will return a list of all movies that contain the input string in their title.
+    </p>
+    <p>
+      The user can choose any of the returned titles by clicking on them, which will send another request to the Search
+      Service, this time on the "/movies/data/{movieUri}" endpoint. This will return all information in our dataset
+      regarding the concerned movie.
+    </p>
+    <p>
+      In case that we do not have the desired movie in our dataset, the we may search for it in an external source, <a
+        href="">DBpedia</a> and we will pull the information from there on the spot.
+    </p>
+    <p>
+      In the same page, recommendations will be displayed for the user to see. These will
+      be returned by a call to the "/recommendation" endpoint of the Recommendation Service, where the information will
+      be sent as a query string. If the user clicks one of the recommendations, they will be taken to the info page for
+      the respective movie.
+    </p>
+    <p>
+      If the user clicks on a person's name, then a request will be made to the "/dbpedia/persons/{name}" endpoint of
+      the Search Service, which will pull the person's information from dbpedia and then display it for the user to see
+      in a new page.
+    </p>
+    <p>
+      Additionaly, if the user clicks on another property that contains a link, aside from person names, they will be
+      taken to a page that will display all triples that the current property is part of.
+    </p>
+  </section>
+</body>
+
+</html>
