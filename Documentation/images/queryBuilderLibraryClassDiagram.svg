@@ -1,0 +1,322 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" width="1046px" viewBox="-0.5 -0.5 1046 707" content="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" onclick="(function(svg){var src=window.event.target||window.event.srcElement;while (src!=null&amp;&amp;src.nodeName.toLowerCase()!='a'){src=src.parentNode;}if(src==null){if(svg.wnd!=null&amp;&amp;!svg.wnd.closed){svg.wnd.focus();}else{var r=function(evt){if(evt.data=='ready'&amp;&amp;evt.source==svg.wnd){svg.wnd.postMessage(decodeURIComponent(svg.getAttribute('content')),'*');window.removeEventListener('message',r);}};window.addEventListener('message',r);svg.wnd=window.open('https://cdn-latest.visual-paradigm.com/diagrams/?client=1&amp;edit=_blank');}}})(this);" style="cursor:pointer;max-width:100%;max-height:707px;">
+  <defs>
+    <style type="text/css">ul { margin-top: 0px; margin-bottom: 10px; }&#xa;ol { margin-top: 0px; margin-bottom: 10px; }&#xa;.h1, .h2, .h3, .h4, .h5, .h6, h1, h2, h3, h4, h5, h6 { margin-bottom: .5rem; font-weight: 500; line-height: 1.2; }&#xa;h1, h2, h3, h4, h5, h6 { margin-top: 0; margin-bottom: .5rem; }&#xa;.h1, h1 { font-size: 2.5rem; }&#xa;h2 { font-size: 1.5em; font-weight: bold; }&#xa;h3 { font-size: 1.17em; font-weight: bold; }&#xa;.h4, h4 { font-size: 1.5rem; }&#xa;.h5, h5 { font-size: 1.25rem; }&#xa;.h6, h6 { font-size: 1rem; }&#xa;p { margin-top: 0; margin-bottom: 1rem; }&#xa;ul { margin-top: 0px; margin-bottom: 10px; }&#xa;ol { margin-top: 0px; margin-bottom: 10px; }&#xa;.h1, .h2, .h3, .h4, .h5, .h6, h1, h2, h3, h4, h5, h6 { margin-bottom: .5rem; font-weight: 500; line-height: 1.2; }&#xa;h1, h2, h3, h4, h5, h6 { margin-top: 0; margin-bottom: .5rem; }&#xa;.h1, h1 { font-size: 2.5rem; }&#xa;h2 { font-size: 1.5em; font-weight: bold; }&#xa;h3 { font-size: 1.17em; font-weight: bold; }&#xa;.h4, h4 { font-size: 1.5rem; }&#xa;.h5, h5 { font-size: 1.25rem; }&#xa;.h6, h6 { font-size: 1rem; }&#xa;p { margin-top: 0; margin-bottom: 1rem; }&#xa;ul { margin-top: 0px; margin-bottom: 10px; }&#xa;ol { margin-top: 0px; margin-bottom: 10px; }&#xa;.h1, .h2, .h3, .h4, .h5, .h6, h1, h2, h3, h4, h5, h6 { margin-bottom: .5rem; font-weight: 500; line-height: 1.2; }&#xa;h1, h2, h3, h4, h5, h6 { margin-top: 0; margin-bottom: .5rem; }&#xa;.h1, h1 { font-size: 2.5rem; }&#xa;h2 { font-size: 1.5em; font-weight: bold; }&#xa;h3 { font-size: 1.17em; font-weight: bold; }&#xa;.h4, h4 { font-size: 1.5rem; }&#xa;.h5, h5 { font-size: 1.25rem; }&#xa;.h6, h6 { font-size: 1rem; }&#xa;p { margin-top: 0; margin-bottom: 1rem; }&#xa;</style>
+    <style type="text/css">@import url(https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,400;0,700;1,400;1,700&amp;display=swap);&#xa;@import url(https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,400;0,700;1,400;1,700&amp;display=swap);&#xa;</style>
+  </defs>
+  <g>
+    <rect cell-id="n4SuwmHKJf6OyuPdsddL-1" x="0" y="0" width="461" height="425" fill="#7acff5" stroke="#000000" pointer-events="all" />
+    <path cell-id="n4SuwmHKJf6OyuPdsddL-1" d="M 0 17 L 461 17" fill="none" stroke="#000000" stroke-miterlimit="10" pointer-events="all" />
+    <g cell-id="n4SuwmHKJf6OyuPdsddL-1" fill="#000000" font-family="Helvetica" font-weight="bold" text-anchor="middle" font-size="12px">
+      <text cell-id="n4SuwmHKJf6OyuPdsddL-1" x="230" y="11.5">IInsertQueryBuilder</text>
+    </g>
+    <rect cell-id="n4SuwmHKJf6OyuPdsddL-2" x="0" y="22" width="461" height="16" fill="none" stroke="none" pointer-events="all" />
+    <g cell-id="n4SuwmHKJf6OyuPdsddL-2" fill="#000000" font-family="Helvetica" font-size="12px">
+      <text cell-id="n4SuwmHKJf6OyuPdsddL-2" x="6.5" y="34.5">AddInsertTriple(triple: string)</text>
+    </g>
+    <rect cell-id="n4SuwmHKJf6OyuPdsddL-3" x="0" y="38" width="461" height="16" fill="none" stroke="none" pointer-events="all" />
+    <g cell-id="n4SuwmHKJf6OyuPdsddL-3" fill="#000000" font-family="Helvetica" font-size="12px">
+      <text cell-id="n4SuwmHKJf6OyuPdsddL-3" x="6.5" y="50.5">AddInsertTriple(predicate: string, obj: string)</text>
+    </g>
+    <rect cell-id="n4SuwmHKJf6OyuPdsddL-4" x="0" y="54" width="461" height="16" fill="none" stroke="none" pointer-events="all" />
+    <g cell-id="n4SuwmHKJf6OyuPdsddL-4" fill="#000000" font-family="Helvetica" font-size="12px">
+      <text cell-id="n4SuwmHKJf6OyuPdsddL-4" x="6.5" y="66.5">AddInsertTriple(subject: string, prefix: string, predicate: string, obj: string)</text>
+    </g>
+    <rect cell-id="n4SuwmHKJf6OyuPdsddL-5" x="0" y="70" width="461" height="16" fill="none" stroke="none" pointer-events="all" />
+    <g cell-id="n4SuwmHKJf6OyuPdsddL-5" fill="#000000" font-family="Helvetica" font-size="12px">
+      <text cell-id="n4SuwmHKJf6OyuPdsddL-5" x="6.5" y="82.5">AddInsertTripleWithLiteral(predicate: string, obj: string)</text>
+    </g>
+    <rect cell-id="n4SuwmHKJf6OyuPdsddL-6" x="0" y="86" width="461" height="16" fill="none" stroke="none" pointer-events="all" />
+    <g cell-id="n4SuwmHKJf6OyuPdsddL-6" fill="#000000" font-family="Helvetica" font-size="12px">
+      <text cell-id="n4SuwmHKJf6OyuPdsddL-6" x="6.5" y="98.5">AddInsertTripleWithLiteral(subject: string, prefix: string, predicate: string, obj: string)</text>
+    </g>
+    <rect cell-id="n4SuwmHKJf6OyuPdsddL-7" x="0" y="102" width="461" height="16" fill="none" stroke="none" pointer-events="all" />
+    <g cell-id="n4SuwmHKJf6OyuPdsddL-7" fill="#000000" font-family="Helvetica" font-size="12px">
+      <text cell-id="n4SuwmHKJf6OyuPdsddL-7" x="6.5" y="114.5">AddInsertTripleWithPrefix(prefix: string, predicate: string, obj: string)</text>
+    </g>
+    <rect cell-id="n4SuwmHKJf6OyuPdsddL-8" x="0" y="118" width="461" height="16" fill="none" stroke="none" pointer-events="all" />
+    <g cell-id="n4SuwmHKJf6OyuPdsddL-8" fill="#000000" font-family="Helvetica" font-size="12px">
+      <text cell-id="n4SuwmHKJf6OyuPdsddL-8" x="6.5" y="130.5">AddInsertTripleWithPrefixAndLiteral(prefix: string, predicate: string, obj: string)</text>
+    </g>
+    <rect cell-id="n4SuwmHKJf6OyuPdsddL-9" x="0" y="134" width="461" height="16" fill="none" stroke="none" pointer-events="all" />
+    <g cell-id="n4SuwmHKJf6OyuPdsddL-9" fill="#000000" font-family="Helvetica" font-size="12px">
+      <text cell-id="n4SuwmHKJf6OyuPdsddL-9" x="6.5" y="146.5">AddInsertTripleWithSubject(subject: string, predicate: string, obj: string)</text>
+    </g>
+    <rect cell-id="n4SuwmHKJf6OyuPdsddL-10" x="0" y="150" width="461" height="16" fill="none" stroke="none" pointer-events="all" />
+    <g cell-id="n4SuwmHKJf6OyuPdsddL-10" fill="#000000" font-family="Helvetica" font-size="12px">
+      <text cell-id="n4SuwmHKJf6OyuPdsddL-10" x="6.5" y="162.5">AddInsertTripleWithAndLiteral(subject: string, predicate: string, obj: string)</text>
+    </g>
+    <rect cell-id="n4SuwmHKJf6OyuPdsddL-11" x="0" y="166" width="461" height="16" fill="none" stroke="none" pointer-events="all" />
+    <g cell-id="n4SuwmHKJf6OyuPdsddL-11" fill="#000000" font-family="Helvetica" font-size="12px">
+      <text cell-id="n4SuwmHKJf6OyuPdsddL-11" x="6.5" y="178.5">AddWhereTriple(triple: string)</text>
+    </g>
+    <rect cell-id="n4SuwmHKJf6OyuPdsddL-12" x="0" y="182" width="461" height="16" fill="none" stroke="none" pointer-events="all" />
+    <g cell-id="n4SuwmHKJf6OyuPdsddL-12" fill="#000000" font-family="Helvetica" font-size="12px">
+      <text cell-id="n4SuwmHKJf6OyuPdsddL-12" x="6.5" y="194.5">AddWhereTriple(predicate: string, obj: string)</text>
+    </g>
+    <rect cell-id="n4SuwmHKJf6OyuPdsddL-13" x="0" y="198" width="461" height="16" fill="none" stroke="none" pointer-events="all" />
+    <g cell-id="n4SuwmHKJf6OyuPdsddL-13" fill="#000000" font-family="Helvetica" font-size="12px">
+      <text cell-id="n4SuwmHKJf6OyuPdsddL-13" x="6.5" y="210.5">AddWhereTriple(subject: string, prefix: string, predicate: string, obj: string)</text>
+    </g>
+    <rect cell-id="n4SuwmHKJf6OyuPdsddL-14" x="0" y="214" width="461" height="16" fill="none" stroke="none" pointer-events="all" />
+    <g cell-id="n4SuwmHKJf6OyuPdsddL-14" fill="#000000" font-family="Helvetica" font-size="12px">
+      <text cell-id="n4SuwmHKJf6OyuPdsddL-14" x="6.5" y="226.5">AddWhereTripleWithLiteral(predicate: string, obj: string)</text>
+    </g>
+    <rect cell-id="n4SuwmHKJf6OyuPdsddL-15" x="0" y="230" width="461" height="16" fill="none" stroke="none" pointer-events="all" />
+    <g cell-id="n4SuwmHKJf6OyuPdsddL-15" fill="#000000" font-family="Helvetica" font-size="12px">
+      <text cell-id="n4SuwmHKJf6OyuPdsddL-15" x="6.5" y="242.5">AddWhereTripleWithLiteral(subject: string, prefix: string, predicate: string, obj: string)</text>
+    </g>
+    <rect cell-id="n4SuwmHKJf6OyuPdsddL-16" x="0" y="246" width="461" height="16" fill="none" stroke="none" pointer-events="all" />
+    <g cell-id="n4SuwmHKJf6OyuPdsddL-16" fill="#000000" font-family="Helvetica" font-size="12px">
+      <text cell-id="n4SuwmHKJf6OyuPdsddL-16" x="6.5" y="258.5">AddWhereTripleWithPrefix(prefix: string, predicate: string, obj: string)</text>
+    </g>
+    <rect cell-id="n4SuwmHKJf6OyuPdsddL-17" x="0" y="262" width="461" height="16" fill="none" stroke="none" pointer-events="all" />
+    <g cell-id="n4SuwmHKJf6OyuPdsddL-17" fill="#000000" font-family="Helvetica" font-size="12px">
+      <text cell-id="n4SuwmHKJf6OyuPdsddL-17" x="6.5" y="274.5">AddWhereTripleWithPrefixAndLiteral(prefix: string, predicate: string, obj: string)</text>
+    </g>
+    <rect cell-id="n4SuwmHKJf6OyuPdsddL-18" x="0" y="278" width="461" height="16" fill="none" stroke="none" pointer-events="all" />
+    <g cell-id="n4SuwmHKJf6OyuPdsddL-18" fill="#000000" font-family="Helvetica" font-size="12px">
+      <text cell-id="n4SuwmHKJf6OyuPdsddL-18" x="6.5" y="290.5">AddWhereTripleWithSubject(subject: string, predicate: string, obj: string)</text>
+    </g>
+    <rect cell-id="n4SuwmHKJf6OyuPdsddL-19" x="0" y="294" width="461" height="16" fill="none" stroke="none" pointer-events="all" />
+    <g cell-id="n4SuwmHKJf6OyuPdsddL-19" fill="#000000" font-family="Helvetica" font-size="12px">
+      <text cell-id="n4SuwmHKJf6OyuPdsddL-19" x="6.5" y="306.5">AddWhereTripleWithSubjectAndLiteral(subject: string, predicate: string, obj: string))</text>
+    </g>
+    <rect cell-id="n4SuwmHKJf6OyuPdsddL-20" x="0" y="310" width="461" height="16" fill="none" stroke="none" pointer-events="all" />
+    <g cell-id="n4SuwmHKJf6OyuPdsddL-20" fill="#000000" font-family="Helvetica" font-size="12px">
+      <text cell-id="n4SuwmHKJf6OyuPdsddL-20" x="6.5" y="322.5">DeclarePrefix(prefix: string, prefixUri: string)</text>
+    </g>
+    <rect cell-id="n4SuwmHKJf6OyuPdsddL-21" x="0" y="326" width="461" height="16" fill="none" stroke="none" pointer-events="all" />
+    <g cell-id="n4SuwmHKJf6OyuPdsddL-21" fill="#000000" font-family="Helvetica" font-size="12px">
+      <text cell-id="n4SuwmHKJf6OyuPdsddL-21" x="6.5" y="338.5">SetSeparator(separator: string)</text>
+    </g>
+    <rect cell-id="n4SuwmHKJf6OyuPdsddL-22" x="0" y="342" width="461" height="16" fill="none" stroke="none" pointer-events="all" />
+    <g cell-id="n4SuwmHKJf6OyuPdsddL-22" fill="#000000" font-family="Helvetica" font-size="12px">
+      <text cell-id="n4SuwmHKJf6OyuPdsddL-22" x="6.5" y="354.5">UseGraphForInsert(graph: string)</text>
+    </g>
+    <rect cell-id="n4SuwmHKJf6OyuPdsddL-23" x="0" y="358" width="461" height="16" fill="none" stroke="none" pointer-events="all" />
+    <g cell-id="n4SuwmHKJf6OyuPdsddL-23" fill="#000000" font-family="Helvetica" font-size="12px">
+      <text cell-id="n4SuwmHKJf6OyuPdsddL-23" x="6.5" y="370.5">UseGraphForWhere(graph: string)</text>
+    </g>
+    <rect cell-id="n4SuwmHKJf6OyuPdsddL-24" x="0" y="374" width="461" height="16" fill="none" stroke="none" pointer-events="all" />
+    <g cell-id="n4SuwmHKJf6OyuPdsddL-24" fill="#000000" font-family="Helvetica" font-size="12px">
+      <text cell-id="n4SuwmHKJf6OyuPdsddL-24" x="6.5" y="386.5">UseSubject(subject: string)</text>
+    </g>
+    <rect cell-id="n4SuwmHKJf6OyuPdsddL-25" x="0" y="390" width="461" height="16" fill="none" stroke="none" pointer-events="all" />
+    <g cell-id="n4SuwmHKJf6OyuPdsddL-25" fill="#000000" font-family="Helvetica" font-size="12px">
+      <text cell-id="n4SuwmHKJf6OyuPdsddL-25" x="6.5" y="402.5">UsePrefix(prefix: string)</text>
+    </g>
+    <rect cell-id="n4SuwmHKJf6OyuPdsddL-26" x="0" y="406" width="461" height="16" fill="none" stroke="none" pointer-events="all" />
+    <g cell-id="n4SuwmHKJf6OyuPdsddL-26" fill="#000000" font-family="Helvetica" font-size="12px">
+      <text cell-id="n4SuwmHKJf6OyuPdsddL-26" x="6.5" y="418.5">BuildQuery()</text>
+    </g>
+    <rect cell-id="n4SuwmHKJf6OyuPdsddL-27" x="134" y="488" width="180" height="219" fill="#7acff5" stroke="#000000" pointer-events="all" />
+    <path cell-id="n4SuwmHKJf6OyuPdsddL-27" d="M 134 505 L 314 505" fill="none" stroke="#000000" stroke-miterlimit="10" pointer-events="all" />
+    <g cell-id="n4SuwmHKJf6OyuPdsddL-27" fill="#000000" font-family="Helvetica" font-weight="bold" text-anchor="middle" font-size="12px">
+      <text cell-id="n4SuwmHKJf6OyuPdsddL-27" x="223.5" y="499.5">InsertQueryBuilder</text>
+    </g>
+    <rect cell-id="n4SuwmHKJf6OyuPdsddL-28" x="134" y="508" width="180" height="16" fill="none" stroke="none" pointer-events="all" />
+    <g cell-id="n4SuwmHKJf6OyuPdsddL-28" fill="#000000" font-family="Helvetica" font-size="12px">
+      <text cell-id="n4SuwmHKJf6OyuPdsddL-28" x="140.5" y="520.5">_declaredPrefixes: StringBuilder</text>
+    </g>
+    <rect cell-id="n4SuwmHKJf6OyuPdsddL-29" x="134" y="524" width="180" height="16" fill="none" stroke="none" pointer-events="all" />
+    <g cell-id="n4SuwmHKJf6OyuPdsddL-29" fill="#000000" font-family="Helvetica" font-size="12px">
+      <text cell-id="n4SuwmHKJf6OyuPdsddL-29" x="140.5" y="536.5">_prefix: string</text>
+    </g>
+    <rect cell-id="n4SuwmHKJf6OyuPdsddL-30" x="134" y="540" width="180" height="16" fill="none" stroke="none" pointer-events="all" />
+    <g cell-id="n4SuwmHKJf6OyuPdsddL-30" fill="#000000" font-family="Helvetica" font-size="12px">
+      <text cell-id="n4SuwmHKJf6OyuPdsddL-30" x="140.5" y="552.5">_subject: string</text>
+    </g>
+    <rect cell-id="n4SuwmHKJf6OyuPdsddL-31" x="134" y="556" width="180" height="16" fill="none" stroke="none" pointer-events="all" />
+    <g cell-id="n4SuwmHKJf6OyuPdsddL-31" fill="#000000" font-family="Helvetica" font-size="12px">
+      <text cell-id="n4SuwmHKJf6OyuPdsddL-31" x="140.5" y="568.5">_insertBody: StringBuilder</text>
+    </g>
+    <rect cell-id="n4SuwmHKJf6OyuPdsddL-32" x="134" y="572" width="180" height="16" fill="none" stroke="none" pointer-events="all" />
+    <g cell-id="n4SuwmHKJf6OyuPdsddL-32" fill="#000000" font-family="Helvetica" font-size="12px">
+      <text cell-id="n4SuwmHKJf6OyuPdsddL-32" x="140.5" y="584.5">_insertGraph: string</text>
+    </g>
+    <rect cell-id="n4SuwmHKJf6OyuPdsddL-33" x="134" y="588" width="180" height="16" fill="none" stroke="none" pointer-events="all" />
+    <g cell-id="n4SuwmHKJf6OyuPdsddL-33" fill="#000000" font-family="Helvetica" font-size="12px">
+      <text cell-id="n4SuwmHKJf6OyuPdsddL-33" x="140.5" y="600.5">_beforeSubject: string</text>
+    </g>
+    <rect cell-id="n4SuwmHKJf6OyuPdsddL-34" x="134" y="604" width="180" height="16" fill="none" stroke="none" pointer-events="all" />
+    <g cell-id="n4SuwmHKJf6OyuPdsddL-34" fill="#000000" font-family="Helvetica" font-size="12px">
+      <text cell-id="n4SuwmHKJf6OyuPdsddL-34" x="140.5" y="616.5">_afterSubject: string</text>
+    </g>
+    <rect cell-id="n4SuwmHKJf6OyuPdsddL-35" x="134" y="620" width="180" height="16" fill="none" stroke="none" pointer-events="all" />
+    <g cell-id="n4SuwmHKJf6OyuPdsddL-35" fill="#000000" font-family="Helvetica" font-size="12px">
+      <text cell-id="n4SuwmHKJf6OyuPdsddL-35" x="140.5" y="632.5">_beforeObject: string</text>
+    </g>
+    <rect cell-id="n4SuwmHKJf6OyuPdsddL-36" x="134" y="636" width="180" height="16" fill="none" stroke="none" pointer-events="all" />
+    <g cell-id="n4SuwmHKJf6OyuPdsddL-36" fill="#000000" font-family="Helvetica" font-size="12px">
+      <text cell-id="n4SuwmHKJf6OyuPdsddL-36" x="140.5" y="648.5">_afterObject: string</text>
+    </g>
+    <rect cell-id="n4SuwmHKJf6OyuPdsddL-37" x="134" y="652" width="180" height="16" fill="none" stroke="none" pointer-events="all" />
+    <g cell-id="n4SuwmHKJf6OyuPdsddL-37" fill="#000000" font-family="Helvetica" font-size="12px">
+      <text cell-id="n4SuwmHKJf6OyuPdsddL-37" x="140.5" y="664.5">_whereBody: StringBuilder</text>
+    </g>
+    <rect cell-id="n4SuwmHKJf6OyuPdsddL-38" x="134" y="668" width="180" height="16" fill="none" stroke="none" pointer-events="all" />
+    <g cell-id="n4SuwmHKJf6OyuPdsddL-38" fill="#000000" font-family="Helvetica" font-size="12px">
+      <text cell-id="n4SuwmHKJf6OyuPdsddL-38" x="140.5" y="680.5">_whereGraph: string</text>
+    </g>
+    <rect cell-id="n4SuwmHKJf6OyuPdsddL-39" x="134" y="684" width="180" height="16" fill="none" stroke="none" pointer-events="all" />
+    <g cell-id="n4SuwmHKJf6OyuPdsddL-39" fill="#000000" font-family="Helvetica" font-size="12px">
+      <text cell-id="n4SuwmHKJf6OyuPdsddL-39" x="140.5" y="696.5">_separator</text>
+    </g>
+    <path cell-id="n4SuwmHKJf6OyuPdsddL-40" d="M 227.25 438.12 L 227.25 488" fill="none" stroke="#000000" stroke-miterlimit="10" pointer-events="stroke" />
+    <path cell-id="n4SuwmHKJf6OyuPdsddL-40" d="M 227.25 426.12 L 233.25 438.12 L 221.25 438.12 Z" fill="none" stroke="#000000" stroke-miterlimit="10" pointer-events="all" />
+    <rect cell-id="n4SuwmHKJf6OyuPdsddL-41" x="595" y="0" width="450.6" height="409" fill="#7acff5" stroke="#000000" pointer-events="all" />
+    <path cell-id="n4SuwmHKJf6OyuPdsddL-41" d="M 595 17 L 1045.6 17" fill="none" stroke="#000000" stroke-miterlimit="10" pointer-events="all" />
+    <g cell-id="n4SuwmHKJf6OyuPdsddL-41" fill="#000000" font-family="Helvetica" font-weight="bold" text-anchor="middle" font-size="12px">
+      <text cell-id="n4SuwmHKJf6OyuPdsddL-41" x="819.8" y="11.5">ISelectQueryBuilder</text>
+    </g>
+    <rect cell-id="n4SuwmHKJf6OyuPdsddL-42" x="595" y="22" width="450.6" height="16" fill="none" stroke="none" pointer-events="all" />
+    <g cell-id="n4SuwmHKJf6OyuPdsddL-42" fill="#000000" font-family="Helvetica" font-size="12px">
+      <text cell-id="n4SuwmHKJf6OyuPdsddL-42" x="601.5" y="34.5">AddTriple(triple: string)</text>
+    </g>
+    <rect cell-id="n4SuwmHKJf6OyuPdsddL-43" x="595" y="38" width="450.6" height="16" fill="none" stroke="none" pointer-events="all" />
+    <g cell-id="n4SuwmHKJf6OyuPdsddL-43" fill="#000000" font-family="Helvetica" font-size="12px">
+      <text cell-id="n4SuwmHKJf6OyuPdsddL-43" x="601.5" y="50.5">AddTriple(predicate: string, obj: string)</text>
+    </g>
+    <rect cell-id="n4SuwmHKJf6OyuPdsddL-44" x="595" y="54" width="450.6" height="16" fill="none" stroke="none" pointer-events="all" />
+    <g cell-id="n4SuwmHKJf6OyuPdsddL-44" fill="#000000" font-family="Helvetica" font-size="12px">
+      <text cell-id="n4SuwmHKJf6OyuPdsddL-44" x="601.5" y="66.5">AddTriple(subject: string, prefix: string, predicate: string, obj: string)</text>
+    </g>
+    <rect cell-id="n4SuwmHKJf6OyuPdsddL-45" x="595" y="70" width="450.6" height="16" fill="none" stroke="none" pointer-events="all" />
+    <g cell-id="n4SuwmHKJf6OyuPdsddL-45" fill="#000000" font-family="Helvetica" font-size="12px">
+      <text cell-id="n4SuwmHKJf6OyuPdsddL-45" x="601.5" y="82.5">WIthSubjectOfType(subjcet: string, predicate: string, obj: string)</text>
+    </g>
+    <rect cell-id="n4SuwmHKJf6OyuPdsddL-46" x="595" y="86" width="450.6" height="16" fill="none" stroke="none" pointer-events="all" />
+    <g cell-id="n4SuwmHKJf6OyuPdsddL-46" fill="#000000" font-family="Helvetica" font-size="12px">
+      <text cell-id="n4SuwmHKJf6OyuPdsddL-46" x="601.5" y="98.5">WIthSubjectOfType(prefix: string, predicate: string)</text>
+    </g>
+    <rect cell-id="n4SuwmHKJf6OyuPdsddL-47" x="595" y="102" width="450.6" height="16" fill="none" stroke="none" pointer-events="all" />
+    <g cell-id="n4SuwmHKJf6OyuPdsddL-47" fill="#000000" font-family="Helvetica" font-size="12px">
+      <text cell-id="n4SuwmHKJf6OyuPdsddL-47" x="601.5" y="114.5">WIthSubjectOfType(predicate: string)</text>
+    </g>
+    <rect cell-id="n4SuwmHKJf6OyuPdsddL-48" x="595" y="118" width="450.6" height="16" fill="none" stroke="none" pointer-events="all" />
+    <g cell-id="n4SuwmHKJf6OyuPdsddL-48" fill="#000000" font-family="Helvetica" font-size="12px">
+      <text cell-id="n4SuwmHKJf6OyuPdsddL-48" x="601.5" y="130.5">AddFilter(filter: string)</text>
+    </g>
+    <rect cell-id="n4SuwmHKJf6OyuPdsddL-49" x="595" y="134" width="450.6" height="16" fill="none" stroke="none" pointer-events="all" />
+    <g cell-id="n4SuwmHKJf6OyuPdsddL-49" fill="#000000" font-family="Helvetica" font-size="12px">
+      <text cell-id="n4SuwmHKJf6OyuPdsddL-49" x="601.5" y="146.5">AddStringFilter(subject: string, value: string)</text>
+    </g>
+    <rect cell-id="n4SuwmHKJf6OyuPdsddL-50" x="595" y="150" width="450.6" height="16" fill="none" stroke="none" pointer-events="all" />
+    <g cell-id="n4SuwmHKJf6OyuPdsddL-50" fill="#000000" font-family="Helvetica" font-size="12px">
+      <text cell-id="n4SuwmHKJf6OyuPdsddL-50" x="601.5" y="162.5">AddStringFilter(value: string)</text>
+    </g>
+    <rect cell-id="n4SuwmHKJf6OyuPdsddL-51" x="595" y="166" width="450.6" height="16" fill="none" stroke="none" pointer-events="all" />
+    <g cell-id="n4SuwmHKJf6OyuPdsddL-51" fill="#000000" font-family="Helvetica" font-size="12px">
+      <text cell-id="n4SuwmHKJf6OyuPdsddL-51" x="601.5" y="178.5">AddMultipleValuesFilter(values: List&lt;string&gt;, prefix: string)</text>
+    </g>
+    <rect cell-id="n4SuwmHKJf6OyuPdsddL-52" x="595" y="182" width="450.6" height="16" fill="none" stroke="none" pointer-events="all" />
+    <g cell-id="n4SuwmHKJf6OyuPdsddL-52" fill="#000000" font-family="Helvetica" font-size="12px">
+      <text cell-id="n4SuwmHKJf6OyuPdsddL-52" x="601.5" y="194.5">AddMultipleValuesFilter(subject: string, values: List&lt;string&gt;, literalValuesFlag: bool)</text>
+    </g>
+    <rect cell-id="n4SuwmHKJf6OyuPdsddL-53" x="595" y="198" width="450.6" height="16" fill="none" stroke="none" pointer-events="all" />
+    <g cell-id="n4SuwmHKJf6OyuPdsddL-53" fill="#000000" font-family="Helvetica" font-size="12px">
+      <text cell-id="n4SuwmHKJf6OyuPdsddL-53" x="601.5" y="210.5">DeclarePrefix(prefix: string, prefixUri: string)</text>
+    </g>
+    <rect cell-id="n4SuwmHKJf6OyuPdsddL-54" x="595" y="214" width="450.6" height="16" fill="none" stroke="none" pointer-events="all" />
+    <g cell-id="n4SuwmHKJf6OyuPdsddL-54" fill="#000000" font-family="Helvetica" font-size="12px">
+      <text cell-id="n4SuwmHKJf6OyuPdsddL-54" x="601.5" y="226.5">AddSubject(subject: string)</text>
+    </g>
+    <rect cell-id="n4SuwmHKJf6OyuPdsddL-55" x="595" y="230" width="450.6" height="16" fill="none" stroke="none" pointer-events="all" />
+    <g cell-id="n4SuwmHKJf6OyuPdsddL-55" fill="#000000" font-family="Helvetica" font-size="12px">
+      <text cell-id="n4SuwmHKJf6OyuPdsddL-55" x="601.5" y="242.5">AddDistinctSubject(subject: string)</text>
+    </g>
+    <rect cell-id="n4SuwmHKJf6OyuPdsddL-56" x="595" y="246" width="450.6" height="16" fill="none" stroke="none" pointer-events="all" />
+    <g cell-id="n4SuwmHKJf6OyuPdsddL-56" fill="#000000" font-family="Helvetica" font-size="12px">
+      <text cell-id="n4SuwmHKJf6OyuPdsddL-56" x="601.5" y="258.5">AddMultipleSubjects(subjcets: List&lt;string&gt;)</text>
+    </g>
+    <rect cell-id="n4SuwmHKJf6OyuPdsddL-57" x="595" y="262" width="450.6" height="16" fill="none" stroke="none" pointer-events="all" />
+    <g cell-id="n4SuwmHKJf6OyuPdsddL-57" fill="#000000" font-family="Helvetica" font-size="12px">
+      <text cell-id="n4SuwmHKJf6OyuPdsddL-57" x="601.5" y="274.5">AddMultipleDistinctSubjects(subjects: List&lt;string&gt;)</text>
+    </g>
+    <rect cell-id="n4SuwmHKJf6OyuPdsddL-58" x="595" y="278" width="450.6" height="16" fill="none" stroke="none" pointer-events="all" />
+    <g cell-id="n4SuwmHKJf6OyuPdsddL-58" fill="#000000" font-family="Helvetica" font-size="12px">
+      <text cell-id="n4SuwmHKJf6OyuPdsddL-58" x="601.5" y="290.5">AddAggregatedSubject(subject: string)</text>
+    </g>
+    <rect cell-id="n4SuwmHKJf6OyuPdsddL-59" x="595" y="294" width="450.6" height="16" fill="none" stroke="none" pointer-events="all" />
+    <g cell-id="n4SuwmHKJf6OyuPdsddL-59" fill="#000000" font-family="Helvetica" font-size="12px">
+      <text cell-id="n4SuwmHKJf6OyuPdsddL-59" x="601.5" y="306.5">AddMultipleAggregatedSubjects(subjects: List&lt;string&gt;)</text>
+    </g>
+    <rect cell-id="n4SuwmHKJf6OyuPdsddL-60" x="595" y="310" width="450.6" height="16" fill="none" stroke="none" pointer-events="all" />
+    <g cell-id="n4SuwmHKJf6OyuPdsddL-60" fill="#000000" font-family="Helvetica" font-size="12px">
+      <text cell-id="n4SuwmHKJf6OyuPdsddL-60" x="601.5" y="322.5">UsePrefix(prefix: string)</text>
+    </g>
+    <rect cell-id="n4SuwmHKJf6OyuPdsddL-61" x="595" y="326" width="450.6" height="16" fill="none" stroke="none" pointer-events="all" />
+    <g cell-id="n4SuwmHKJf6OyuPdsddL-61" fill="#000000" font-family="Helvetica" font-size="12px">
+      <text cell-id="n4SuwmHKJf6OyuPdsddL-61" x="601.5" y="338.5">UseSubject(subject: string)</text>
+    </g>
+    <rect cell-id="n4SuwmHKJf6OyuPdsddL-62" x="595" y="342" width="450.6" height="16" fill="none" stroke="none" pointer-events="all" />
+    <g cell-id="n4SuwmHKJf6OyuPdsddL-62" fill="#000000" font-family="Helvetica" font-size="12px">
+      <text cell-id="n4SuwmHKJf6OyuPdsddL-62" x="601.5" y="354.5">AddLimit(limit: uint)</text>
+    </g>
+    <rect cell-id="n4SuwmHKJf6OyuPdsddL-63" x="595" y="358" width="450.6" height="16" fill="none" stroke="none" pointer-events="all" />
+    <g cell-id="n4SuwmHKJf6OyuPdsddL-63" fill="#000000" font-family="Helvetica" font-size="12px">
+      <text cell-id="n4SuwmHKJf6OyuPdsddL-63" x="601.5" y="370.5">AddGroupBy(subjcet: string)</text>
+    </g>
+    <rect cell-id="n4SuwmHKJf6OyuPdsddL-64" x="595" y="374" width="450.6" height="16" fill="none" stroke="none" pointer-events="all" />
+    <g cell-id="n4SuwmHKJf6OyuPdsddL-64" fill="#000000" font-family="Helvetica" font-size="12px">
+      <text cell-id="n4SuwmHKJf6OyuPdsddL-64" x="601.5" y="386.5">AddGroupBy(subjects: List&lt;string&gt;)</text>
+    </g>
+    <rect cell-id="n4SuwmHKJf6OyuPdsddL-65" x="595" y="390" width="450.6" height="16" fill="none" stroke="none" pointer-events="all" />
+    <g cell-id="n4SuwmHKJf6OyuPdsddL-65" fill="#000000" font-family="Helvetica" font-size="12px">
+      <text cell-id="n4SuwmHKJf6OyuPdsddL-65" x="601.5" y="402.5">BuildQuery(noGroupBy: bool)</text>
+    </g>
+    <rect cell-id="n4SuwmHKJf6OyuPdsddL-66" x="742" y="488" width="180" height="212" fill="#7acff5" stroke="#000000" pointer-events="all" />
+    <path cell-id="n4SuwmHKJf6OyuPdsddL-66" d="M 742 505 L 922 505" fill="none" stroke="#000000" stroke-miterlimit="10" pointer-events="all" />
+    <g cell-id="n4SuwmHKJf6OyuPdsddL-66" fill="#000000" font-family="Helvetica" font-weight="bold" text-anchor="middle" font-size="12px">
+      <text cell-id="n4SuwmHKJf6OyuPdsddL-66" x="831.5" y="499.5">SelectQueryBuilder</text>
+    </g>
+    <rect cell-id="n4SuwmHKJf6OyuPdsddL-67" x="742" y="510" width="184" height="16" fill="none" stroke="none" pointer-events="all" />
+    <g cell-id="n4SuwmHKJf6OyuPdsddL-67" fill="#000000" font-family="Helvetica" font-size="12px">
+      <text cell-id="n4SuwmHKJf6OyuPdsddL-67" x="748.5" y="522.5">_declaredPrefixes: StringBuilder</text>
+    </g>
+    <rect cell-id="n4SuwmHKJf6OyuPdsddL-68" x="742" y="526" width="184" height="16" fill="none" stroke="none" pointer-events="all" />
+    <g cell-id="n4SuwmHKJf6OyuPdsddL-68" fill="#000000" font-family="Helvetica" font-size="12px">
+      <text cell-id="n4SuwmHKJf6OyuPdsddL-68" x="748.5" y="538.5">_prefix: string</text>
+    </g>
+    <rect cell-id="n4SuwmHKJf6OyuPdsddL-69" x="742" y="542" width="184" height="16" fill="none" stroke="none" pointer-events="all" />
+    <g cell-id="n4SuwmHKJf6OyuPdsddL-69" fill="#000000" font-family="Helvetica" font-size="12px">
+      <text cell-id="n4SuwmHKJf6OyuPdsddL-69" x="748.5" y="554.5">_subject: string</text>
+    </g>
+    <rect cell-id="n4SuwmHKJf6OyuPdsddL-70" x="742" y="558" width="184" height="16" fill="none" stroke="none" pointer-events="all" />
+    <g cell-id="n4SuwmHKJf6OyuPdsddL-70" fill="#000000" font-family="Helvetica" font-size="12px">
+      <text cell-id="n4SuwmHKJf6OyuPdsddL-70" x="748.5" y="570.5">_declaredSubjects: string</text>
+    </g>
+    <rect cell-id="n4SuwmHKJf6OyuPdsddL-71" x="742" y="574" width="184" height="16" fill="none" stroke="none" pointer-events="all" />
+    <g cell-id="n4SuwmHKJf6OyuPdsddL-71" fill="#000000" font-family="Helvetica" font-size="12px">
+      <text cell-id="n4SuwmHKJf6OyuPdsddL-71" x="748.5" y="586.5">_aggregatedSubjects: string</text>
+    </g>
+    <rect cell-id="n4SuwmHKJf6OyuPdsddL-72" x="742" y="590" width="184" height="16" fill="none" stroke="none" pointer-events="all" />
+    <g cell-id="n4SuwmHKJf6OyuPdsddL-72" fill="#000000" font-family="Helvetica" font-size="12px">
+      <text cell-id="n4SuwmHKJf6OyuPdsddL-72" x="748.5" y="602.5">_groupBy: string</text>
+    </g>
+    <rect cell-id="n4SuwmHKJf6OyuPdsddL-73" x="742" y="606" width="184" height="16" fill="none" stroke="none" pointer-events="all" />
+    <g cell-id="n4SuwmHKJf6OyuPdsddL-73" fill="#000000" font-family="Helvetica" font-size="12px">
+      <text cell-id="n4SuwmHKJf6OyuPdsddL-73" x="748.5" y="618.5">_separator: string</text>
+    </g>
+    <rect cell-id="n4SuwmHKJf6OyuPdsddL-74" x="742" y="622" width="184" height="16" fill="none" stroke="none" pointer-events="all" />
+    <g cell-id="n4SuwmHKJf6OyuPdsddL-74" fill="#000000" font-family="Helvetica" font-size="12px">
+      <text cell-id="n4SuwmHKJf6OyuPdsddL-74" x="748.5" y="634.5">_whereBody: StringBuilder</text>
+    </g>
+    <rect cell-id="n4SuwmHKJf6OyuPdsddL-75" x="742" y="638" width="184" height="16" fill="none" stroke="none" pointer-events="all" />
+    <g cell-id="n4SuwmHKJf6OyuPdsddL-75" fill="#000000" font-family="Helvetica" font-size="12px">
+      <text cell-id="n4SuwmHKJf6OyuPdsddL-75" x="748.5" y="650.5">_limit: string</text>
+    </g>
+    <path cell-id="n4SuwmHKJf6OyuPdsddL-76" d="M 826.15 422.12 L 826.15 488" fill="none" stroke="#000000" stroke-miterlimit="10" pointer-events="stroke" />
+    <path cell-id="n4SuwmHKJf6OyuPdsddL-76" d="M 826.15 410.12 L 832.15 422.12 L 820.15 422.12 Z" fill="none" stroke="#000000" stroke-miterlimit="10" pointer-events="all" />
+    <path cell-id="n4SuwmHKJf6OyuPdsddL-40" d="M 227.25 438.12 L 227.25 488" fill="none" stroke="#000000" stroke-miterlimit="10" pointer-events="stroke" />
+    <path cell-id="n4SuwmHKJf6OyuPdsddL-40" d="M 227.25 426.12 L 233.25 438.12 L 221.25 438.12 Z" fill="none" stroke="#000000" stroke-miterlimit="10" pointer-events="all" />
+    <path cell-id="n4SuwmHKJf6OyuPdsddL-76" d="M 826.15 422.12 L 826.15 488" fill="none" stroke="#000000" stroke-miterlimit="10" pointer-events="stroke" />
+    <path cell-id="n4SuwmHKJf6OyuPdsddL-76" d="M 826.15 410.12 L 832.15 422.12 L 820.15 422.12 Z" fill="none" stroke="#000000" stroke-miterlimit="10" pointer-events="all" />
+  </g>
+  <g fill="#787878" font-family="Arial,Helvetica" pointer-events="none" font-size="12px">
+    <text pointer-events="none" x="6" y="15">Visual Paradigm Online Free Edition</text>
+  </g>
+  <g fill="#787878" font-family="Arial,Helvetica" pointer-events="none" text-anchor="end" font-size="12px">
+    <text pointer-events="none" x="1040" y="701">Visual Paradigm Online Free Edition</text>
+  </g>
+</svg>

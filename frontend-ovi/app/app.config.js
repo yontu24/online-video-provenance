@@ -13,6 +13,10 @@ angular.module('ovi').
                 when('/movieInfo/:title', {
                     template: '<movie-info></movie-info>'
                 }).
+                // te trimite pe uri (prop = uri)
+                when('/wade-ovi.org/:prop', {
+                    template: '<show-triples></show-triples>'
+                }).
                 otherwise('/search');
         }
     ]

@@ -46,7 +46,6 @@ function findTitlesController($routeParams, $location, $interval, manipulateData
 
     self.displayMovieInfo = (uri) => {
         uri = encodeURIComponent(uri);
-        console.log('AM selectat ' + uri);
         $interval(() => {
             if (!self.isMovieFound) {
                 self.isMovieFound = true;

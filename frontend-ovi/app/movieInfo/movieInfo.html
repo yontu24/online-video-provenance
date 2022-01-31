@@ -1,7 +1,10 @@
 <div class="buttons">
-    <input type="submit" ng-click="info.goToSearchPage()" value="Search again">
+    <input type="button" ng-click="info.goToSearchPage()" value="Search again">
 </div>
-
+<h1>
+    {{info.movieTitle}}
+    {{info.array}}
+</h1>
 <table ng-if="info.triples != []">
     <tr>
         <th>Property</th>
@@ -17,3 +20,10 @@
         </td>
     </tr>
 </table>
+<div class="buttons">
+    <input type="button" ng-click="showRecommendation = !showRecommendation" value="Recommendation">
+</div>
+
+<!-- <title-recommendation ng-if="showRecommendation" display-titles="info.displayRecommendation" ng-show="showRecommendation"></title-recommendation> -->
+
+<title-recommendation ng-if="showRecommendation" movie-uri="info.movieUri" display-titles="info.triples" ng-show="showRecommendation"></title-recommendation>

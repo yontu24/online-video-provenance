@@ -6,6 +6,7 @@ angular.module('ovi',
         'ngAnimate',
         'searchMovie',
         'findTitles',
-        'movieInfo'
+        'movieInfo',
+        'titleRecommendation'
     ]
 );

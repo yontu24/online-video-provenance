@@ -14,3 +14,8 @@ _ReSharper.*
 bin
 obj
 packages
+InitialDatasetService/.vs/InitialDatasetService/DesignTimeBuild/.dtbcache.v2
+SearchService/.vs/SearchService/DesignTimeBuild/.dtbcache.v2
+QueryBuilderLibrary/.vs/QueryBuilderLibrary/DesignTimeBuild/.dtbcache.v2
+InitialDatasetService/.vs/InitialDatasetService/DesignTimeBuild/.dtbcache.v2
+RecommandationServie/.vs/RecommandationServie/DesignTimeBuild/.dtbcache.v2

@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="style.css">
+  <title>OVI - Technical Report</title>
+</head>
+
+<body>
+
+  <header>
+    <h1>OVI - Technical Report</h1>
+  </header>
+
+  <div role="contentinfo">
+    <ol role="directory">
+      <li>
+        <a href=""></a>
+      </li>
+    </ol>
+  </div>
+
+  <section typeof="sa:Abstract" id="abstract" role="doc-abstract">
+    <h2>Abstract</h2>
+    <p>
+      OVI should represent a system able to model and manage the knowledge about the provenance of each video resource
+      available online. This techincal report describes our final considerations, after developing our solution, the
+      progress we made and some more in-depth information on what we managed to do.
+    </p>
+  </section>
+  <section role="doc-introduction">
+    <h2>Introduction</h2>
+    <p>
+
+    </p>
+  </section>
+
+  <section id="projectProgress">
+    <h2>Project progress</h2>
+    <p>
+
+    </p>
+  </section>
+  <section id="implementedServices">
+    <h2>Implemented services</h2>
+    <section id="searchService">
+      <h3>Search Service</h3>
+
+      <img width="100%" height="120%" src="images/searchServiceClassDiagram.svg">
+
+      <p>
+        As initially designed, search service handles all operations related to searching, that is querying our dataset
+        and also querying <a href="https://www.dbpedia.org/">DBpedia</a>. Compared to the initial considerations for
+        this service, tree more endpoints have been added, totaling to five:
+      </p>
+      <section id="getMovieTitles">
+        <h4>/movies/titles/{title}</h4>
+        <p>
+          The first endpoint, "/movies/titles/{title}", will be used whenever an user searches for a movie by its title
+          or only part of it (e.g. "The Lord of the Rings" or just "lord" or "ring"). When this happens, a GET request
+          will be made, our dataset will be queried agains and all matching titles will be returned, along with their
+          URI. The titles will be displayed as a list for the user to see.
+        </p>
+        <p>
+          This information is obtaiend by constructing and running the following query:
+        </p>
+        <pre>
+          <code>
+            SELECT  ?movie (GROUP_CONCAT(distinct ?name; SEPARATOR = "|separator|") as ?name) 
+            WHERE {
+              ?movie a resources:Movie .
+              ?movie resources:title ?name .
+              FILTER( regex(lcase(str(?name)), "title") )      
+            } GROUP BY  ?movie
+          </code>
+        </pre>
+        <p>
+          What this query does is quite simple, we search for entities that are of type <b>resource:Movie</b>, getting
+          their URI, along with their name. The reason why the names are grouped is due to the existence of movies that
+          have multiple titles, be them translations in other languages or other variations. For <b>GROUP_CONCAT</b> we
+          try to use a separator that is as unique as possible, since titles may contain symbols such as commas, colons
+          or semicolons.
+        </p>
+      </section>
+      <section id="getMovieData">
+        <h4>/movies/data/{movieUri}</h4>
+        <p>
+          When the user clicks on one of the titles from the list, another GET request will be made, this time to the
+          "/movies/data/{movieUri}" endpoint, which will return all properties of said title. This is done by using the
+          following query:
+        </p>
+        <pre>
+          <code>
+            SELECT  ?movie ?prop  
+            (GROUP_CONCAT(distinct ?name; SEPARATOR = "|separator|") as ?name) 
+            (GROUP_CONCAT(distinct ?value; SEPARATOR = "|separator|") as ?value) 
+            WHERE {
+              ?movie a resources:Movie .
+              ?movie resources:title ?name .
+              FILTER(?movie = (<uri>))
+              ?movie ?prop ?value.
+              FILTER(( ?prop not in (rdf:type)))
+            } GROUP BY  ?movie ?prop
+          </code>
+        </pre>
+        <p>
+          This query does not differ much from the previous one, the additions being the presence of the variables ?prop
+          and ?value and, of course, the triple and filter they are used in. The triple <b>?movie ?prop ?value</b> will
+          return all properties and their values for our movie, of which we exclude the <b>rdf:type</b> property. The
+          results from this endpoint will contain as well the values that will be displayed for the user, along with
+          their URI, where we can consider them (an actor may have an URI, but the same can not be said about runtime,
+          the duration of the movie.)
+        </p>
+      </section>
+      <section id="getMovieDataDbpedia">
+        <h4>/dbpedia/movies/{title}</h4>
+        <p>
+          In the event that an user searches for a title that is not in our dataset, then he may choose to search for it
+          in an external source, DBpedia, by calling this endpoint. This call will directly return the information about
+          a movie, based on its title, requiring the user to be more precise about the information he wishes to
+          visualize.
+        </p>
+        <p>
+          To get the information from DBpedia, the following query is used:
+        </p>
+        <pre>
+          <code>
+            SELECT  ?movie ?prop  (GROUP_CONCAT(distinct ?value; SEPARATOR = "|separator|") as ?value) 
+            WHERE {
+              { 
+                SELECT  distinct ?movie  
+                WHERE {
+                  ?movie a dbo:Film .
+                  ?movie a schema:CreativeWork .
+                  ?movie dbp:director ?director .
+                  ?movie dbp:language ?language .
+                  ?movie dbp:starring ?starring .
+                  ?movie dbp:name ?name .
+                  FILTER( regex(lcase(str(?name)), "title") )
+                } LIMIT 10
+              }
+              ?movie ?prop ?value.
+              FILTER(?prop not in (rdf:type))
+            } 
+          </code>
+        </pre>
+        <p>
+          We can see it as being an outer query and an inner query. The inner query returns the URIs of movies in
+          DBpedia, by making sure they are of type dbo:Film and schema:CreativeWork, then also by checking that they
+          have a minimum of requried fields in order for us to be able to display some information.
+        </p>
+        <p>
+          Using the URIs obtained as a result from the inner query, we can then take all properties of the movies, aside
+          from <b>rdf:type</b> and they will be sent to the graphical interface, where the relevant information will be
+          displayed for the user to see.
+        </p>
+      </section>
+      <section id="getPersonsData">
+        <h4>/dbpedia/persons/{name}</h4>
+        <p>
+          In the movie information that will be displayed for the user, there will also be persons of interests, such as
+          directors, writers and actors. In case that the user wants to find out more about them, a call to this
+          endpoint will be made.
+        </p>
+        <pre>
+          <code>          
+            SELECT ?person ?prop 
+            (GROUP_CONCAT(distinct ?value; SEPARATOR = "|separator|") as ?value) 
+            WHERE {
+              { 
+                SELECT  distinct ?person  
+                WHERE {
+                  ?person a dbo:Person .
+                  ?person dbp:name ?name .
+                  FILTER( regex(lcase(str(?name)), "name") )
+                } LIMIT 10
+              }
+              ?person ?prop ?value.
+              FILTER(?prop not in (rdf:type))
+            } 
+          </code>
+        </pre>
+        <p>
+          Similarly to the previous endpoint we talked about, here we also have an outer query and an inner query. The
+          inner query returns all entitties of the type <b>dbo:Person</b> and then, using the URI provided by it, the
+          outer query will get all properties for a person.
+        </p>
+      </section>
+      <section id="getAllNodes">
+        <h4>/resource/{resourceUri}</h4>
+        <p>
+          This endpoint is called whenever an user clicks on one of the links displayed on the movie's page, with the
+          exception of movies in the recommended section. All information reagarding the resource will be returned by
+          quering against our dataset, checking for cases where the URI of the resource appears as any one of the
+          subject, predicate and/or object of the triple.
+        </p>
+        <pre>
+          <code>         
+            SELECT  ?subject ?predicate ?object  
+            WHERE {
+              ?subject ?predicate ?object.
+              FILTER( ?subject = <resourceUri> || ?predicate = <resourceUri> || ?object = <resourceUri> )
+            }  
+          </code>
+        </pre>
+      </section>
+    </section>
+    <section id="datasetInitializationService">
+      <h3>Dataset Initialization Service</h3>
+
+      <img height="100%" width="100%" src="images/datasetInitializationServiceClassDiagram.svg">
+
+      <p>
+        This service only has one endpoint and its purpose is to populate our dataset. In other words, the process of
+        gathering data, processing it and then inserting said data into our dataset takes place here. This service will
+        not be available for the users to make calls to.
+      </p>
+      <p>
+        To gather data, we query against DBpedia's own SPARQL endpoint. The query that we use for this is similar to the
+        one used in the <a href="#getMovieDataDbpedia">Search Service</a>, on the endpoint that gets data from dbpedia,
+        as such we will not be displaying it again here. The information return by such a query will then be processed
+        such that we could add it into our own dataset. This would mainly include parsing through the results, decoding
+        and encoding values, where needed and arranging them into triples that would then be inserted.
+      </p>
+    </section>
+    <section id="recommandationService">
+      <h3>Recommandation Service</h3>
+      <img height="100%" width="100%" src="images/recommendationServiceClassDiagram.svg">
+      <p>
+        This service will be called when an user wishes to get recomandation based on a movie he is currently
+        visualising. It only has one endpoint, <b>/recommend</b> which receives a GET requesnt and it will take its
+        parameters from the query string. The parameters it can take are the URI of the movie that the recommendation is
+        made for, the URIs of the actors also those of the directors and the genre. Note that the URIs will be url
+        encoded.
+      </p>
+      <p>
+        The service queries our dataset for movies different from the one given as parameter, that have at least one
+        actor or one director or can be included in one of the genres from the list of parameters given. It then
+        processes the result and sends it back to the party that made the request.
+      </p>
+    </section>
+    <section id="queryBuilderLibrary">
+      <h3>Query Builder Library</h3>
+      <img height="100%" width="100%" src="images/queryBuilderLibraryClassDiagram.svg">
+      <p>
+        To ease the process of building queries in code, we constructed a library that would help us in this regard.
+        Currently, this library has classes that support building select queries and insert queries only, as they were
+        the only types of queries used in our project.
+      </p>
+      <p>
+        Each <b>QueryBuilder</b> class has <b>BuildQuery</b> method that constructs the query and outputs it as a
+        string. Along with these, they each have multiple methods that return a reference to the object itself. These
+        methods have different purposes in building the body of the query and the reason for returning the object
+        reference is so that they can be chained together.
+      </p>
+      <p>
+        The methods present in a QueryBuilder class are many and that because of the presence of overloads and
+        different iterations of methods so that we could handle multiple cases as to how an another person might want to
+        use this library. Let us take the <b>AddTriple</b> method for example, present in the class that handles select
+        queries. A triple may be added directly as a string or by specifying each element of the triple separately
+      </p>
+      <pre>
+        <code>
+          public IQueryBuilder AddTriple(string subject, string prefix, string predicate, string obj);
+          public IQueryBuilder AddTriple(string triple);
+        </code>
+      </pre>
+      <p>
+        In case that we may want to insert multiple triples that make use of the same subject, we may specify the
+        subject first by using the <b>UseSubject</b> method and then use another overload of the AddTriple methods that
+        takes just the predicate and the object as parameters.
+      </p>
+    </section>
+  </section>
+  <section id="considerations">
+    <h2>Considerations</h2>
+
+  </section>
+  <section id="">
+    <h2></h2>
+
+  </section>
+
+</body>
+
+</html>
