@@ -33,7 +33,7 @@ namespace SearchService.Helpers
                         var valueList = property.Value;
                         if (CommonVariables.datasetFields.Contains(propertyName))
                         {
-                            AddTriplesMovie(subject, propertyName, valueList);
+                            AddTriplesMovie(subject, propertyName, valueList, property.Key);
                         }
                     
                     
@@ -68,7 +68,7 @@ namespace SearchService.Helpers
 
             connector.UpdateGraph(CommonVariables.ResourcesPrefixUri, triples, null);
         }
-        private static void AddTriplesMovie(IUriNode subject, string propertyName, Dictionary<string , string> valuesList)
+        private static void AddTriplesMovie(IUriNode subject, string propertyName, Dictionary<string , string> valuesList, string propertyUri)
         {
             if (CommonVariables.propertyParameters.Keys.Contains(propertyName))
             {
@@ -79,6 +79,7 @@ namespace SearchService.Helpers
                     triples.Add(new Triple(node, g.CreateUriNode("rdf:type"), g.GetUriNode(@$"resources:{string.Concat(propertyName[0].ToString().ToUpper(), propertyName.AsSpan(1))}")));
                     triples.Add(new Triple(node, g.CreateUriNode("resources:name"), g.CreateLiteralNode(valueName)));
                     triples.Add(new Triple(subject, g.CreateUriNode(@$"resources:{CommonVariables.propertyParameters[propertyName]}"), node));
+                    triples.Add(new Triple(node, g.CreateUriNode("resources:dbpediaReference"), g.CreateLiteralNode(value.Key)));
 
                 }
             }
@@ -92,6 +93,8 @@ namespace SearchService.Helpers
                     triples.Add(new Triple(node, g.CreateUriNode("rdf:type"), g.GetUriNode("resources:Actor")));
                     triples.Add(new Triple(node, g.CreateUriNode("resources:name"), g.CreateLiteralNode(encodedName)));
                     triples.Add(new Triple(subject, g.CreateUriNode("resources:starring"), node));
+                    triples.Add(new Triple(node, g.CreateUriNode("resources:dbpediaReference"), g.CreateLiteralNode(value.Key)));
+
                 }
             }
             else
