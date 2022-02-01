@@ -1,6 +1,5 @@
-<div class="buttons">
-    <input type="button" ng-click="personsCtrl.goToSearchPage()" value="Search again">
+<h1>{{ personsCtrl.personUri }}</h1>
+<div>
+    <p>{{ personsCtrl.responseStatus }}</p>
+    <p>Redirecting to search page...</p>
 </div>
-<h1>Found {{ personsCtrl.personsNumber }} persons</h1>
-
-{{ personsCtrl.persons }}

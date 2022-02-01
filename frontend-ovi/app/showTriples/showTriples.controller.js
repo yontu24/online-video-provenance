@@ -8,6 +8,7 @@ function showTriplesController($routeParams, $location, getRequestTriples) {
     self.$onInit = () => {
         self.triples = [];
         self.triplesNumber = 0;
+        self.isNodeLiteral = false;
         self.fetchData(self.propertyUri);
     }
 
@@ -23,16 +24,27 @@ function showTriplesController($routeParams, $location, getRequestTriples) {
         );
     }
     
-    self.showMovieInfo = (subject) => {
-        if (subject && subject.includes('movie')) {
-            $location.path('/movieInfo/' + encodeURIComponent(subject));
+    self.showResourceInfo = (subject) => {
+        if (subject) {
+            if (subject.includes('movie'))
+                $location.path('/movieInfo/' + encodeURIComponent(subject));
+            else if (!subject.includes('http'))
+                self.isNodeLiteral = true;
+            else
+                $location.path('/wade-ovi.org/' + encodeURIComponent(subject));
         }
     }
 
     self.showPerson = (predicate, object) => {
-        if (predicate.includes('starring') || predicate.includes('directedBy') || predicate.includes('writtenBy') || predicate.includes('producedBy')) {
-            object = encodeURIComponent(object);
-            $location.path('/person/' + object);
-        }
+        if (predicate.includes('dbpediaReference'))
+            $location.path('/person/' + encodeURIComponent(object));
+        else if (!object.includes('http'))  // literal
+            self.isNodeLiteral = true;
+        else
+            $location.path('/wade-ovi.org/' + encodeURIComponent(object));
+    }
+    
+    self.goToSearchPage = () => {
+        $location.path('/search');
     }
 }

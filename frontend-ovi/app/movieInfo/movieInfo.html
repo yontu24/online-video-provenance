@@ -14,7 +14,7 @@
         <td ng-click="info.showTriples(property);">{{ property }}</td>
         <td>
             <div ng-repeat="(key, value) in dictionary">
-                <p ng-click="info.showPersons(property, key);">{{ key.label }} : {{ value }}</p>
+                <p ng-click="info.showPersonUriNodes(property, key);">{{ key.label }} : {{ value }}</p>
                 <!-- <a target="_self" ng-href={{ key }}>{{ value }}</a> -->
             </div>
         </td>

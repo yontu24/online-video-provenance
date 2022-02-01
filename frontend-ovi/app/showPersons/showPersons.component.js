@@ -7,6 +7,7 @@ angular.module('showPersons')
         [
             '$routeParams', 
             '$location',
+            '$timeout',
             'getRequestPerson',
             showPersonsController
         ],

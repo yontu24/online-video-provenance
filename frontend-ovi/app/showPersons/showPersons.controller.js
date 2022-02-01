@@ -1,34 +1,32 @@
 'use strict';
 
-function showPersonsController($routeParams, $location, getRequestPerson) {
+function showPersonsController($routeParams, $location, $timeout, getRequestPerson) {
     var self = this;
 
-    self.personUri = decodeURIComponent($routeParams.personUri);
+    const SUCCESS_MESSAGE = 'Person has been added to triples.';
+    const FAILURE_MESSAGE = 'Person not found on dbpedia.';
+
+    self.personUri = decodeURIComponent($routeParams.person);
 
     self.$onInit = () => {
-        self.persons = [];
-        self.personsNumber = 0;
         self.fetchData(self.personUri);
     }
 
     self.fetchData = (uri) => {
         getRequestPerson.get(uri).then(
             (response) => {
-                self.persons = response.data;
-                self.personsNumber = self.persons.length;
+                self.responseStatus = (response.data == {}) ? FAILURE_MESSAGE : SUCCESS_MESSAGE;
+
+                $timeout(() => {
+                    $location.path('/search');
+                }, 2000);
             },
             (error) => {
-                self.persons = error.statusText;
+                self.responseStatus = error.status;
             }
         );
     }
     
-    // self.showMovieInfo = (subject) => {
-    //     if (subject && subject.includes('movie')) {
-    //         $location.path('/movieInfo/' + encodeURIComponent(subject));
-    //     }
-    // }
-
     self.goToSearchPage = () => {
         $location.path('/search');
     }
