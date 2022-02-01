@@ -28,4 +28,11 @@ function showTriplesController($routeParams, $location, getRequestTriples) {
             $location.path('/movieInfo/' + encodeURIComponent(subject));
         }
     }
+
+    self.showPerson = (predicate, object) => {
+        if (predicate.includes('starring') || predicate.includes('directedBy') || predicate.includes('writtenBy') || predicate.includes('producedBy')) {
+            object = encodeURIComponent(object);
+            $location.path('/person/' + object);
+        }
+    }
 }

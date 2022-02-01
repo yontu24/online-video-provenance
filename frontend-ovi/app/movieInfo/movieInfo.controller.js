@@ -37,6 +37,13 @@ function movieInfoController($routeParams, $location, getRequestMovieInfo, proce
         $location.path('/wade-ovi.org/' + property);
     }
 
+    self.showPersons = (predicate, object) => {
+        if (predicate.includes('starring') || predicate.includes('directedBy') || predicate.includes('writtenBy') || predicate.includes('producedBy')) {
+            object = encodeURIComponent(object);
+            $location.path('/person/' + object);
+        }
+    }
+
     self.goToSearchPage = () => {
         $location.path('/search');
     }

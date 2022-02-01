@@ -13,9 +13,11 @@ angular.module('ovi').
                 when('/movieInfo/:title', {
                     template: '<movie-info></movie-info>'
                 }).
-                // te trimite pe uri (prop = uri)
                 when('/wade-ovi.org/:property', {
                     template: '<show-triples></show-triples>'
+                }).
+                when('/person/:person', {
+                    template: '<show-persons></show-persons>'
                 }).
                 otherwise('/search');
         }

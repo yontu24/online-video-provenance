@@ -11,10 +11,10 @@
         <th>Value</th>
     </tr>
     <tr ng-repeat="(property, dictionary) in info.triples">
-        <td ng-click="info.showTriples(property)">{{ property }}</td>
+        <td ng-click="info.showTriples(property);">{{ property }}</td>
         <td>
             <div ng-repeat="(key, value) in dictionary">
-                <p>{{ key.label }} : {{ value }}</p>
+                <p ng-click="info.showPersons(property, key);">{{ key.label }} : {{ value }}</p>
                 <!-- <a target="_self" ng-href={{ key }}>{{ value }}</a> -->
             </div>
         </td>

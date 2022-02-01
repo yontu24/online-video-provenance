@@ -9,7 +9,6 @@ function findTitlesController($routeParams, $route, $location, $timeout, manipul
         self.isMovieFound = false;
         self.titlesArray = [];
         self.message = '';
-        self.foundOnDataset = true;
         self.fetchData(self.titleParam);
     }
 
@@ -17,13 +16,12 @@ function findTitlesController($routeParams, $route, $location, $timeout, manipul
         if (uri) {
             getRequestTitlesFromDataset.get(uri).then(
                 (response) => {
-                    self.message = 'Movies found on dataset:'
+                    self.message = 'Movies found:'
                     self.titlesArray = manipulateData.getTitles(JSON.stringify(response.data));
                     self.titlesNumber = Object.keys(self.titlesArray).length;
 
                     if (!self.titlesNumber) {
-                        self.foundOnDataset = false;
-                        self.message = 'Movies found on dbpedia:';
+                        self.message = 'Searching for movies on dbpedia...';
                         self.fetchDataFromAnotherSource(self.titleParam);
                     }
                 },
@@ -45,6 +43,8 @@ function findTitlesController($routeParams, $route, $location, $timeout, manipul
                     $timeout(() => {
                         $location.path('/search');
                     }, 2000);
+                } else {
+                    $route.reload();
                 }
             },
             (error) => {
@@ -55,19 +55,12 @@ function findTitlesController($routeParams, $route, $location, $timeout, manipul
 
     self.displayMovieInfo = (uri) => {
         uri = encodeURIComponent(uri);
-        if (self.foundOnDataset) {
-            $timeout(() => {
-                if (!self.isMovieFound) {
-                    self.isMovieFound = true;
-                    $location.path('/movieInfo/' + uri);
-                }
-            }, 1000);
-        } else {
-            self.message = 'Current page is reloading. Be patient! Adding these movies on dataset...';
-            $timeout(() => {
-                $route.reload();
-            }, 1000);
-        }
+        $timeout(() => {
+            if (!self.isMovieFound) {
+                self.isMovieFound = true;
+                $location.path('/movieInfo/' + uri);
+            }
+        }, 1000);
     }
 
     self.goToSearchPage = () => {

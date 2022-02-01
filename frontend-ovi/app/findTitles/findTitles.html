@@ -6,6 +6,6 @@
     <h1>Available titles: {{ titlesCtrl.titlesNumber }}. Choose one</h1>
     <p>{{ titlesCtrl.message }}</p>
     <ul>
-        <li ng-click="titlesCtrl.displayMovieInfo(uriTitle);" ng-repeat="(uriTitle, value) in titlesCtrl.titlesArray">'{{ uriTitle }}'   '{{ value.name }}'</li>
+        <li ng-click="titlesCtrl.displayMovieInfo(uriTitle);" ng-repeat="(uriTitle, value) in titlesCtrl.titlesArray">'{{ value.name }}'</li>
     </ul>
 </div>

@@ -32,7 +32,9 @@ function recommendationController($location, getRequestRecommendedTitles, concat
         }
 
         self.fetchRecommendationData(self.params);
-        if (self.params.uriDirectors == emptyString && self.params.uriActors == emptyString && self.params.uriGenre == emptyString) {
+        if ((self.params.uriDirectors == emptyString || self.params.uriDirectors == {}) && 
+            (self.params.uriActors == emptyString || self.params.uriActors == {}) && 
+            (self.params.uriGenre == emptyString || self.params.uriGenre == {})) {
             self.recommendedTitles = undefined;
             self.title = 'No recommendation found';
         } else {
