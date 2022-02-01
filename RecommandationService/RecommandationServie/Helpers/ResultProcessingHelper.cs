@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net;
 using System.Threading.Tasks;
 using VDS.RDF.Query;
 
@@ -17,7 +18,7 @@ namespace RecommandationService.Helpers
                 var titles = new List<string>();
                 foreach (var name in result.Value("name").ToString().Split(CommonVariables.separator))
                 {
-                    titles.Add(name);
+                    titles.Add(WebUtility.UrlDecode(name));
                 }
                 processedRecomandation[movie] = titles;
 
