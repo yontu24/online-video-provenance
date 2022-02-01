@@ -12,8 +12,9 @@ namespace SearchService.Services
         
         public string GetMatchingTitles(string title)
         {
-            QueryBuilder queryBuilder = new QueryBuilder();
 
+            QueryBuilder queryBuilder = new QueryBuilder();
+            title = title.Trim().Replace(" ", "\\\\+");
             queryBuilder
                 .DeclarePrefix(CommonVariables.ResourcesPrefix, CommonVariables.ResourcesPrefixUri.OriginalString)
                 .AddAggregatedSubject("name")
