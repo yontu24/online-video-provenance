@@ -6,8 +6,9 @@ angular.module('findTitles')
         controller:
         [
             '$routeParams', 
+            '$route',
             '$location',
-            '$interval', 
+            '$timeout', 
             'manipulateData', 
             'getRequestTitlesFromDataset', 
             'getRequestTitlesFromAnotherSource',

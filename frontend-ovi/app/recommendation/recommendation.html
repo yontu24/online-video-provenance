@@ -1,2 +1,8 @@
-<h1>Recommendations</h1>
-{{ recomm.recommendedTitles }}
+<h1>{{ recomm.title }}</h1>
+<div>
+    <!-- <div ng-if="recomm.recommendedTitles != undefined"> -->
+    <ul ng-repeat="property in recomm.recommendedTitles">
+        <li ng-repeat="title in property track by $index">
+            <p ng-click="recomm.showMovieInfo(property)">{{ title[0] }}</p>
+    <!-- </div> -->
+</div>

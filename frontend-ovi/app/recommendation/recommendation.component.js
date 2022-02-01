@@ -10,6 +10,7 @@ angular.module('titleRecommendation')
         replace: true,
         controller:
         [
+            '$location',
             'getRequestRecommendedTitles',
             'concatenateUris',
             recommendationController

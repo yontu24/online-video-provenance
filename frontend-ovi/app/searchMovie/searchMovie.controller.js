@@ -5,7 +5,7 @@ function searchMovieFormController($location) {
 
     self.findTitles = (title) => {
         if (title) {
-            $location.path('/findTitle/' + title);
+            $location.path('/findTitle/' + encodeURIComponent(title));
             title = '';
         }
     };

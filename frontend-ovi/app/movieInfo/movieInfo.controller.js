@@ -22,7 +22,7 @@ function movieInfoController($routeParams, $location, getRequestMovieInfo, proce
                     self.triples = self.objectResponse.triples;
                     self.movieTitle = self.objectResponse.title;
                     self.movieUri = self.objectResponse.movieUri;
-                    self.triplesNumber = Object.keys(self.triples).length;
+                    self.triplesNumber = self.triples == null ? 0 : Object.keys(self.triples).length;
                 },
                 (error) => {
                     self.triples = error.statusText;
@@ -30,6 +30,11 @@ function movieInfoController($routeParams, $location, getRequestMovieInfo, proce
                 }
             );
         }
+    }
+
+    self.showTriples = (property) => {
+        property = encodeURIComponent(property);
+        $location.path('/wade-ovi.org/' + property);
     }
 
     self.goToSearchPage = () => {

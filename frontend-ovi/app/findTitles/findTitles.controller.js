@@ -1,28 +1,30 @@
 'use strict';
 
-// encode la recomandari
-// de pus param la func title 25
-
-function findTitlesController($routeParams, $location, $interval, manipulateData, getRequestTitlesFromDataset, getRequestTitlesFromAnotherSource) {
+function findTitlesController($routeParams, $route, $location, $timeout, manipulateData, getRequestTitlesFromDataset, getRequestTitlesFromAnotherSource) {
     var self = this;
 
-    self.titleId = $routeParams.titleId;
+    self.titleParam = decodeURIComponent($routeParams.titleId);
     
     self.$onInit = () => {
         self.isMovieFound = false;
         self.titlesArray = [];
-        self.fetchData(self.titleId);
+        self.message = '';
+        self.foundOnDataset = true;
+        self.fetchData(self.titleParam);
     }
 
     self.fetchData = (uri) => {
         if (uri) {
             getRequestTitlesFromDataset.get(uri).then(
                 (response) => {
+                    self.message = 'Movies found on dataset:'
                     self.titlesArray = manipulateData.getTitles(JSON.stringify(response.data));
                     self.titlesNumber = Object.keys(self.titlesArray).length;
 
                     if (!self.titlesNumber) {
-                        self.fetchDataFromAnotherSource(title);
+                        self.foundOnDataset = false;
+                        self.message = 'Movies found on dbpedia:';
+                        self.fetchDataFromAnotherSource(self.titleParam);
                     }
                 },
                 (error) => {
@@ -37,6 +39,13 @@ function findTitlesController($routeParams, $location, $interval, manipulateData
             (response) => {
                 self.titlesArray = manipulateData.getTitles(JSON.stringify(response.data));
                 self.titlesNumber = Object.keys(self.titlesArray).length;
+                
+                if (!self.titlesNumber) {
+                    self.message = 'No results. Redirecting to search page.';
+                    $timeout(() => {
+                        $location.path('/search');
+                    }, 2000);
+                }
             },
             (error) => {
                 self.titlesArray = error.statusText;
@@ -46,11 +55,22 @@ function findTitlesController($routeParams, $location, $interval, manipulateData
 
     self.displayMovieInfo = (uri) => {
         uri = encodeURIComponent(uri);
-        $interval(() => {
-            if (!self.isMovieFound) {
-                self.isMovieFound = true;
-                $location.path('/movieInfo/' + uri);
-            }
-        }, 1000);
+        if (self.foundOnDataset) {
+            $timeout(() => {
+                if (!self.isMovieFound) {
+                    self.isMovieFound = true;
+                    $location.path('/movieInfo/' + uri);
+                }
+            }, 1000);
+        } else {
+            self.message = 'Current page is reloading. Be patient! Adding these movies on dataset...';
+            $timeout(() => {
+                $route.reload();
+            }, 1000);
+        }
+    }
+
+    self.goToSearchPage = () => {
+        $location.path('/search');
     }
 }

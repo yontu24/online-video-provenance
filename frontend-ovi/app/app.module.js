@@ -7,6 +7,7 @@ angular.module('ovi',
         'searchMovie',
         'findTitles',
         'movieInfo',
-        'titleRecommendation'
+        'titleRecommendation',
+        'showTriples'
     ]
 );

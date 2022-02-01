@@ -1,0 +1,15 @@
+<h1>{{ triplesCtrl.propertyUri }} </h1>
+<h2>{{ triplesCtrl.triplesNumber }} triples found.</h2>
+
+<table>
+    <tr>
+        <th>Subject</th>
+        <th>Predicate</th>
+        <th>Object</th>
+    </tr>
+    <tr ng-repeat="triple in triplesCtrl.triples track by $index">
+        <td ng-click=triplesCtrl.showMovieInfo(triple.subject)>{{ triple.subject }}</td>
+        <td>{{ triple.predicate }}</td>
+        <td>{{ triple.object }}</td>
+    </tr>
+</table>

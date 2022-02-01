@@ -5,13 +5,13 @@
     {{info.movieTitle}}
     {{info.array}}
 </h1>
-<table ng-if="info.triples != []">
+<table ng-if="info.triples != undefined">
     <tr>
         <th>Property</th>
         <th>Value</th>
     </tr>
     <tr ng-repeat="(property, dictionary) in info.triples">
-        <td >{{ property }}</td>
+        <td ng-click="info.showTriples(property)">{{ property }}</td>
         <td>
             <div ng-repeat="(key, value) in dictionary">
                 <p>{{ key.label }} : {{ value }}</p>
@@ -20,10 +20,9 @@
         </td>
     </tr>
 </table>
+
 <div class="buttons">
     <input type="button" ng-click="showRecommendation = !showRecommendation" value="Recommendation">
 </div>
-
-<!-- <title-recommendation ng-if="showRecommendation" display-titles="info.displayRecommendation" ng-show="showRecommendation"></title-recommendation> -->
 
 <title-recommendation ng-if="showRecommendation" movie-uri="info.movieUri" display-titles="info.triples" ng-show="showRecommendation"></title-recommendation>

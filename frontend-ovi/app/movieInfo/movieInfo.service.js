@@ -26,8 +26,9 @@ angular.module('movieInfo')
             }
 
             return {
-                triples: newProps,
-                title: newProps[titlePropertyLiteral][titleUri],
+                triples: movieTriples,
+                title: newProps[titlePropertyLiteral] == undefined ? 
+                    "Can't track information about this movie because title property is not found." : newProps[titlePropertyLiteral][titleUri],
                 movieUri: movieUri
             }
         }

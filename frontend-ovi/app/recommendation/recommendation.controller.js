@@ -1,34 +1,48 @@
 'use strict';
 
-function recommendationController(getRequestRecommendedTitles, concatenateUris) {
+function recommendationController($location, getRequestRecommendedTitles, concatenateUris) {
     var self = this;
+
+    const recommendationObj = {
+        directedBy: 'http://www.wade-ovi.org/resources#directedBy',
+        starring: 'http://www.wade-ovi.org/resources#starring',
+        genre: 'http://www.wade-ovi.org/resources#genre'
+    };
+
+    const emptyString = '';
+
+    self.title = '';
+    self.recommendedTitles = {};
+    self.params = {
+        uriMovieTitle: emptyString,
+        uriDirectors: emptyString,
+        uriActors: emptyString,
+        uriGenre: emptyString
+    };
+    
     self.$onInit = () => {
-        // self.recommendedTitles = this.displayTitles()();
-        self.recommendedTitles = self.displayTitles;
-        var params = {
-            uriMovieTitle: self.movieUri,
-            uriDirectors: self.displayTitles['directedBy'],
-            uriActors: self.displayTitles['starring'],
-            uriGenre: self.displayTitles['genre']
-        };
-        console.log(JSON.stringify(params, undefined, 4));
-        self.fetchRecommendationData(params);
+        if (self.movieUri != undefined) {
+            self.params = {
+                uriMovieTitle: encodeURIComponent(self.movieUri),
+                uriDirectors: concatenateUris.get(self.displayTitles[recommendationObj.directedBy]),
+                uriActors: concatenateUris.get(self.displayTitles[recommendationObj.starring]),
+                uriGenre: concatenateUris.get((self.displayTitles[recommendationObj.genre] == undefined) ? 
+                        emptyString : self.displayTitles[recommendationObj.genre][recommendationObj.genre])
+            };
+        }
+
+        self.fetchRecommendationData(self.params);
+        if (self.params.uriDirectors == emptyString && self.params.uriActors == emptyString && self.params.uriGenre == emptyString) {
+            self.recommendedTitles = undefined;
+            self.title = 'No recommendation found';
+        } else {
+            self.title = 'We found some recommendations!';
+        }
     }
 
-    self.fetchRecommendationData = (params) => {
-        var keys = Object.keys(params);
-
-        var processedParams = {
-            uriMovieTitle: encodeURIComponent(params.uriMovieTitle),
-            uriDirectors: encodeURIComponent(concatenateUris.get(params[keys[1]])),
-            uriActors: encodeURIComponent(concatenateUris.get(params[keys[2]])),
-            uriGenre: encodeURIComponent(concatenateUris.get(params[keys[3]]))
-        };
-        
-        console.log(JSON.stringify(processedParams, undefined, 4));
-
-        if (processedParams) {
-            getRequestRecommendedTitles.get(processedParams).then(
+    self.fetchRecommendationData = function(params) {
+        if (params) {
+            getRequestRecommendedTitles.get(params).then(
                 (response) => {
                     self.recommendedTitles = response.data;
                 },
@@ -36,5 +50,11 @@ function recommendationController(getRequestRecommendedTitles, concatenateUris) 
                     self.recommendedTitles = error.statusText;
                 });
         }
+    }
+
+    self.showMovieInfo = (uriTitle) => {
+        uriTitle = encodeURIComponent(Object.keys(uriTitle)[0]);
+        console.log('uriTitle = ' + uriTitle);
+        $location.path('/movieInfo/' + uriTitle);
     }
 }

@@ -11,8 +11,8 @@ angular.module('titleRecommendation')
             if (params.uriActors != "" && params.uriActors != undefined)
                 url += '&actors=' + params.uriActors;
                 
-            // if (params.uriGenre != "" && params.uriGenre != undefined)
-            //     url += '&genre=' + params.uriGenre;
+            if (params.uriGenre != "" && params.uriGenre != undefined)
+                url += '&genre=' + params.uriGenre;
 
             console.log(url);
             return $http.get(url);
@@ -35,7 +35,7 @@ angular.module('titleRecommendation')
                 concatenatedUri += delimiter + uri;
             }
 
-            return concatenatedUri.replace(delimiter, '');
+            return encodeURIComponent(concatenatedUri.replace(delimiter, ''));
         }
         return {
             get: get
