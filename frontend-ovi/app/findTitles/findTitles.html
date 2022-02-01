@@ -3,9 +3,12 @@
 </div>
 
 <div ng-if="!titlesCtrl.isMovieFound">
-    <h1>Available titles: {{ titlesCtrl.titlesNumber }}. Choose one</h1>
-    <p>{{ titlesCtrl.message }}</p>
-    <ul>
-        <li ng-click="titlesCtrl.displayMovieInfo(uriTitle);" ng-repeat="(uriTitle, value) in titlesCtrl.titlesArray">'{{ value.name }}'</li>
-    </ul>
+    <h1 ng-if="titlesCtrl.titlesNumber != 0"><span>Available titles: {{ titlesCtrl.titlesNumber }}</span></h1>
+    <h1><span>{{ titlesCtrl.message }}</span></h1>
+
+    <div class="titlesContainer">
+        <div class="titleBox"><span ng-repeat="(uriTitle, value) in titlesCtrl.titlesArray" ng-click="titlesCtrl.displayMovieInfo(uriTitle);">
+            {{ value.name }}
+        </span></div>
+    </div>
 </div>

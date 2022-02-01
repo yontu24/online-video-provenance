@@ -3,26 +3,23 @@
 function findTitlesController($routeParams, $route, $location, $timeout, manipulateData, getRequestTitlesFromDataset, getRequestTitlesFromAnotherSource) {
     var self = this;
 
-    self.titleParam = decodeURIComponent($routeParams.titleId);
+    self.titleParam = encodeURIComponent($routeParams.titleId);
     
     self.$onInit = () => {
-        self.isMovieFound = false;
-        self.titlesArray = [];
-        self.message = '';
-        self.fetchData(self.titleParam);
+        self.fetchData(decodeURIComponent(self.titleParam));
     }
 
-    self.fetchData = (uri) => {
-        if (uri) {
-            getRequestTitlesFromDataset.get(uri).then(
+    self.fetchData = (title) => {
+        if (title) {
+            getRequestTitlesFromDataset.get(title).then(
                 (response) => {
-                    self.message = 'Movies found:'
+                    self.message = 'Movies found'
                     self.titlesArray = manipulateData.getTitles(JSON.stringify(response.data));
                     self.titlesNumber = Object.keys(self.titlesArray).length;
 
                     if (!self.titlesNumber) {
                         self.message = 'Searching for movies on dbpedia...';
-                        self.fetchDataFromAnotherSource(self.titleParam);
+                        self.fetchDataFromAnotherSource(title);
                     }
                 },
                 (error) => {
@@ -32,8 +29,8 @@ function findTitlesController($routeParams, $route, $location, $timeout, manipul
         }
     }
 
-    self.fetchDataFromAnotherSource = (uri) => {
-        getRequestTitlesFromAnotherSource.get(uri).then(
+    self.fetchDataFromAnotherSource = (title) => {
+        getRequestTitlesFromAnotherSource.get(title).then(
             (response) => {
                 self.titlesArray = manipulateData.getTitles(JSON.stringify(response.data));
                 self.titlesNumber = Object.keys(self.titlesArray).length;
@@ -42,10 +39,10 @@ function findTitlesController($routeParams, $route, $location, $timeout, manipul
                     self.message = 'No results. Redirecting to search page.';
                     $timeout(() => {
                         $location.path('/search');
-                    }, 2000);
-                } else {
-                    $route.reload();
+                    }, 1000);
                 }
+                else
+                    $route.reload();
             },
             (error) => {
                 self.titlesArray = error.statusText;

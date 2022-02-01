@@ -8,7 +8,6 @@ angular.module('ovi',
         'findTitles',
         'movieInfo',
         'titleRecommendation',
-        'showTriples',
-        'showPersons'
+        'showTriples'
     ]
 );

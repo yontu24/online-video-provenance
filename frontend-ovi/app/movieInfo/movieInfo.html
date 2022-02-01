@@ -2,19 +2,20 @@
     <input type="button" ng-click="info.goToSearchPage()" value="Search again">
 </div>
 <h1>
-    {{info.movieTitle}}
-    {{info.array}}
+    <span>
+        {{info.movieTitle}}
+    </span>
 </h1>
-<table ng-if="info.triples != undefined">
+<table class="styled-table centered" ng-if="info.triples != undefined">
     <tr>
         <th>Property</th>
         <th>Value</th>
     </tr>
     <tr ng-repeat="(property, dictionary) in info.triples">
-        <td ng-click="info.showTriples(property);">{{ property }}</td>
+        <td class="propertyCell" ng-click="info.showTriples(property);">{{ property.split('#').pop() }}</td>
         <td>
             <div ng-repeat="(key, value) in dictionary">
-                <p ng-click="info.showPersonUriNodes(property, key);">{{ key.label }} : {{ value }}</p>
+                <p ng-click="info.showPersonUriNodes(property, key);"><span>{{ value | limitTo: 50 }}{{ value.length > 50 ? '...' : '' }}</span></p>
                 <!-- <a target="_self" ng-href={{ key }}>{{ value }}</a> -->
             </div>
         </td>

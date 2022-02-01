@@ -1,20 +1,22 @@
 <div class="buttons">
-    <input type="button" ng-click="triplesCtrl.goToSearchPage()" value="Search again">
+    <input type="button" ng-click="triplesCtrl.goToSearchPage();" value="Search again">
+    <input ng-if="triplesCtrl.isPerson" type="button" ng-click="triplesCtrl.addPersonToDataset(triplesCtrl.objectDbpediaRef);" value="Populate data about the person">
 </div>
 
-<h1>{{ triplesCtrl.propertyUri }} </h1>
-<h1 ng-if="triplesCtrl.isNodeLiteral"><b>(Literal)</b></h1>
-<h2 ng-if="!triplesCtrl.isNodeLiteral">{{ triplesCtrl.triplesNumber }} triples found.</h2>
+<h1 ng-if="triplesCtrl.responseStatus != ''"><span>{{ triplesCtrl.responseStatus }}</span></h1>
+<h1><span>{{ triplesCtrl.propertyUri }} </span></h1>
+<h1 ng-if="triplesCtrl.isNodeLiteral"><span><b>(Literal)</b></span></h1>
+<h1 ng-if="!triplesCtrl.isNodeLiteral"><span>{{ triplesCtrl.triplesNumber }} triples found</span></h1>
 
-<table ng-if="triplesCtrl.triplesNumber != 0">
+<table class="styled-table centered" ng-if="triplesCtrl.triplesNumber != 0">
     <tr>
         <th>Subject</th>
         <th>Predicate</th>
         <th>Object</th>
     </tr>
     <tr ng-repeat="triple in triplesCtrl.triples track by $index">
-        <td ng-click=triplesCtrl.showResourceInfo(triple.subject);>{{ triple.subject }}</td>
-        <td ng-click=triplesCtrl.showPerson(triple.predicate,triple.object);>{{ triple.predicate }}</td>
-        <td ng-click=triplesCtrl.showResourceInfo(triple.object);>{{ triple.object }}</td>
+        <td class="propertyCell" ng-click=triplesCtrl.showResourceInfo(triple.subject);>{{ triple.subject | limitTo: 50 }}{{ triple.subject.length > 50 ? '...' : '' }}</td>
+        <td class="propertyCell" ng-click=triplesCtrl.showResourceInfo(triple.predicate);>{{ triple.predicate | limitTo: 50 }}{{ triple.predicate.length > 50 ? '...' : '' }}</td>
+        <td class="propertyCell" ng-click=triplesCtrl.showResourceInfo(triple.object);>{{ triple.object | limitTo: 50 }}{{ triple.object.length > 50 ? '...' : '' }}</td>
     </tr>
 </table>

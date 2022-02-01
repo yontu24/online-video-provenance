@@ -16,9 +16,6 @@ angular.module('ovi').
                 when('/wade-ovi.org/:property', {
                     template: '<show-triples></show-triples>'
                 }).
-                when('/person/:person', {
-                    template: '<show-persons></show-persons>'
-                }).
                 otherwise('/search');
         }
     ]

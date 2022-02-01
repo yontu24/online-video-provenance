@@ -8,6 +8,7 @@ angular.module('showTriples')
             '$routeParams', 
             '$location',
             'getRequestTriples',
+            'getRequestPerson',
             showTriplesController
         ],
         controllerAs: 'triplesCtrl',

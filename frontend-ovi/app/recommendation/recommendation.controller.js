@@ -32,14 +32,6 @@ function recommendationController($location, getRequestRecommendedTitles, concat
         }
 
         self.fetchRecommendationData(self.params);
-        if ((self.params.uriDirectors == emptyString || self.params.uriDirectors == {}) && 
-            (self.params.uriActors == emptyString || self.params.uriActors == {}) && 
-            (self.params.uriGenre == emptyString || self.params.uriGenre == {})) {
-            self.recommendedTitles = undefined;
-            self.title = 'No recommendation found';
-        } else {
-            self.title = 'We found some recommendations!';
-        }
     }
 
     self.fetchRecommendationData = function(params) {
@@ -47,6 +39,14 @@ function recommendationController($location, getRequestRecommendedTitles, concat
             getRequestRecommendedTitles.get(params).then(
                 (response) => {
                     self.recommendedTitles = response.data;
+
+                    if ((self.recommendedTitles.actors == null || angular.equals(self.recommendedTitles.actors, {})) && 
+                        (self.recommendedTitles.genres == null || angular.equals(self.recommendedTitles.genres, {})) && 
+                        (self.recommendedTitles.directors == null || angular.equals(self.recommendedTitles.directors, {}))) {
+                        self.recommendedTitles = undefined;
+                        self.title = 'No recommendation found';
+                    } else
+                        self.title = 'We found some recommendations';
                 },
                 (error) => {
                     self.recommendedTitles = error.statusText;
@@ -56,7 +56,6 @@ function recommendationController($location, getRequestRecommendedTitles, concat
 
     self.showMovieInfo = (uriTitle) => {
         uriTitle = encodeURIComponent(Object.keys(uriTitle)[0]);
-        console.log('uriTitle = ' + uriTitle);
         $location.path('/movieInfo/' + uriTitle);
     }
 }

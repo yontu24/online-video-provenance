@@ -1,8 +1,10 @@
-<h1>{{ recomm.title }}</h1>
-<div>
-    <!-- <div ng-if="recomm.recommendedTitles != undefined"> -->
-    <ul ng-repeat="property in recomm.recommendedTitles">
-        <li ng-repeat="title in property track by $index">
-            <p ng-click="recomm.showMovieInfo(property)">{{ title[0] }}</p>
-    <!-- </div> -->
+<h1><span>{{ recomm.title }}</span></h1>
+<div class="titlesContainer">
+    <div ng-repeat="property in recomm.recommendedTitles">
+        <div class="titleBox">
+            <span ng-repeat="title in property track by $index" ng-click="recomm.showMovieInfo(property);">
+                {{ title[0] | limitTo: 50 }}{{ title[0].length > 50 ? '...' : '' }}
+            </span>
+        </div>
+    </div>
 </div>

@@ -1,7 +1,11 @@
 'use strict';
 
-function showTriplesController($routeParams, $location, getRequestTriples) {
+function showTriplesController($routeParams, $location, getRequestTriples, getRequestPerson) {
     var self = this;
+
+    const SUCCESS_MESSAGE = 'Person has been added to triples';
+    const FAILURE_MESSAGE = 'Person not found on dbpedia';
+    const dbpediaRefPredicate = 'dbpediaReference';
 
     self.propertyUri = decodeURIComponent($routeParams.property);
 
@@ -9,6 +13,9 @@ function showTriplesController($routeParams, $location, getRequestTriples) {
         self.triples = [];
         self.triplesNumber = 0;
         self.isNodeLiteral = false;
+        self.isPerson = false;
+        self.objectDbpediaRef = '';
+        self.responseStatus = '';
         self.fetchData(self.propertyUri);
     }
 
@@ -17,11 +24,34 @@ function showTriplesController($routeParams, $location, getRequestTriples) {
             (response) => {
                 self.triples = response.data;
                 self.triplesNumber = self.triples.length;
+                
+                self.triples.forEach((triple) => {
+                    if (triple.predicate.includes(dbpediaRefPredicate) && !self.propertyUri.includes(dbpediaRefPredicate)) {
+                        self.isPerson = true;
+                        self.objectDbpediaRef = triple.object;
+
+                        console.log('self.objectDbpediaRef = ' + self.objectDbpediaRef);
+                    }
+                });
             },
             (error) => {
                 self.triples = error.statusText;
             }
         );
+    }
+
+    self.addPersonToDataset = (objectUri) => {
+        if (objectUri) {
+            objectUri = encodeURIComponent(objectUri);
+            getRequestPerson.get(objectUri).then(
+                (response) => {
+                    self.responseStatus = !angular.equals(response.data, {}) ? SUCCESS_MESSAGE : FAILURE_MESSAGE;
+                },
+                (error) => {
+                    self.responseStatus = error.status;
+                }
+            );
+        }
     }
     
     self.showResourceInfo = (subject) => {
@@ -35,15 +65,6 @@ function showTriplesController($routeParams, $location, getRequestTriples) {
         }
     }
 
-    self.showPerson = (predicate, object) => {
-        if (predicate.includes('dbpediaReference'))
-            $location.path('/person/' + encodeURIComponent(object));
-        else if (!object.includes('http'))  // literal
-            self.isNodeLiteral = true;
-        else
-            $location.path('/wade-ovi.org/' + encodeURIComponent(object));
-    }
-    
     self.goToSearchPage = () => {
         $location.path('/search');
     }

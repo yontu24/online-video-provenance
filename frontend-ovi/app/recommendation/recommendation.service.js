@@ -14,7 +14,6 @@ angular.module('titleRecommendation')
             if (params.uriGenre != "" && params.uriGenre != undefined)
                 url += '&genre=' + params.uriGenre;
 
-            console.log(url);
             return $http.get(url);
         }
         return {
