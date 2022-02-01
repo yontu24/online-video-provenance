@@ -18,40 +18,55 @@
       <li>
         <a href="#introduction">Introduciton</a>
       </li>
+      <li>
+        <a href="#useCases">Use cases</a>
+      </li>
+      <li>
+        <a href="#client">Client functionality and service calls</a>
+      </li>
+      <li>
+        <a href="#queryBuilderLibrary">Query Builder Library</a>
+      </li>
     </ol>
   </div>
   <section id="introduction">
     <h2>Introduction</h2>
     <p>
-      This document contains instructions regarding to the use of the solution provided. The inteded usage for the
-      client can be found here, along with the usage for the Search Service and the Query Builder Library.
+      This document contains instructions in regard to the use of the solution provided. We will present a few use cases
+      for our application and also talk about how the client works and interacts with two of our services, namely the
+      Search Service and the Recommendation Service.A brief explication about the use of the Query builder library will
+      also be provided towards the end of the document.
     </p>
   </section>
+  <section id="useCases">
+    <h2>Use cases</h2>
+  </section>
   <section id="client">
-    <h2>Client usage</h2>
+    <h2>Client functionality and Search Service calls</h2>
     <p>
-      The client consists of an application developed in <a href="">AngularJS</a>. It has five main components and it
-      mainly interacts with the Search Service and also with the Recommendation Service.
+      The client consists of an application developed in <a href="">AngularJS</a>. It has six main components and it
+      mainly interacts with the Search Service, but also with the Recommendation Service.
     </p>
     <p>
       On the front-page, the user is able to search for titles in our dataset by entering a string into the search bar.
       When pressing the search button, a request is made to the "/movies/titles/{title}" endpoint of the Search Service.
-      This will return a list of all movies that contain the input string in their title.
+      This will return a list of all movies that contain the input string in their title, along with their URI.
     </p>
     <p>
       The user can choose any of the returned titles by clicking on them, which will send another request to the Search
-      Service, this time on the "/movies/data/{movieUri}" endpoint. This will return all information in our dataset
-      regarding the concerned movie.
+      Service, this time on the "/movies/data/{movieUri}" endpoint, using the URI out of the pair previously returned by
+      the other endpoint. This will return all information in our dataset regarding the concerned movie.
     </p>
     <p>
       In case that we do not have the desired movie in our dataset, the we may search for it in an external source, <a
-        href="">DBpedia</a> and we will pull the information from there on the spot.
+        href="">DBpedia</a> and we will pull the information from there on the spot, by making use of the
+      "/dbpedia/movies/{title}" endpoint.
     </p>
     <p>
-      In the same page, recommendations will be displayed for the user to see. These will
-      be returned by a call to the "/recommendation" endpoint of the Recommendation Service, where the information will
-      be sent as a query string. If the user clicks one of the recommendations, they will be taken to the info page for
-      the respective movie.
+      In the same page where the movie info is displayed, recommendations will also be placed for the user to see. These
+      will be returned by a call to the "/recommendation" endpoint of the Recommendation Service, where the information
+      will be sent as a query string. If the user clicks one of the recommendations, they will be taken to the info page
+      for the respective movie.
     </p>
     <p>
       If the user clicks on a person's name, then a request will be made to the "/dbpedia/persons/{name}" endpoint of
@@ -60,8 +75,93 @@
     </p>
     <p>
       Additionaly, if the user clicks on another property that contains a link, aside from person names, they will be
-      taken to a page that will display all triples that the current property is part of.
+      taken to a page that will display all triples that the current property is part of. This information is provided
+      by the "/resources/{resourceUri}" endpoint of the Search Service.
     </p>
+  </section>
+  <section id="queryBuilderLibrary">
+    <h2>Query Builder Library</h2>
+    <p>
+      The library was developed in order to facilitate the process of writing SPARQL queries and to get rid of the need
+      to store them as they are in plaintext or strings. To this extent, we have implemented classes that handle
+      building SELECT and INSERT queries. In the following paragraphs, the use of the builder for SELECT queries will be
+      briefly described.
+    </p>
+    <p>
+      At first we only had in plan to handle SELECT queries and although we later tried handling another case, the name
+      for it remained QueryBuilder. Put in simple terms, the way to use it is to instantiate the class by using its only
+      constructor, which takes no parameters and then you may call and chain methods together in order to build your
+      desired query.
+    </p>
+    <p>
+      To be able to build a query, we split it into 3 parts:
+    </p>
+    <ol>
+      <li>
+        What comes before the where clause: prefix declaration and specifying the variables that will hold the returned.
+        values
+      </li>
+      <li>
+        The where clause: everything that exists between the brackets followed by the WHERE keyword.
+      </li>
+      <li>
+        What comes after the where clause: grouping and limit.
+      </li>
+    </ol>
+    <p>
+      The methods that handle the parts before and after the where clause are quite simple to use. The AddSubject
+      methods specify the variables to be returned and the AddAggregatedSubject method allows the user to perform a
+      GROUP_CONCAT over the variable to be returned.
+    </p>
+    <p>
+      The most complex part is constructing the body of the where clause. The most important method to take notice of
+      here is this overload of the AddTriple method:
+    </p>
+    <pre>
+      <code>
+        public IQueryBuilder AddTriple(string subject, string prefix, string predicate, string obj)
+        {
+            _whereBody.AppendLine($"?{subject} {prefix}:{predicate} ?{obj} .");
+
+            return this;
+        }
+      </code>
+    </pre>
+    <p>
+      In the code snipped above we can observe how a triple is defined in our query builder. The subject will always be
+      a variable and while the object, in this case, is also one, the AddTripleWithLiteral methods handle the cases
+      when, as it is implied, the object is a literal.
+    </p>
+    <p>
+      Since often we would use multiple triples that have the same subject and are from the same graph, meaning that we
+      have the same prefix, an user may specify those two in advance, by using the UseSubject and UsePrefix methods.
+      They values given will be stored internally and the user may use overloads of the AddTriple method to only specify
+      the elements that differ from one triple to another.
+    </p>
+    <p>
+      For the cases where our format described in the snipped above does not match what the user wants to insert, he may
+      use and overload of the AddTriple method that receives only one string and input the construct that he needs.
+    </p>
+    <p>
+      To get the final product, that is the query, the BuildQuery method may be used. All previously declared constructs
+      such as prefixes, variables and triples are stored internally and are assembled in the shape of the query inside
+      this method. As such, as long as all proper calls are made, meaning that no variable used to build the query is
+      left empty, the order of the calls does not matter.
+    </p>
+    <pre>
+      <code>
+        QueryBuilder queryBuilder = new QueryBuilder();
+        queryBuilder
+           .AddDistinctSubject("person")
+           .WithSubjectOfType("dbo", "Person")
+           .UsePrefix("dbp")
+           .AddTriple("name", "name")
+           .AddFilter($" ?person = <{uri}> ")
+           .AddLimit(10);
+
+        string query = queryBuilder.BuildQuery();
+      </code>
+    </pre>
   </section>
 </body>
 
